@@ -1,6 +1,6 @@
 <template>
     <div class="timer-wrap">
-        <div class="timer-bar-left" :style="remainingTimeStyleLeft"></div>
+        <div class="timer-bar-left" :style="remainingTimeStyleLeft">{{remainingTimeMSec}}</div>
         <div class="timer-bar-right" :style="remainingTimeStyleRight"></div>
     </div>
 </template>
@@ -14,6 +14,7 @@
         data: () => ({
             remainingTimeStyleLeft: {width: '100%'},
             remainingTimeStyleRight: {width: '100%'},
+            lastTimeOutInterval: 0,
             remainingTimeMSec: timerDuration * 100 // should be in milliseconds
         }),
         methods: {
@@ -33,9 +34,10 @@
 
                 if (this.remainingTimeMSec > 0) {
                     if (!this.$store.state.stopTimeoutTimer && !this.$store.state.endTest) {
-                        setTimeout(this.decreaseTimer, timerTick);
+                        this.lastTimeOutInterval = setTimeout(this.decreaseTimer, timerTick);
                     }
                 } else {
+                    console.log('Remain:',this.remainingTimeMSec);
                     this.$store.commit('timeIsOut');
                     this.$store.dispatch('checkForNextSlide');
                 }
@@ -46,6 +48,11 @@
             setTimeout(() => {
                 this.decreaseTimer();
             }, timerTick);
+        },
+        beforeDestroy: function() {
+            if (this.lastTimeOutInterval) {
+                clearTimeout(this.lastTimeOutInterval);
+            }
         }
     };
 </script>
