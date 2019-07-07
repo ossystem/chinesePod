@@ -1,16 +1,39 @@
 // slide #2, if slide #1 was SOLVED
 const question1 = 'Is this tea hot?';
 const question2 = 'Do you want to dance?';
+const question3 = 'Do you have tea?';
 const question4 = 'You like a challenge?';
 
 const data =
     {
         question: {
             title: 'What does this mean:',
-            chars: '你有茶吗?',
+            chars: '你有_茶吗?',
             charsTD: '你有茶吗?*#',
             pinyin: 'Nǐ yǒu chá ma?',
             pinyinTD: 'Nǐ yǒu chá ma?*#',
+            animation: [
+                {
+                    chars: '你有茶_?',           
+                    delay: 7000,
+                },
+                {
+                    chars: '你有_茶?',                  
+                    delay: 1000,
+                },
+                {
+                    chars: '你有没有茶?',
+                    delay: 1000,
+                },
+                {
+                    chars: '',
+                    delay: 1000
+                },                
+                {
+                    chars: '',
+                    delay: 5000
+                }                
+            ]                            
         },
         // Variants of answers
         answers: [
@@ -33,7 +56,7 @@ const data =
                 },
             },
             {
-                text: 'Do you have tea?',
+                text: question3,
                 wrong: {
                     line1: 'correct',
                     voice: 'correct.mp3'

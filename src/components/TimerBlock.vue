@@ -1,6 +1,6 @@
 <template>
     <div class="timer-wrap">
-        <div class="timer-bar-left" :style="remainingTimeStyleLeft">{{remainingTimeMSec}}</div>
+        <div class="timer-bar-left" :style="remainingTimeStyleLeft"></div>
         <div class="timer-bar-right" :style="remainingTimeStyleRight"></div>
     </div>
 </template>

@@ -9,20 +9,16 @@
 </template>
 
 <script>
-    import QuestionBlock from '../QuestionBlockSlide2.vue';
+    import QuestionBlock from '../QuestionBlock.vue';
     import AnswerBlock from '../AnswerBlock.vue';
     import MenuBlock from '../MenuBlock.vue';
     import SettingsBlock from '../SettingsBlock.vue';
     import TimerBlock from '../TimerBlock.vue'
 
-    import slideWrong from '../../data/slides/slide2';
-    import slideRight from '../../data/slides/slide2-right';
-
-
-    //const questions = [slide];
+    import slide from '../../data/slides/slide5';
 
     export default {
-        name: 'Slide2',
+        name: 'Slide5',
         components: {
             AnswerBlock,
             QuestionBlock,
@@ -34,7 +30,7 @@
             showSettings: false,
             skipCharacters: false,
             traditionalCharset: false,
-            questions: slideRight,
+            questions: slide,
 
         }),
         methods: {
@@ -45,18 +41,8 @@
                 this.traditionalCharset = !this.traditionalCharset;
             }
         },
-        computed: {
-            wasErrorsOnPrevSlide: function() {               
-                return this.$store.state.timeIsOut || this.$store.state.numOfWrongAnswers === 2;
-            }
-        },
         mounted: function() {
             this.$store.commit('clearDataBeforeSlideStarts');
-        },
-        created: function() {
-            if (this.wasErrorsOnPrevSlide) {
-                this.questions = slideWrong;
-            }
             setTimeout(() => {
                 this.showSettings = true;
             },5000);

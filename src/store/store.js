@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
         numOfWrongAnswers: 0,
         numOfPreviousErrors: 0,
         totalScore: 0,
-        currentSlide: 1,
+        currentSlide: 5,
         timeIsOut: false,
         answerIsCorrect: false,
         stopTimeoutTimer: false,
@@ -44,15 +44,19 @@ export const store = new Vuex.Store({
         endTest(state) {
           state.endTest = true;
         },
-        nextSlide (state) {
+        clearDataBeforeSlideStarts(state) {
             // go to next step
             state.numOfPreviousErrors = state.numOfWrongAnswers;
 
             state.numOfWrongAnswers = 0;
-            state.currentSlide++;
+
             state.timeIsOut = false;
             state.answerIsCorrect = false;
             state.stopTimeoutTimer = false;
+        },
+        nextSlide (state) {
+            // go to next step            
+            state.currentSlide++;           
         }
     },
 

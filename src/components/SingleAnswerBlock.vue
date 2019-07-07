@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="answer-block">
+            <WhereDidYouHearIt />
             <transition name="fade">
                 <div class="answer-wrong-wrap" v-show="showWrongAnswer">
                     <div class="answer-wrong">
@@ -15,12 +16,13 @@
             <div :id="`a${index}`" class="answer" :class="{answered: answered, correct: correct}" @click="clickAnswerHandler(3)"><span
                     class="variant">{{variant}}</span><span class="text">{{answer.text}}</span></div>
 
-            <audio id='soundHorse' ></audio>
+            <audio id='soundPlayer' ></audio>
         </div>
     </div>
 </template>
 
 <script>
+import WhereDidYouHearIt from '../components/WhereDidYouHearIt.vue'
     export default {
         name: 'SingleAnswerBlock',
         data: () => ({
@@ -28,6 +30,9 @@
             showWrongAnswer: false,
             correct: false
         }),
+        components: {
+            WhereDidYouHearIt
+        },
         props: {
             variant: String,
             answer: Object,
@@ -42,7 +47,7 @@
             tryButtonHandler() {
                 this.showWrongAnswer = false;
 
-                const audio = document.getElementById('soundHorse');
+                const audio = document.getElementById('soundPlayer');
                 audio.pause();
 
                 this.$store.commit('hideModalFader');
@@ -60,7 +65,7 @@
                 }
 
                 if (this.answer.wrong.voice) {
-                    const audio = document.getElementById('soundHorse');
+                    const audio = document.getElementById('soundPlayer');
 
                     audio.addEventListener('canplay',()=>{
                         audio.play();
