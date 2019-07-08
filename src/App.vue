@@ -8,11 +8,18 @@
       <div>come back soon!</div>
     </ModalWrapper>
 
-    <Slide1 class="slide1" v-if="$store.state.currentSlide === 1"/>
-    <Slide2 class="slide2" v-if="$store.state.currentSlide === 2"/>
-    <Slide3 class="slide3" v-if="$store.state.currentSlide === 3"/>
-    <Slide4 class="slide4" v-if="$store.state.currentSlide === 4"/>
-    <Slide5 class="slide5" v-if="$store.state.currentSlide === 5"/>
+    <ModalWrapper v-if="rightAnswerSlide5">
+      <WhereDidYouHearIt/>
+    </ModalWrapper>
+
+    <Slide1 v-if="$store.state.currentSlide === 1"/>
+    <Slide2 v-if="$store.state.currentSlide === 2"/>
+    <Slide3 v-if="$store.state.currentSlide === 3"/>
+    <Slide4 v-if="$store.state.currentSlide === 4"/>
+    <Slide5 v-if="$store.state.currentSlide === 5"/>
+    <Slide6 v-if="$store.state.currentSlide === 6"/>
+    <Slide7 v-if="$store.state.currentSlide === 7"/>
+    <Slide8 v-if="$store.state.currentSlide === 8"/>
   </div>
 </template>
 
@@ -22,8 +29,12 @@ import Slide2 from "./components/Slide2/Slide2.vue";
 import Slide3 from "./components/Slide3/Slide3.vue";
 import Slide4 from "./components/Slide4/Slide4.vue";
 import Slide5 from "./components/Slide5/Slide5.vue";
+import Slide6 from "./components/Slide6/Slide6.vue";
+import Slide7 from "./components/Slide7/Slide7.vue";
+import Slide8 from "./components/Slide8/Slide8.vue";
 
 import ModalWrapper from "./components/ModalWrapper.vue";
+import WhereDidYouHearIt from "./components/WhereDidYouHearIt"
 
 export default {
   name: "app",
@@ -33,7 +44,11 @@ export default {
     Slide3,
     Slide4,
     Slide5,
-    ModalWrapper
+    Slide6,
+    Slide7,
+    Slide8,
+    ModalWrapper,
+    WhereDidYouHearIt
   },
   data: () => ({
     showSettings: false,
@@ -49,6 +64,9 @@ export default {
     }
   },
   computed: {
+    rightAnswerSlide5: function() {
+      return this.$store.state.currentSlide === 5 && this.$store.state.answerIsCorrect;
+    },
     showFader: function() {
       return this.$store.state.showFader;
     },
@@ -96,5 +114,25 @@ body {
 .slide2 {
   position: relative;
   z-index: 2;
+}
+
+.button-try {
+  width: 188px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  background: #1ebf1b;
+  border-radius: 35px;
+}
+
+.button-try:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
 }
 </style>

@@ -25,7 +25,7 @@ export default {
         position: absolute;
         display: flex;
         width: 900px;
-        height: 300px;
+        min-height: 300px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -44,6 +44,7 @@ export default {
         border-radius: 30px;
         /*z-index: 5;*/
     }
+
 </style>
 
 

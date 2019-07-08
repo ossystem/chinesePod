@@ -1,20 +1,21 @@
 <template>
     <section class="question">
-        <div class="arrow left"></div>
+<!--        <div class="arrow left"></div>-->
         <div class="question-wrapper">
-            <div class="text">{{data.title}}</div>
-            <div class="symbols" :class="{hide:skipCharacters,show:!skipCharacters, small: chars.length > 14}">
-                {{chars}}
+            <div :style="{opacity: showTitle}" class="text">{{data.title}}</div>
+            <div v-html="chars" class="symbols" :class="{hide:skipCharacters,show:!skipCharacters && !skipAnimation, small: isSmall, smaller: isSmaller}">
             </div>
-            <div class="pinyin" :class="{hide:!skipCharacters,show:skipCharacters}">{{pinyin}}</div>
+            <div v-if="skipAnimation" class="pinyin-no-animation">{{pinyin}}</div>
+            <div v-else class="pinyin" :class="{hide:!skipCharacters,show:skipCharacters}">{{pinyin}}</div>
+<!--            <div class="pinyin" :class="{hide:!skipCharacters,show:skipCharacters}">AAA</div>-->
         </div>
-        <div class="arrow right"></div>
+<!--        <div class="arrow right"></div>-->
 
     </section>
 </template>
 
 <script>
-import { setTimeout } from 'timers';
+
     export default {
         name: 'QuestionBlock',
         data: () => ({
@@ -22,6 +23,7 @@ import { setTimeout } from 'timers';
             title: '',
             titles: [],
             titleIndex: 0,
+            showTitle: 0,
         }),
         props: {
             skipCharacters: {
@@ -50,10 +52,17 @@ import { setTimeout } from 'timers';
             this.title = this.data.chars;
 
             console.log(this.data);
+
+            if (this.skipAnimation > 6) {
+                this.showTitle = 1;
+            }
+
             if (this.data.animation) {
                 this.titles = this.data.animation;
                 setTimeout( this.changeTitle, this.data.animation[0].delay);
             }
+
+            setTimeout(()=>{this.showTitle = 1},this.data.delay);
         },
         methods: {            
             changeTitle() {                                
@@ -68,6 +77,15 @@ import { setTimeout } from 'timers';
             }
         },
         computed: {
+            skipAnimation: function() {
+                return this.$store.state.currentSlide > 6;
+            },
+            isSmall: function() {
+                return this.chars.length > 14 && this.chars.length < 25;
+            },
+            isSmaller: function() {
+                return this.chars.length >= 25;
+            },
             chars: function () {
                 return this.traditional ? this.data.charsTD : this.data.chars;
             },
@@ -81,10 +99,12 @@ import { setTimeout } from 'timers';
 <style scoped>
     .question {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         background: #384c63;
         min-height: 300px;
+        /*flex-grow: 1;*/
+        /*border: 1px solid red;*/
         /*margin-bottom: 60px;*/
     }
 
@@ -95,6 +115,7 @@ import { setTimeout } from 'timers';
     .question .text {
         font-size: 24px;
         color: #fff;
+        transition: all 1s;
     }
 
     .symbols.hide {
@@ -110,6 +131,10 @@ import { setTimeout } from 'timers';
     }
     .symbols.small {
         font-size: 50px !important;
+    }
+
+    .symbols.smaller {
+        font-size: 26px !important;
     }
 
     .pinyin.show {
@@ -130,11 +155,24 @@ import { setTimeout } from 'timers';
         color: #fff;
     }
 
+    .question .pinyin-no-animation {
+        font-size: 24px;
+        /*color: #406da3;*/
+        color: #518DD4;
+        max-width: 900px;
+    }
+
     .question .pinyin {
-        font-size: 28px;
-        color: #406da3;
+        /*font-size: 28px;*/
+        /*color: #406da3;*/
+        color: #518DD4;
         animation: fadeInBlur 1s both ease-in;
         animation-delay: 5s;
+        max-width: 900px;
+    }
+    .question .tooltip {
+        color: red;
+        font-size: 20px;
     }
 
     .arrow {

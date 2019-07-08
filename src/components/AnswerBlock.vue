@@ -12,7 +12,7 @@
 
     export default {
         components: {
-            SingleAnswerBlock
+            SingleAnswerBlock,
         },
         name: 'AnswerBlock',
         props: {

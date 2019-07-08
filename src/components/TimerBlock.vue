@@ -7,7 +7,7 @@
 
 <script>
     const timerTick = 25;
-    const timerDuration = 25 * 10; // 25 * 10 seconds
+    const timerDuration = 60 * 10; // 25 * 10 seconds
 
     export default {
         name: 'TimerBlock',

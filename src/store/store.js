@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
         numOfWrongAnswers: 0,
         numOfPreviousErrors: 0,
         totalScore: 0,
-        currentSlide: 5,
+        currentSlide: 6,
         timeIsOut: false,
         answerIsCorrect: false,
         stopTimeoutTimer: false,

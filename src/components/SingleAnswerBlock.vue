@@ -1,11 +1,10 @@
 <template>
     <div>
         <div class="answer-block">
-            <WhereDidYouHearIt />
             <transition name="fade">
                 <div class="answer-wrong-wrap" v-show="showWrongAnswer">
                     <div class="answer-wrong">
-                        <div class="line1">{{answer.wrong.line1}}</div>
+                        <div class="line1" v-html="answer.wrong.line1"></div>
                         <div class="line2">{{answer.wrong.line2}}</div>
                         <div class="line3">{{answer.wrong.line3}}</div>
                         <div class="button-try" @click="tryButtonHandler">{{endTest ? 'Ok': 'Try'}}</div>
@@ -16,13 +15,13 @@
             <div :id="`a${index}`" class="answer" :class="{answered: answered, correct: correct}" @click="clickAnswerHandler(3)"><span
                     class="variant">{{variant}}</span><span class="text">{{answer.text}}</span></div>
 
-            <audio id='soundPlayer' ></audio>
+            <audio id='soundPlayer'></audio>
         </div>
     </div>
 </template>
 
 <script>
-import WhereDidYouHearIt from '../components/WhereDidYouHearIt.vue'
+
     export default {
         name: 'SingleAnswerBlock',
         data: () => ({
@@ -30,17 +29,17 @@ import WhereDidYouHearIt from '../components/WhereDidYouHearIt.vue'
             showWrongAnswer: false,
             correct: false
         }),
-        components: {
-            WhereDidYouHearIt
-        },
         props: {
             variant: String,
             answer: Object,
             index: Number
         },
         computed: {
+            currentSlide: function() {
+                return this.$store.state.currentSlide;
+            },
           endTest: function() {
-              return this.$store.state.numOfPreviousErrors && this.$store.state.currentSlide === 2;
+              return this.$store.state.numOfPreviousErrors && this.currentSlide === 2;
           }
         },
         methods: {
@@ -82,10 +81,18 @@ import WhereDidYouHearIt from '../components/WhereDidYouHearIt.vue'
                 } else {
                     this.correct = true;
                     this.$store.commit('stopTimeoutTimer');
-                    setTimeout(()=>{
+
+                    setTimeout(() => {
                         this.$store.commit('answerIsCorrect');
-                        this.$store.dispatch('checkForNextSlide');
-                    },2000);
+                    }, 2000);
+
+                    // do not go to next slide if slide is 5
+                    // we have to ask about this phrase and show slides
+                    if (this.currentSlide !== 5 ) {
+                        setTimeout(() => {
+                            this.$store.dispatch('checkForNextSlide');
+                        }, 2000);
+                    }
                 }
             }
         }
@@ -241,24 +248,6 @@ import WhereDidYouHearIt from '../components/WhereDidYouHearIt.vue'
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1bb5bf;
     }
 
-    .button-try {
-        width: 188px;
-        height: 60px;
-        text-align: center;
-        line-height: 60px;
-        font-size: 24px;
-        font-weight: bold;
-
-        margin-left: auto;
-        margin-right: auto;
-
-        background: #1ebf1b;
-        border-radius: 35px;
-    }
-    .button-try:hover {
-        cursor: pointer;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
-    }
     .fade-enter-active, .fade-leave-active {
         transition: opacity .3s;
     }
