@@ -1,25 +1,30 @@
 <template>
     <section class="menu-block">
         <div class="menu"></div>
-        <div class="step">{{$store.state.currentSlide}}<span class="rest">/6</span></div>
+        <div class="step">{{currentSlide}}<span class="rest">/8</span></div>
     </section>
 </template>
 
 <script>
     export default {
-        name: 'MenuBlock'
+        name: 'MenuBlock',
+        computed: {
+            currentSlide: function () {
+                return this.$store.state.currentSlide;
+            }
+        }
     };
 </script>
 
 <style scoped>
-.menu-block {
-    display: flex;
-    align-items: center;
-    height: 80px;
-    max-width: 900px;
-    justify-content: space-between;
-    margin: auto;
-}
+    .menu-block {
+        display: flex;
+        align-items: center;
+        height: 80px;
+        max-width: 900px;
+        justify-content: space-between;
+        margin: auto;
+    }
     .menu {
         width: 48px;
         height: 48px;
@@ -38,7 +43,7 @@
         font-weight: bold;
     }
     .rest {
-        color: #406DA3;
+        color: #406da3;
         font-size: 24px;
         font-weight: normal;
     }
