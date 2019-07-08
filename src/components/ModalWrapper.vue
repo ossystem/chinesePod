@@ -45,6 +45,13 @@ export default {
         /*z-index: 5;*/
     }
 
+.modal-popup a:visited, 
+    .modal-popup a {
+        color: #9fc6f4;
+    }
+
+    
+
 </style>
 
 

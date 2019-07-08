@@ -79,4 +79,10 @@
         /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15), 0 0 10px #406da3;*/
     }
 
+        @media (max-width: 1370px) {
+        .timer-wrap {
+            margin-bottom: 30px;
+        }
+    }
+
 </style>

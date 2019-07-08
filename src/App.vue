@@ -1,10 +1,10 @@
 <template>
   <div class="main">
     <div v-show="showFader" class="modal-fader"></div>
-    
+
     <ModalWrapper v-show="endTest">
       <div>Test ends for you now!</div>
-      <div>Take some mandarin and</div>
+      <div><a href="https://chinesepod.com" target="_blank">Take some mandarin and</a></div>
       <div>come back soon!</div>
     </ModalWrapper>
 

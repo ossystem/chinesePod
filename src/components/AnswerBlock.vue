@@ -85,4 +85,10 @@
         }
     }
 
+    @media (max-width: 1370px) {
+        .answers {
+            margin-bottom: 0px;
+        }
+    }
+
 </style>

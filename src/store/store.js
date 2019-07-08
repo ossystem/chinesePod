@@ -9,17 +9,20 @@ export const store = new Vuex.Store({
         numOfWrongAnswers: 0,
         numOfPreviousErrors: 0,
         totalScore: 0,
-        currentSlide: 6,
+        currentSlide: 1,
         timeIsOut: false,
         answerIsCorrect: false,
         stopTimeoutTimer: false,
         endTest: false,
+        skipChars: false,
     },
 
     getters: {},
 
     mutations: {
-        // Here we will create Jenny
+        skipChars(state,enabled) {
+            state.skipChars = enabled;
+        },
         showModalFader (state) {
             state.showFader = true;
         },
@@ -46,6 +49,7 @@ export const store = new Vuex.Store({
         },
         clearDataBeforeSlideStarts(state) {
             // go to next step
+            state.showFader = false;
             state.numOfPreviousErrors = state.numOfWrongAnswers;
 
             state.numOfWrongAnswers = 0;
