@@ -5,7 +5,7 @@ node {
 
     stage("build") {
         docker.withRegistry("https://docker.ossystem.ua") {
-            image = docker.build("chineese-pod:${env.BUILD_TAG}", ".")
+            image = docker.build("chinese-pod:${env.BUILD_TAG}", ".")
             image.push()
         }
     }

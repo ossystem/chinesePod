@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chineese
-  namespace: chineese-os-system-com-${ENV}
+  name: chinese
+  namespace: chinese-os-system-com-${ENV}
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: chineese
+      app: chinese
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,10 +17,10 @@ spec:
   template:
     metadata:
       labels:
-        app: chineese
+        app: chinese
     spec:
       containers:
       - image: ${IMAGE_NAME}
         imagePullPolicy: Always
-        name: chineese
+        name: chinese
 
