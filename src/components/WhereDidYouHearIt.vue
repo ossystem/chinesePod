@@ -9,7 +9,7 @@
             <div class="spacer"></div>
             <div><label for=""><input v-model="usersAnswer" type="text"></label></div>
             <div class="spacer"></div>
-            <div class="button-try" @click="clickOkButton">Ok</div>
+            <div tabindex="0" class="button-try" @click="clickOkButton">Ok</div>
         </div>
     </div>
 </template>
@@ -54,6 +54,7 @@
 
     .modal-text {
         font-size: 28px;
+        font-weight: normal;
     }
 
     .where input {
@@ -65,8 +66,13 @@
         padding-right: 20px;
         text-align: center;
         border: 0 solid transparent;
+        outline: none;
         background: #304155;
         color: #9FC6F4;
+    }
+
+    .where input:focus {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 4px #9FC6F4;
     }
     .spacer {
         height: 20px;

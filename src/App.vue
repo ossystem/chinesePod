@@ -136,12 +136,18 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: white;
+  outline: none;
 
   margin-left: auto;
   margin-right: auto;
 
   background: #1ebf1b;
   border-radius: 35px;
+}
+
+.button-try:focus {
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 10px #1ebf1b;
 }
 
 .button-try:hover {

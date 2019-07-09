@@ -8,7 +8,7 @@
     export default {
         name: 'Confucius',
         data: () => ({
-            timeArray: [0, 3, 6, 7, 9, 10, 12],
+            timeArray: [0, 3, 6, 9, 12, 15, 18],
             slide: 0,
             slides: [
                 'confucius.jpeg',

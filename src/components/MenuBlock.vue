@@ -8,7 +8,7 @@
         </div>
         <div class="step">
             {{currentSlide}}
-            <span class="rest">/8:{{$store.state.totalScore}}</span>
+            <span class="rest">/8</span>
         </div>
     </section>
 </template>
