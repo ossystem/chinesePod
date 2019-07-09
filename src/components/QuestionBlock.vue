@@ -2,7 +2,7 @@
   <section class="question">
     <!--        <div class="arrow left"></div>-->
     <div class="question-wrapper">
-      <div :style="{opacity: showTitle}" class="text" :class="{'text-green':changeTitle}">{{data.title}}</div>
+      <div :style="{opacity: showTitle}" class="text" :class="{'text-green':changeTitleColor}">{{data.title}}</div>
       <div
         v-html="chars"
         class="symbols"
@@ -32,11 +32,14 @@ export default {
   }),
   props: {
     skipCharacters: {
+      type: Boolean,
       default: false,
-      type: Boolean
     },
     data: Object,
-    traditional: false
+    traditional: {
+      type: Boolean,
+      default: false,
+    }
   },
   watch: {
     traditional: function() {
@@ -56,7 +59,7 @@ export default {
     this.charsPart = this.data.chars;
     this.title = this.data.chars;
 
-    console.log(this.data);
+    //console.log(this.data);
 
     if (this.skipAnimation > 6) {
       this.showTitle = 1;
@@ -76,7 +79,7 @@ export default {
       this.title = this.titles[this.titleIndex].chars;
       this.titleIndex = (this.titleIndex + 1) % this.titles.length;
 
-      console.log("change title to:", this.title);
+      //console.log("change title to:", this.title);
 
       if (this.titleIndex) {
         setTimeout(this.changeTitle, this.titles[this.titleIndex].delay);
@@ -84,7 +87,7 @@ export default {
     }
   },
   computed: {
-    changeTitle: function() {
+    changeTitleColor: function() {
       return this.$store.state.currentSlide >= 6;
     },
     skipAnimation: function() {

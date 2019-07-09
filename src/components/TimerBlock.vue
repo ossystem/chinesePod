@@ -55,7 +55,7 @@
             }
         },
         mounted: function () {
-            console.log('mounted', this.remainingTimeMSec);
+            //console.log('mounted', this.remainingTimeMSec);
             setTimeout(() => {
                 this.decreaseTimer();
             }, timerTick);

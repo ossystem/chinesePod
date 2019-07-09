@@ -88,7 +88,7 @@ export const store = new Vuex.Store({
                 return;
             }
 
-            console.log('should go to next slide...');
+            //console.log('should go to next slide...');
             // increase score, if answer was correct
             if (context.state.answerIsCorrect) {
                 switch (context.state.numOfWrongAnswers) {

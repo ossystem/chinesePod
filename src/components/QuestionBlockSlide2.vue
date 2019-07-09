@@ -39,7 +39,10 @@ export default {
       type: Boolean
     },
     data: Object,
-    traditional: false
+    traditional: {
+      type: Boolean,
+      default: false,
+    }
   },
   watch: {
     traditional: function() {
@@ -59,7 +62,7 @@ export default {
     this.charsPart = this.data.chars;
     this.title = this.data.chars;
 
-    console.log(this.data);
+    //console.log(this.data);
     if (this.data.animation) {
       this.titles = this.data.animation;
       setTimeout(this.changeTitle, this.data.animation[0].delay);
@@ -72,7 +75,7 @@ export default {
     changeTitle() {
       //this.title = this.titles[this.titleIndex].chars;
       this.titleIndex = (this.titleIndex + 1) % this.titles.length;
-      console.log("tab index:", this.titleIndex);
+      //console.log("tab index:", this.titleIndex);
       if (this.titleIndex === 1) {
         // hide last char
         const char4 = this.getCharById("char4");
@@ -128,7 +131,7 @@ export default {
         //char3.classList.remove('zoom-out');
       }
 
-      console.log("change title to:", this.title);
+      //console.log("change title to:", this.title);
 
       if (this.titleIndex) {
         setTimeout(this.changeTitle, this.titles[this.titleIndex].delay);
