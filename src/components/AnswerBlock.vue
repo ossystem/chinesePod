@@ -20,7 +20,10 @@
         name: 'AnswerBlock',
         props: {
             data: Array,
-            showWrongAnswer: false
+            showWrongAnswer: {
+                type: Boolean,
+                default: false
+            }
         },
         data: () => ({})
     };

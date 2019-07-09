@@ -15,13 +15,11 @@
 </template>
 
 <script>
-    import ModalWrapper from './ModalWrapper';
     import Confucius from './Confucius';
 
     export default {
         components: {
             Confucius,
-            ModalWrapper
         },
         data: () => ({
             confucius: false,
