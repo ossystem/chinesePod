@@ -1,0 +1,6 @@
+Jenkinsfile
+Dockerfile
+kubernetes.yml
+.git/
+node_modules/
+
