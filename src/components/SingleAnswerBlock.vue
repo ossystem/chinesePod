@@ -95,6 +95,7 @@
                     // if last slide 8 - final
                     if (this.currentSlide === 8) {
                         setTimeout(() => {
+                            this.$store.dispatch('checkForNextSlide');
                             this.$store.commit('setFinal');
                         }, 2000);
                     } else {

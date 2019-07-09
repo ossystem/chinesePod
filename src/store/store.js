@@ -8,8 +8,11 @@ export const store = new Vuex.Store({
         showFader: false,
         numOfWrongAnswers: 0,
         numOfPreviousErrors: 0,
+        numOfCorrect: 0,
+        numOfIncorrect: 0,
+        numOfUnattempted: 0,
         totalScore: 0,
-        currentSlide: 7,
+        currentSlide: 5,
         timeIsOut: false,
         answerIsCorrect: false,
         stopTimeoutTimer: false,
@@ -42,9 +45,11 @@ export const store = new Vuex.Store({
         },
         timeIsOut (state) {
             state.timeIsOut = true;
+            state.numOfUnattempted++;
         },
         answerIsCorrect (state) {
             state.answerIsCorrect = true;
+            state.numOfCorrect++;
         },
         incrementScore (state, inc) {
             state.totalScore += inc;
@@ -67,8 +72,10 @@ export const store = new Vuex.Store({
             state.stopTimeoutTimer = false;
         },
         nextSlide (state) {
-            // go to next step            
-            state.currentSlide++;           
+            // go to next step
+            if (state.currentSlide < 8) {
+                state.currentSlide++;
+            }
         }
     },
 

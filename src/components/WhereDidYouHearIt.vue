@@ -58,11 +58,15 @@
 
     .where input {
         width: 70%;
-        height: 30px;
+        height: 60px;
         font-size: 24px;
-        border-radius: 30px;
+        border-radius: 60px;
         padding-left: 20px;
         padding-right: 20px;
+        text-align: center;
+        border: 0 solid transparent;
+        background: #304155;
+        color: #9FC6F4;
     }
     .spacer {
         height: 20px;

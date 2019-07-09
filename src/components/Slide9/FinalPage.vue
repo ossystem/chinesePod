@@ -3,21 +3,21 @@
         <div class="title">You have completed the test!</div>
         <div class="labels">
             <div class="correct">Correct</div>
-            <div class="incorrect">Incorrect</div>
+            <div class="incorrect" v-show="percents !== '100%'">Incorrect</div>
         </div>
         <div class="progress-bar">
-            <div class="correct"></div>
+            <div class="correct" :style="{width: percents}"></div>
             <div class="middle-wrapper">
                 <div class="middle">
-                    <div class="percents">50%</div>
+                    <div class="percents">{{percents}}</div>
                 </div>
             </div>
             <div class="incorrect"></div>
         </div>
         <div class="score-wrap">
-            <div class="score correct">Correct<div class="score-num">4</div></div>
-            <div class="score incorrect">Incorrect<div class="score-num">4</div></div>
-            <div class="score unattempted">Unattemtped<div class="score-num">4</div></div>
+            <div class="score correct">Correct<div class="score-num">{{$store.state.numOfCorrect}}</div></div>
+            <div class="score incorrect">Incorrect<div class="score-num">{{numOfIncorrect}}</div></div>
+            <div class="score unattempted">Unattemtped<div class="score-num">{{$store.state.numOfUnattempted}}</div></div>
         </div>
         <div class="trial-course">We offer you 30 days of free trial Chinese lessons,<br>enter your email and we will
             send you our course.
@@ -45,7 +45,6 @@
             skipCharacters: false,
             traditionalCharset: false,
             questions: slide
-
         }),
         methods: {
             skipCharsHandler () {
@@ -53,6 +52,14 @@
             },
             traditionalCharsetHandler () {
                 this.traditionalCharset = !this.traditionalCharset;
+            }
+        },
+        computed: {
+          numOfIncorrect: function() {
+              return 8 - this.$store.state.numOfCorrect - this.$store.state.numOfUnattempted;
+          },
+            percents: function() {
+                return ((this.$store.state.totalScore / 80)*100).toFixed(0)+'%';
             }
         },
         mounted: function () {
@@ -155,7 +162,7 @@
     }
 
     .progress-bar .correct {
-        width: 50%;
+        /*width: 50%;*/
         height: 10px;
         background: #1ebf1b;
         border-top-left-radius: 35px;
