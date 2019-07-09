@@ -4,7 +4,7 @@
 
     <ModalWrapper v-show="endTest">
       <div>Test ends for you now!</div>
-      <div><a href="https://chinesepod.com" target="_blank">Take some mandarin and</a></div>
+      <div><a href="https://chinesepod.com">Take some mandarin and</a></div>
       <div>come back soon!</div>
     </ModalWrapper>
 
@@ -12,14 +12,14 @@
       <WhereDidYouHearIt/>
     </ModalWrapper>
 
-    <Slide1 v-if="$store.state.currentSlide === 1"/>
-    <Slide2 v-if="$store.state.currentSlide === 2"/>
-    <Slide3 v-if="$store.state.currentSlide === 3"/>
-    <Slide4 v-if="$store.state.currentSlide === 4"/>
-    <Slide5 v-if="$store.state.currentSlide === 5"/>
-    <Slide6 v-if="$store.state.currentSlide === 6"/>
-    <Slide7 v-if="$store.state.currentSlide === 7"/>
-    <Slide8 v-if="$store.state.currentSlide === 8"/>
+    <Slide1 v-if="currentSlide === 1"/>
+    <Slide2 v-if="currentSlide === 2"/>
+    <Slide3 v-if="currentSlide === 3"/>
+    <Slide4 v-if="currentSlide === 4"/>
+    <Slide5 v-if="currentSlide === 5"/>
+    <Slide6 v-if="currentSlide === 6"/>
+    <Slide7 v-if="currentSlide === 7"/>
+    <Slide8 v-if="currentSlide === 8"/>
   </div>
 </template>
 
@@ -64,6 +64,9 @@ export default {
     }
   },
   computed: {
+    currentSlide: function() {
+      return this.$store.state.currentSlide;
+    },
     rightAnswerSlide5: function() {
       return this.$store.state.currentSlide === 5 && this.$store.state.answerIsCorrect;
     },
@@ -90,11 +93,13 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  /*overflow-y: hidden;*/
 }
 
 .main {
   background: #314155;
   min-height: 100vh;
+
 }
 
 .modal-fader {
@@ -104,6 +109,13 @@ body {
   height: 100%;
   background: black;
   opacity: 0.7;
+}
+
+.visually-hidden {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  margin: 10px 0 0 20px;
 }
 
 .slide1 {
@@ -123,6 +135,7 @@ body {
   line-height: 60px;
   font-size: 24px;
   font-weight: bold;
+  color: white;
 
   margin-left: auto;
   margin-right: auto;

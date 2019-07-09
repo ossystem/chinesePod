@@ -1,9 +1,12 @@
 <template>
-    <section class="answers">
+    <section>
+    <div class="answers">
         <SingleAnswerBlock class="anim aa1" variant="A" :answer="data[0]" :index="1"/>
         <SingleAnswerBlock class="anim aa2" variant="B" :answer="data[1]" :index="2"/>
         <SingleAnswerBlock class="anim aa3" variant="C" :answer="data[2]" :index="3"/>
         <SingleAnswerBlock class="anim aa4" variant="D" :answer="data[3]" :index="4"/>
+    </div>
+        <div class="bottom-spacer"></div>
     </section>
 </template>
 
@@ -29,9 +32,12 @@
         position: relative;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 40px;
         color: #fff;
         z-index: 2;
+    }
+
+    .bottom-spacer {
+        height: 40px;
     }
 
     .anim {

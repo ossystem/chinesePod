@@ -1,12 +1,15 @@
 <template>
     <div class="main">
-<!--        <audio id="audiofile" :src="require('../../assets/audio/correct.mp3')" controls></audio><br>-->
-<!--        <div id="subtitles"></div>-->
-        <MenuBlock />
-        <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
-        <TimerBlock />
-        <AnswerBlock :data="questions.answers" />
-        <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler" @traditionalCharset="traditionalCharsetHandler"/>
+        <FinalPage v-show="$store.state.final"/>
+        <div :class="{blurBg:$store.state.final}">
+            <MenuBlock/>
+            <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question"
+                           :traditional="traditionalCharset"/>
+            <TimerBlock/>
+            <AnswerBlock :data="questions.answers"/>
+            <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler"
+                           @traditionalCharset="traditionalCharsetHandler"/>
+        </div>
     </div>
 </template>
 
@@ -16,7 +19,8 @@
     import AnswerBlock from '../AnswerBlock.vue';
     import MenuBlock from '../MenuBlock.vue';
     import SettingsBlock from '../SettingsBlock.vue';
-    import TimerBlock from '../TimerBlock.vue'
+    import TimerBlock from '../TimerBlock.vue';
+    import FinalPage from '../Slide9/FinalPage.vue';
 
     import slide from '../../data/slides/slide8';
 
@@ -28,26 +32,27 @@
             TimerBlock,
             MenuBlock,
             SettingsBlock,
+            FinalPage
         },
         data: () => ({
             showSettings: false,
             skipCharacters: false,
             traditionalCharset: false,
-            questions: slide,
+            questions: slide
 
         }),
         methods: {
-            skipCharsHandler() {
+            skipCharsHandler () {
                 this.skipCharacters = !this.skipCharacters;
             },
-            traditionalCharsetHandler() {
+            traditionalCharsetHandler () {
                 this.traditionalCharset = !this.traditionalCharset;
             }
         },
-        mounted: function() {
+        mounted: function () {
 
             // https://www.codepunker.com/blog/sync-audio-with-text-using-javascript
-            
+
             // (function(win, doc) {
             //     let audioPlayer = doc.getElementById("audiofile");
             //     let subtitles = doc.getElementById("subtitles");
@@ -80,10 +85,14 @@
             this.$store.commit('clearDataBeforeSlideStarts');
             setTimeout(() => {
                 this.showSettings = true;
-            },5000);
+            }, 5000);
         }
     };
 </script>
 
-<style>
+<style scoped>
+    .blurBg {
+        filter: blur(4px);
+        transition: all 1s;
+    }
 </style>

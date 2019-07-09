@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div >
         <MenuBlock />
         <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
         <TimerBlock />

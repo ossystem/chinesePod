@@ -2,7 +2,7 @@
   <section class="question">
     <!--        <div class="arrow left"></div>-->
     <div class="question-wrapper">
-      <div :style="{opacity: showTitle}" class="text">{{data.title}}</div>
+      <div :style="{opacity: showTitle}" class="text" :class="{'text-green':changeTitle}">{{data.title}}</div>
       <div
         v-html="chars"
         class="symbols"
@@ -84,6 +84,9 @@ export default {
     }
   },
   computed: {
+    changeTitle: function() {
+      return this.$store.state.currentSlide >= 6;
+    },
     skipAnimation: function() {
       return this.$store.state.currentSlide > 6;
     },
@@ -122,6 +125,11 @@ export default {
   transition: all 1s;
 }
 
+.question .text.text-green {
+  color: #9FC6F4;
+  /*font-weight: bold;*/
+}
+
 .symbols.hide.smaller,
 .symbols.hide.small,
 .symbols.hide {
@@ -135,6 +143,7 @@ export default {
   font-size: 90px;
   transition: all 1s;
 }
+
 .symbols.small {
   font-size: 50px !important;
 }
@@ -143,13 +152,19 @@ export default {
   font-size: 26px !important;
 }
 
-.pinyin.show.small,
-.pinyin.show.smaller,
 .pinyin.show {
   font-size: 90px;
   color: #fff !important;
   /*animation: fadeInBlur 1s both;*/
   transition: all 1s;
+}
+
+.pinyin.show.small {
+  font-size: 50px !important;
+}
+
+.pinyin.show.smaller {
+  font-size: 24px !important;
 }
 
 .pinyin.hide.small,

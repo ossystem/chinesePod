@@ -3,11 +3,11 @@
     <section class="settings" v-show="show">
       <div class="labels">
         <label class="checkbox">
-          <input type="checkbox" v-model="skipCharacters">
+          <input type="checkbox" v-model="skipCharacters" class="visually-hidden">
           <span class="checkbox__text">I do not want to learn Characters at this point</span>
         </label>
         <label class="checkbox">
-          <input type="checkbox" v-model="traditionalCharset">
+          <input type="checkbox" v-model="traditionalCharset" class="visually-hidden">
           <span class="checkbox__text">I want to learn TRADITIONAL characters instead</span>
         </label>
       </div>
@@ -47,12 +47,6 @@ export default {
 </script>
 
 <style scoped>
-.checkbox input {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  margin: 10px 0 0 20px;
-}
 .checkbox__text {
   position: relative;
   /*padding: 0 0 0 60px;*/

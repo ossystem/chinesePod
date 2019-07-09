@@ -9,17 +9,25 @@ export const store = new Vuex.Store({
         numOfWrongAnswers: 0,
         numOfPreviousErrors: 0,
         totalScore: 0,
-        currentSlide: 1,
+        currentSlide: 7,
         timeIsOut: false,
         answerIsCorrect: false,
         stopTimeoutTimer: false,
         endTest: false,
+        final: false,
         skipChars: false,
+        enableSound: true,
     },
 
     getters: {},
 
     mutations: {
+        enableSound(state,enable) {
+          state.enableSound = enable;
+        },
+        setFinal(state) {
+          state.final = true;
+        },
         skipChars(state,enabled) {
             state.skipChars = enabled;
         },

@@ -61,6 +61,8 @@
         height: 30px;
         font-size: 24px;
         border-radius: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .spacer {
         height: 20px;

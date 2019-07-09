@@ -15,7 +15,7 @@
 
       <div
         class="pinyin"
-        :class="{hide:!skipCharacters,show:skipCharacters,delay:!skipCharacters}"
+        :class="{hide:!skipCharacters,show:skipCharacters,delay:!skipCharacters,small: isSmall, smaller: isSmaller}"
       >{{pinyin}}</div>
     </div>
     <!--        <div class="arrow right"></div>-->
@@ -136,6 +136,12 @@ export default {
     }
   },
   computed: {
+    isSmall: function() {
+      return this.chars.length > 14 && this.chars.length < 25;
+    },
+    isSmaller: function() {
+      return this.chars.length >= 25;
+    },
     chars: function() {
       return this.traditional ? this.data.charsTD : this.data.chars;
     },
@@ -177,15 +183,19 @@ export default {
   transition: all 1s;
 }
 
+.pinyin.show.small,
+.pinyin.show.smaller,
 .pinyin.show {
-  font-size: 90px;
+  font-size: 90px !important;
   color: #fff !important;
   /*animation: fadeInBlur 1s both;*/
   transition: all 1s;
 }
 
+.pinyin.hide.small,
+.pinyin.hide.smaller,
 .pinyin.hide {
-  font-size: 24px !important;
+  font-size: 24px;
   /*animation: fadeInBlur 1s both;*/
   transition: all 1s;
 }

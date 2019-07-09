@@ -1,7 +1,10 @@
 <template>
-    <div class="timer-wrap">
-        <div class="timer-bar-left" :style="remainingTimeStyleLeft"></div>
-        <div class="timer-bar-right" :style="remainingTimeStyleRight"></div>
+    <div>
+        <div class="timer-wrap">
+            <div class="timer-bar-left" :style="remainingTimeStyleLeft"></div>
+            <div class="timer-bar-right" :style="remainingTimeStyleRight"></div>
+        </div>
+        <div class="bottom-spacer"></div>
     </div>
 </template>
 
@@ -37,19 +40,27 @@
                         this.lastTimeOutInterval = setTimeout(this.decreaseTimer, timerTick);
                     }
                 } else {
-                    console.log('Remain:',this.remainingTimeMSec);
-                    this.$store.commit('timeIsOut');
-                    this.$store.dispatch('checkForNextSlide');
+                    // console.log('Remain:',this.remainingTimeMSec);
+
+                    if (this.$store.state.currentSlide === 8) {
+                        setTimeout(() => {
+                            this.$store.commit('setFinal');
+                        }, 500);
+                    } else {
+
+                        this.$store.commit('timeIsOut');
+                        this.$store.dispatch('checkForNextSlide');
+                    }
                 }
             }
         },
         mounted: function () {
-            console.log('mounted',this.remainingTimeMSec);
+            console.log('mounted', this.remainingTimeMSec);
             setTimeout(() => {
                 this.decreaseTimer();
             }, timerTick);
         },
-        beforeDestroy: function() {
+        beforeDestroy: function () {
             if (this.lastTimeOutInterval) {
                 clearTimeout(this.lastTimeOutInterval);
             }
@@ -66,8 +77,12 @@
         /*margin-left: 10px;*/
         /*margin-right: 10px;*/
         /*border-radius: 5px;*/
-        margin-bottom: 60px;
     }
+
+    .bottom-spacer {
+        height: 60px;
+    }
+
     .timer-bar-left {
 
         /*background: red;*/
@@ -79,7 +94,7 @@
         /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15), 0 0 10px #406da3;*/
     }
 
-        @media (max-width: 1370px) {
+    @media (max-width: 1370px) {
         .timer-wrap {
             margin-bottom: 30px;
         }
