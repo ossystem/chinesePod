@@ -19,7 +19,7 @@
             <div class="score incorrect">Incorrect<div class="score-num">{{numOfIncorrect}}</div></div>
             <div class="score unattempted">Unattemtped<div class="score-num">{{$store.state.numOfUnattempted}}</div></div>
         </div>
-        <div class="trial-course">We offer you 30 days of free trial Chinese lessons,<br>enter your email and we will
+        <div class="trial-course"><b>We offer you 30 days of free trial Chinese lessons,</b><br>enter your email and we will
             send you our course.
         </div>
         <div><label><input v-model="usersAnswer" type="email" placeholder="example@gmail.com"></label></div>
@@ -113,7 +113,7 @@
         width: 90%;
         height: 60px;
         font-size: 24px;
-        background: #304155;
+        background: #F3F7FB;
         border-radius: 35px;
         padding-left: 20px;
         padding-right: 20px;
@@ -122,10 +122,10 @@
         text-align: center;
         margin-top: 20px;
         margin-bottom: 20px;
-        color: #9FC6F4;
+        color: #384C63;
     }
     .final input::placeholder {
-        color: #9fc6f4;
+        color: #384C63;
     }
     .trial-course {
         font-size: 16px;
@@ -207,7 +207,7 @@
         width: 160px;
         height: 100px;
 
-        background: #304155;
+        background: #F3F7FB;
         border-radius: 15px;
         margin: 3px;
     }
@@ -229,7 +229,7 @@
     }
 
     .score-wrap .unattempted{
-        color: #9FC6F4;
+        color: #384C63;
 
     }
 

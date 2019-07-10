@@ -1,8 +1,8 @@
 <template>
     <div >
         <MenuBlock />
-        <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
         <TimerBlock />
+        <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
         <AnswerBlock :data="questions.answers" />
         <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler" @traditionalCharset="traditionalCharsetHandler"/>
     </div>

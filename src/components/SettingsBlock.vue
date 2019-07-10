@@ -88,7 +88,7 @@ export default {
   /*line-height: 30px;*/
   display: block;
   margin-bottom: 12px;
-  color: #9fc6f4;
+  color: #384C63;
 }
 
 .settings .labels input {
@@ -107,7 +107,7 @@ export default {
   background: url("../assets/images/icons/tip-background.png") right;
   text-transform: uppercase;
 
-  color: #9fc6f4;
+  color: white;
 }
 .tip:hover {
     cursor: pointer;
@@ -125,7 +125,7 @@ export default {
 .tip .text {
   max-width: 150px;
   font-size: 12px;
-  text-decoration: underline;
+  /*text-decoration: underline;*/
   /*margin-left: 15px;*/
 }
 .tip .spacer {

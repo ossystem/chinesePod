@@ -1,8 +1,10 @@
 // slide #2, if slide #1 was not solved
+import {WHAT_DOES_THIS_MEAN} from './constants';
+
 const data =
     {
         question: {
-            title: 'What does this mean:',
+            title: WHAT_DOES_THIS_MEAN,
             chars: '谢谢',
             charsTD: '谢谢*#',
             pinyin: 'Xièxiè',

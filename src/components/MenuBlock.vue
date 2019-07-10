@@ -1,15 +1,18 @@
 <template>
-    <section class="menu-block">
+    <section class="menu-wrap">
+    <div class="menu-block">
         <div class="controls-group">
             <div class="menu"></div>
-            <label class="checkbox"><input type="checkbox" v-model="disableSound" @click="soundClicked" class="visually-hidden">
-                <span class="checkbox__text"></span>
-            </label>
+            <div class="step">
+                {{currentSlide}}
+                <span class="rest">/8</span>
+            </div>
         </div>
-        <div class="step">
-            {{currentSlide}}
-            <span class="rest">/8</span>
-        </div>
+        <label class="checkbox"><input type="checkbox" v-model="disableSound" @click="soundClicked" class="visually-hidden">
+            <span class="checkbox__text"></span>
+        </label>
+
+    </div>
     </section>
 </template>
 
@@ -36,6 +39,12 @@
 </script>
 
 <style scoped>
+    .menu-wrap {
+        position: relative;
+        z-index: 10;
+        /*box-shadow: 0 50px 50px rgba(0, 0, 0, 0.15);*/
+        background: #304155;
+    }
     .menu-block {
         display: flex;
         align-items: center;
@@ -46,6 +55,7 @@
         padding-left: 50px;
         padding-right: 50px;
     }
+
     .menu {
         width: 48px;
         height: 48px;
@@ -54,6 +64,7 @@
     }
 
     .menu-block .controls-group {
+        position: relative;
         display: flex;
     }
 
@@ -92,20 +103,26 @@
     }
 
     .step {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: #304155;
+        position: relative;
+        /*width: 120px;*/
+        /*height: 120px;*/
+        /*border-radius: 50%;*/
+        /*background: #304155;*/
+        top: 9px;
+
         color: white;
-        line-height: 120px;
-        text-align: center;
+        /*text-align: center;*/
         font-size: 64px;
+        line-height: 35px;
+
         font-weight: bold;
     }
     .rest {
-        color: #406da3;
+        position: relative;
+        color: white;
         font-size: 24px;
         font-weight: normal;
+        left: -10px;
     }
 
     @media (max-width: 1370px) {
@@ -114,12 +131,12 @@
         }
 
         .step {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
+            /*width: 110px;*/
+            /*height: 110px;*/
+            /*border-radius: 50%;*/
 
-            line-height: 110px;
-            font-size: 60px;
+            /*line-height: 110px;*/
+            font-size: 50px;
         }
     }
 </style>

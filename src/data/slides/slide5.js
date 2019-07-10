@@ -1,3 +1,5 @@
+import {WHAT_DOES_THIS_MEAN} from './constants';
+
 const answer1 = {
     text: 'If you cannot slow down, you need to stop once in a while',
     trans: '如果你不能减速，你需要偶尔停下来',
@@ -22,7 +24,7 @@ const answer4 = {
 const data =
     {
         question: {
-            title: 'What does this mean:',
+            title: WHAT_DOES_THIS_MEAN,
             chars: '你走的慢不要紧，只要你不停下来',
             charsTD: '你走的慢不要紧，只要你不停下来*#',
             pinyin: 'Nǐ zǒu de màn bùyàojǐn, zhǐyào nǐ bù tíng xiàlái',

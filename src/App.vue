@@ -97,7 +97,7 @@ body {
 }
 
 .main {
-  background: #314155;
+  background: #FFFFFF;
   min-height: 100vh;
 
 }

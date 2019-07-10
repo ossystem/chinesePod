@@ -3,8 +3,8 @@
 <!--        <audio id="audiofile" :src="require('../../assets/audio/correct.mp3')" controls></audio><br>-->
 <!--        <div id="subtitles"></div>-->
         <MenuBlock />
-        <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
         <TimerBlock />
+        <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
         <AnswerBlock v-if="showSettings" :data="questions.answers" />
         <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler" @traditionalCharset="traditionalCharsetHandler"/>
     </div>

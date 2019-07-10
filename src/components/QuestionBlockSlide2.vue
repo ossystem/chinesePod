@@ -2,7 +2,7 @@
   <section class="question">
     <!--        <div class="arrow left"></div>-->
     <div class="question-wrapper">
-      <div class="text">{{data.title}}</div>
+      <div class="text" v-html="data.title"></div>
 
       <div class="symbols" :class="{hide:skipCharacters,show:!skipCharacters}">
         <span
@@ -156,152 +156,219 @@ export default {
 </script>
 
 <style scoped>
-.question {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #384c63;
-  min-height: 300px;
-  /*margin-bottom: 60px;*/
-}
-
-.question-wrapper {
-  text-align: center;
-}
-
-.question .text {
-  font-size: 24px;
-  color: #fff;
-}
-
-.symbols.hide {
-  animation: fadeInBlur 1s both;
-  font-size: 0 !important;
-  transition: all 1s;
-}
-
-.symbols.show {
-  animation: fadeInBlur 1s both;
-  font-size: 90px;
-  transition: all 1s;
-}
-
-.pinyin.show.small,
-.pinyin.show.smaller,
-.pinyin.show {
-  font-size: 90px !important;
-  color: #fff !important;
-  /*animation: fadeInBlur 1s both;*/
-  transition: all 1s;
-}
-
-.pinyin.hide.small,
-.pinyin.hide.smaller,
-.pinyin.hide {
-  font-size: 24px;
-  /*animation: fadeInBlur 1s both;*/
-  transition: all 1s;
-}
-
-.question .symbols {
-  font-size: 90px;
-  color: #fff;
-}
-
-.question .pinyin {
-  font-size: 28px;
-  color: #406da3;
-  animation: fadeInBlur 1s both ease-in;
-}
-.question .pinyin.delay {
-  animation-delay: 5s;
-}
-
-.arrow {
-  width: 48px;
-  height: 76px;
-}
-
-.arrow.left {
-  background: url("../assets/images/icons/arrow-left.png");
-  margin-left: 100px;
-}
-
-.arrow.right {
-  background: url("../assets/images/icons/arrow-right.png");
-  margin-right: 100px;
-}
-
-@keyframes fadeInBlur {
-  from {
-    opacity: 0;
-    filter: blur(5px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-
-.symbol-list {
-  list-style: none;
-  display: inline-block;
-}
-
-.list-complete-item {
-  transition: all 1s;
-  display: inline-block;
-  /* margin-right: 10px; */
-}
-.list-complete-enter, .list-complete-leave-to
-        /* .list-complete-leave-active до версии 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
-}
-.list-complete-leave-active {
-  position: absolute;
-}
-
-.char1 {
-  position: relative;
-}
-
-.move-char-left {
-  position: relative;
-  transform: translate(-90px);
-}
-.move-right {
-  position: relative;
-  /* transition: all 1s; */
-  transform: translate(90px);
-}
-.invisible {
-  color: #384c63 !important;
-}
-/* if add - char will zoom out */
-/* if remove - char will zoom in */
-.zoom-out {
-  font-size: 1px !important;
-}
-
-@media (max-width: 1370px) {
-  .question .symbols {
-    font-size: 50px;
-  }
 
   .question {
-    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    min-height: 300px;
+    margin-bottom: 30px;
+  }
+
+  .question-wrapper {
+    text-align: center;
+  }
+
+  .red2 {
+    color: #CB4444 !important;
+  }
+
+  .question .text {
+    font-size: 24px;
+    color: #384C63;
+    transition: all 1s;
+  }
+
+  .question .text.text-green {
+    color: #9FC6F4;
+    /*font-weight: bold;*/
+  }
+
+  .symbols.hide.smaller,
+  .symbols.hide.small,
+  .symbols.hide {
+    animation: fadeInBlur 1s both;
+    font-size: 0 !important;
+    transition: all 1s;
+  }
+
+  .symbols.show {
+    animation: fadeInBlur 1s both;
+    font-size: 90px;
+    transition: all 1s;
+  }
+
+  .symbols.small {
+    font-size: 50px !important;
+  }
+
+  .symbols.smaller {
+    font-size: 26px !important;
   }
 
   .pinyin.show {
-    font-size: 50px;
+    font-size: 90px;
+    color: #384C63 !important;
+    /*animation: fadeInBlur 1s both;*/
+    transition: all 1s;
+  }
+
+  .pinyin.show.small {
+    font-size: 50px !important;
+  }
+
+  .pinyin.show.smaller {
+    font-size: 24px !important;
+  }
+
+  .pinyin.hide.small,
+  .pinyin.hide.smaller,
+  .pinyin.hide {
+    font-size: 24px;
+    /*animation: fadeInBlur 1s both;*/
+    transition: all 1s;
+  }
+
+  .question .pinyin-no-animation {
+    font-size: 24px;
+    /*color: #406da3;*/
+    color: #518dd4;
+    max-width: 900px;
+  }
+
+  .question .pinyin {
+    /*font-size: 28px;*/
+    /*color: #406da3;*/
+    color: #518dd4;
+    animation: fadeInBlur 1s both ease-in;
+
+    max-width: 900px;
+  }
+
+  .question .pinyin.delay {
+    animation-delay: 5s;
+  }
+
+  .question .tooltip {
+    color: red;
+    font-size: 20px;
+  }
+
+
+  @keyframes fadeInBlur {
+    from {
+      opacity: 0;
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  .symbol-list {
+    list-style: none;
+    display: inline-block;
+  }
+
+  .list-complete-item {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .list-complete-enter,
+  .list-complete-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .list-complete-leave-active {
+    position: absolute;
+  }
+
+  .question .symbols {
+    font-size: 90px;
+    color: #384C63;
+  }
+
+  @media (max-width: 1370px) {
+    .question .symbols {
+      font-size: 50px;
+    }
+
+    .pinyin.show {
+      font-size: 50px;
+    }
+
+    .pinyin.show.small,
+    .pinyin.show.smaller {
+      font-size: 40px;
+    }
+
+    .question {
+      min-height: 200px;
+    }
+  }
+
+ /*========================*/
+ /*========================*/
+ /*========================*/
+ /*========================*/
+
+
+  @keyframes fadeInBlur {
+    from {
+      opacity: 0;
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  .list-complete-item {
+    transition: all 1s;
+    display: inline-block;
+    /* margin-right: 10px; */
   }
 
   .move-char-left {
-    transform: translate(-50px);
+    position: relative;
+    transform: translate(-100px);
   }
   .move-right {
-    transform: translate(50px);
+    position: relative;
+    /* transition: all 1s; */
+    transform: translate(100px);
   }
-}
+  .invisible {
+    color: white !important;
+  }
+  /* if add - char will zoom out */
+  /* if remove - char will zoom in */
+  .zoom-out {
+    font-size: 1px !important;
+  }
+
+  @media (max-width: 1370px) {
+    .question .symbols {
+      font-size: 50px;
+    }
+
+    .question {
+      min-height: 200px;
+    }
+
+    .pinyin.show {
+      font-size: 50px;
+    }
+
+    .move-char-left {
+      transform: translate(-50px);
+    }
+    .move-right {
+      transform: translate(50px);
+    }
+  }
 </style>

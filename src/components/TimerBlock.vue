@@ -71,33 +71,27 @@
 <style scoped>
     .timer-wrap {
         display: flex;
-        height: 3px;
-        background: linear-gradient(90deg, #cb446c 20%, #eba24c 40%, #1ebf1b 60%, #1bb5bf 80%, #1b8dbe 100%);
-        /*background: #406da3;*/
-        /*margin-left: 10px;*/
-        /*margin-right: 10px;*/
-        /*border-radius: 5px;*/
+        height: 10px;
+        border-radius: 10px;
+        box-shadow: 0 50px 50px rgba(0, 0, 0, 0.15);
     }
 
     .bottom-spacer {
-        height: 60px;
+        height: 0;
     }
 
     .timer-bar-left {
-
-        /*background: red;*/
+        background: #CB4444;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
     }
     .timer-bar-right {
-        /*background: #406da3;*/
-        background: #314155;
-        /*background: linear-gradient(90deg, #cb446c 20%, #eba24c 40%, #1ebf1b 60%, #1bb5bf 80%, #1b8dbe 100%);*/
-        /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15), 0 0 10px #406da3;*/
     }
 
     @media (max-width: 1370px) {
-        .timer-wrap {
-            margin-bottom: 30px;
-        }
+        /*.timer-wrap {*/
+        /*    margin-bottom: 30px;*/
+        /*}*/
     }
 
 </style>

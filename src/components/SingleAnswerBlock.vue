@@ -2,7 +2,7 @@
     <div>
         <div class="answer-block">
             <transition name="fade">
-                <div class="answer-wrong-wrap" v-show="showWrongAnswer">
+                <div class="answer-wrong-wrap" v-if="false">
                     <div class="answer-wrong">
                         <div class="line1" v-html="answer.wrong.line1"></div>
                         <div class="line2">{{answer.wrong.line2}}</div>
@@ -18,8 +18,8 @@
                     :class="{answered: answered, correct: correct}"
                     @click="clickAnswerHandler(3)"
             >
-                <span class="variant">{{variant}}</span>
-                <span class="text">{{answer.text}}</span>
+                <div class="variant">{{variant}}</div>
+                <div class="text">{{answer.text}}</div>
             </div>
 
             <audio id="soundPlayer"></audio>
@@ -81,9 +81,11 @@
 
                 if (this.answer.wrong.line1 !== 'correct') {
                     this.showWrongAnswer = true;
-                    this.$store.commit('showModalFader');
+                    //this.$store.commit('showModalFader');
 
                     this.answered = true;
+                    setTimeout(()=>{this.tryButtonHandler()},2000);
+
                 } else {
                     this.correct = true;
                     this.$store.commit('stopTimeoutTimer');
@@ -116,20 +118,25 @@
 <style scoped>
     .answer {
         display: flex;
-        max-width: 900px;
-        width: 90vw;
+        width: 280px;
+        min-height: 280px;
+        overflow-wrap: break-word;
+        /*width: 90vw;*/
         height: 60px;
-        line-height: 60px;
+        /*line-height: 60px;*/
         border-radius: 30px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
         font-weight: bold;
         border: 0 solid transparent;
 
         animation: fadeInDown 1s both ease-out;
         cursor: pointer;
-        flex-grow: 1;
+
+        align-items: center;
+        justify-content: center;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     .answer#a1.correct {
@@ -203,71 +210,90 @@
     }
 
     .answer .text {
-        font-size: 18px;
-        margin-left: 20px;
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .answer .variant {
         /*position: relative;*/
-        display: inline-block;
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        background: rgba(0,0,0,0.15);
+        /*display: inline-block;*/
+        /*border: 1px solid rgba(255, 255, 255, 0.2);*/
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 30px;
         font-size: 36px;
-        margin-left: 30px;
-        padding-right: 20px;
+        /*margin-left: 30px;*/
+        /*padding-right: 20px;*/
+        /*padding-left: 20px;*/
+        top: 0;
+        right: 20px;
     }
 
     .answer#a1 {
-        background: linear-gradient(90deg, #cb446c 50%, #eba24c 100%);
+        /*background: linear-gradient(90deg, #cb446c 50%, #eba24c 100%);*/
+        background: #CB4444;
     }
 
     .answer#a1.answered {
-        background: rgba(203, 68, 108, 0.5);
+        background: rgba(203, 68, 68, 0.5);
         color: lightgray;
     }
 
     .answer:not(.answered)#a1:hover {
-        background: #cb446c;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #cb446c;
+        background: #CB4444;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #CB4444;
     }
 
     .answer#a2 {
-        background: linear-gradient(90deg, #eba24c 50%, #1ebf1b 100%);
-        animation-delay: 2s;
+        /*background: linear-gradient(90deg, #1bb5bf 50%, #1b8dbe 100%);*/
+        background: #1B84BF;
+        animation-delay: 4s;
     }
-
     .answer#a2.answered {
-        background: rgba(235, 162, 76, 0.5);
+        background: rgba(27, 132, 191, 0.5);
         color: lightgray;
     }
 
     .answer:not(.answered)#a2:hover {
-        background: #eba24c;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #eba24c;
+        background: #1B84BF;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1B84BF;
     }
+
     .answer#a3 {
-        background: linear-gradient(90deg, #1ebf1b 50%, #1bb5bf 100%);
-        animation-delay: 3s;
+        /*background: linear-gradient(90deg, #eba24c 50%, #1ebf1b 100%);*/
+        background: #E48F2A;
+        animation-delay: 2s;
     }
+
     .answer#a3.answered {
-        background: rgba(30, 191, 27, 0.5);
-        color: lightgray;
-    }
-    .answer:not(.answered)#a3:hover {
-        background: #1ebf1b;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
-    }
-    .answer#a4 {
-        background: linear-gradient(90deg, #1bb5bf 50%, #1b8dbe 100%);
-        animation-delay: 4s;
-    }
-    .answer#a4.answered {
-        background: rgba(27, 181, 191, 0.5);
+        background: rgba(228, 143, 42, 0.5);
         color: lightgray;
     }
 
+    .answer:not(.answered)#a3:hover {
+        background: #E48F2A;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #E48F2A;
+    }
+    .answer#a4 {
+        /*background: linear-gradient(90deg, #1ebf1b 50%, #1bb5bf 100%);*/
+        background: #1ebf1b;
+        animation-delay: 3s;
+    }
+    .answer#a4.answered {
+        background: rgba(30, 191, 27, 0.5);
+        color: lightgray;
+    }
     .answer:not(.answered)#a4:hover {
-        background: #1bb5bf;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1bb5bf;
+        background: #1ebf1b;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
     }
 
     .fade-enter-active,
@@ -285,7 +311,7 @@
         }
 
         to {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #cb446c;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #CB4444;
         }
     }
 
@@ -295,7 +321,7 @@
         }
 
         to {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #eba24c;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1B84BF;
         }
     }
     @keyframes blinkCorrectA3 {
@@ -304,7 +330,7 @@
         }
 
         to {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #E48F2A;
         }
     }
     @keyframes blinkCorrectA4 {
@@ -313,14 +339,14 @@
         }
 
         to {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1bb5bf;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
         }
     }
 
     @media (max-width: 1370px) {
         .answer {
             height: 46px;
-            line-height: 46px;
+            /*line-height: 46px;*/
             margin-bottom: 18px;
         }
 

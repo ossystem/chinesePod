@@ -1,19 +1,17 @@
 <template>
-        <div class="modal-fader-end">
-            <div class="modal-popup">
-               <slot></slot>
-            </div>
+    <div class="modal-fader-end">
+        <div class="modal-popup">
+            <slot></slot>
         </div>
+    </div>
 </template>
 
 <script>
-export default {
-    
-}
+    export default {};
 </script>
 
 <style>
-  .modal-fader-end {
+    .modal-fader-end {
         position: fixed;
         z-index: 5;
         width: 100%;
@@ -21,7 +19,7 @@ export default {
         background: rgba(0, 0, 0, 0.8);
     }
 
-.modal-popup {
+    .modal-popup {
         position: absolute;
         display: flex;
         width: 900px;
@@ -32,7 +30,7 @@ export default {
 
         font-weight: bold;
         font-size: 44px;
-        color: #9fc6f4;
+        color: #384c63;
 
         /*margin: auto;*/
         left: 50%;
@@ -40,17 +38,15 @@ export default {
         transform: translate(-50%, -50%);
 
 
-        background: #384c63;
+        background: #fff;
         border-radius: 30px;
         /*z-index: 5;*/
     }
 
-.modal-popup a:visited, 
+    .modal-popup a:visited,
     .modal-popup a {
         color: #9fc6f4;
     }
-
-    
 
 </style>
 

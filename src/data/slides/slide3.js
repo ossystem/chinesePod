@@ -1,3 +1,5 @@
+import {WHAT_DOES_THIS_MEAN} from './constants';
+
 const answer1 = {
     text: 'Police does have suspects',
     trans: '警察确实有嫌犯'
@@ -22,7 +24,7 @@ const answer4 = {
 const data =
     {
         question: {
-            title: 'What does this mean:',
+            title: WHAT_DOES_THIS_MEAN,
             chars: '警方逮捕了嫌犯',
             charsTD: '警方逮捕了嫌犯*#',
             pinyin: 'Jǐngfāng dàibǔle xiánfàn',

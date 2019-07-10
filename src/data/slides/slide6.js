@@ -1,3 +1,5 @@
+import {WHAT_DOES_THIS_MEAN_6} from './constants';
+
 const answer1 = {
     text: 'To be closely linked',
     trans: '',
@@ -23,7 +25,7 @@ const data =
     {
         question: {
             delay: 4000,
-            title: 'What does 息息相关 mean?',
+            title: WHAT_DOES_THIS_MEAN_6,
             chars: '这些高新技术的应用都是跟我们的生活息息相关的。<br>等到科学家们找到细胞衰老的原因,\n' +
                 '说不定我们就能活到两百岁了。<br>而且以后或许可以克隆人体器官,治疗癌症就是小菜一碟\n' +
                 '了。',

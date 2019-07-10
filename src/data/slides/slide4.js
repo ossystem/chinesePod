@@ -1,3 +1,5 @@
+import {WHAT_DOES_THIS_MEAN} from './constants';
+
 const answer1 = {
     text: 'Even if you study hard, the entrance exam is challenging',
     trans: '即使你努力学习，入学考试也具有挑战性',
@@ -22,7 +24,7 @@ const answer4 = {
 const data =
     {
         question: {
-            title: 'What does this mean:',
+            title: WHAT_DOES_THIS_MEAN,
             chars: '即使你努力学习，通过入学考试也具有挑战性',
             charsTD: '即使你努力学习，通过入学考试也具有挑战性*#',
             pinyin: 'Jíshǐ nǐ nǔlì xuéxí, tōngguò rùxué kǎoshì yě jùyǒu tiǎozhàn xìng dàibǔle xiánfàn',

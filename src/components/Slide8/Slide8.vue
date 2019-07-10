@@ -3,9 +3,9 @@
         <FinalPage v-show="$store.state.final"/>
         <div :class="{blurBg:$store.state.final}">
             <MenuBlock/>
+            <TimerBlock/>
             <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question"
                            :traditional="traditionalCharset"/>
-            <TimerBlock/>
             <AnswerBlock :data="questions.answers"/>
             <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler"
                            @traditionalCharset="traditionalCharsetHandler"/>

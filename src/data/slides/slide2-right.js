@@ -1,3 +1,5 @@
+import {WHAT_DOES_THIS_MEAN} from './constants';
+
 // slide #2, if slide #1 was SOLVED
 const question1 = 'Is this tea hot?';
 const question2 = 'Do you want to dance?';
@@ -7,7 +9,7 @@ const question4 = 'You like a challenge?';
 const data =
     {
         question: {
-            title: 'What does this mean:',
+            title: WHAT_DOES_THIS_MEAN,
             chars: '你有_茶吗?',
             charsTD: '你有茶吗?*#',
             pinyin: 'Nǐ yǒu chá ma?',

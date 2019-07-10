@@ -48,6 +48,7 @@
 <style scoped>
     .where {
         text-align: center;
+        color: #384C63;
     }
 
     .modal-text {
@@ -65,16 +66,17 @@
         text-align: center;
         border: 0 solid transparent;
         outline: none;
-        background: #304155;
-        color: #9FC6F4;
+        background: #F3F7FB;
+        color: #384C63;
     }
 
     .where input:focus {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 4px #9FC6F4;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 4px #F3F7FB;
     }
     .spacer {
         height: 20px;
     }
+
     .disabled {
         background: gray;
     }
