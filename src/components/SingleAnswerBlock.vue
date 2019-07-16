@@ -118,11 +118,13 @@
 <style scoped>
     .answer {
         display: flex;
-        width: 280px;
-        min-height: 280px;
+        width: calc(170px + 5vw);
+        min-height: calc(170px + 5vw);
+        /*width: 14.5vw;*/
+        /*min-height: 14.5vw;*/
         overflow-wrap: break-word;
         /*width: 90vw;*/
-        height: 60px;
+        /*height: 60px;*/
         /*line-height: 60px;*/
         border-radius: 30px;
         margin-bottom: 20px;
@@ -211,7 +213,7 @@
 
     .answer .text {
         font-weight: bold;
-        font-size: 24px;
+        font-size: calc(16px + 0.4vw);
         text-align: center;
         margin-left: 10px;
         margin-right: 10px;

@@ -1,10 +1,12 @@
 <template>
     <section>
     <div class="answers">
-        <SingleAnswerBlock class="anim aa1" variant="1" :answer="data[0]" :index="1"/>
-        <SingleAnswerBlock class="anim aa2" variant="2" :answer="data[1]" :index="2"/>
-        <SingleAnswerBlock class="anim aa3" variant="3" :answer="data[2]" :index="3"/>
-        <SingleAnswerBlock class="anim aa4" variant="4" :answer="data[3]" :index="4"/>
+        <div class="answers-inner">
+            <SingleAnswerBlock class="anim aa1" variant="1" :answer="data[0]" :index="1"/>
+            <SingleAnswerBlock class="anim aa2" variant="2" :answer="data[1]" :index="2"/>
+            <SingleAnswerBlock class="anim aa3" variant="3" :answer="data[2]" :index="3"/>
+            <SingleAnswerBlock class="anim aa4" variant="4" :answer="data[3]" :index="4"/>
+        </div>
     </div>
         <div class="bottom-spacer"></div>
     </section>
@@ -33,11 +35,22 @@
     .answers {
         display: flex;
         position: relative;
-        /*flex-direction: column;*/
         align-items: center;
         justify-content: center;
         color: #fff;
         z-index: 2;
+        /*outline: 1px solid green;*/
+    }
+    .answers-inner {
+        display: flex;
+        justify-content: space-between;
+
+        margin-right: 40px;
+        margin-left: 40px;
+
+        max-width: 1300px;
+        flex: 1;
+        /*outline: 1px solid red;*/
     }
 
     .bottom-spacer {
@@ -45,23 +58,23 @@
     }
 
     .anim {
-        animation: fadeInLeft 1s ease-in-out both;
+        animation: fadeInLeft 0.8s ease-in-out both;
     }
 
     .anim.aa1 {
-        animation-delay: 1s;
+        animation-delay: 0.4s;
         z-index: 7;
     }
     .anim.aa2 {
-        animation-delay: 2s;
+        animation-delay: 0.8s;
         z-index: 6;
     }
     .anim.aa3 {
-        animation-delay: 3s;
+        animation-delay: 1.2s;
         z-index: 5;
     }
     .anim.aa4 {
-        animation-delay: 4s;
+        animation-delay: 1.6s;
         z-index: 4;
     }
 
