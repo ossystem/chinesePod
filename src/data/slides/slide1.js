@@ -16,7 +16,7 @@ const data =
                 wrong: {
                     line1: 'correct',
                     voice: 'correct.mp3'
-                },
+                },                
             },
             {
                 text: 'Where is the bathroom',

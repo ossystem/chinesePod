@@ -1,5 +1,6 @@
 <template>
-    <div >
+    <div>
+        <AudioPreloader :sounds="questions.answers"/>
         <MenuBlock />
         <TimerBlock />
         <QuestionBlock :skipCharacters="skipCharacters" :data="questions.question" :traditional="traditionalCharset"/>
@@ -14,6 +15,7 @@
     import MenuBlock from '../MenuBlock.vue';
     import SettingsBlock from '../SettingsBlock.vue';
     import TimerBlock from '../TimerBlock.vue'
+    import AudioPreloader from '../AudioPreloader'
 
     import slide from '../../data/slides/slide1';
 
@@ -25,6 +27,7 @@
             TimerBlock,
             MenuBlock,
             SettingsBlock,
+            AudioPreloader
         },
         data: () => ({
             showSettings: false,

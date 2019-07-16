@@ -58,23 +58,23 @@
     }
 
     .anim {
-        animation: fadeInLeft 0.8s ease-in-out both;
+        animation: fadeInLeft 1s ease-in-out both;
     }
 
     .anim.aa1 {
-        animation-delay: 0.4s;
+        animation-delay: 1.5s;
         z-index: 7;
     }
     .anim.aa2 {
-        animation-delay: 0.8s;
+        animation-delay: 3s;
         z-index: 6;
     }
     .anim.aa3 {
-        animation-delay: 1.2s;
+        animation-delay: 4.5s;
         z-index: 5;
     }
     .anim.aa4 {
-        animation-delay: 1.6s;
+        animation-delay: 6s;
         z-index: 4;
     }
 

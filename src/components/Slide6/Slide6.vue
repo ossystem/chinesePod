@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <audio id="audiofile" :src="require('../../assets/audio/slide6/question.mp3')" controls></audio><br>
+        <audio id="audiofile" :src="require('../../assets/audio/slide6/question.mp3')"></audio><br>
         <div id="subtitles"></div>
         <MenuBlock />
         <TimerBlock />
@@ -120,6 +120,8 @@
                     }
                 });
             });
+
+            //setTimeout(()=>{audioPlayer.play()},3000);
 
             this.$store.commit('clearDataBeforeSlideStarts');
             setTimeout(() => {

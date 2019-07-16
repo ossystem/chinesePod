@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers';
     export default {
         name: 'SingleAnswerBlock',
         data: () => ({
@@ -47,6 +48,18 @@
             endTest: function () {
                 return this.$store.state.numOfPreviousErrors && this.currentSlide === 2;
             }
+        },
+        mounted: function() {
+            // setTimeout(()=>{
+            //         const audio = document.getElementById('soundPlayer');
+
+            //         audio.addEventListener('canplay', () => {
+
+            //             audio.play();
+            //         });
+
+            //         audio.src = require(`../assets/audio/slide1/answers/a${this.index}.mp3`);                
+            // },this.index*1500)
         },
         methods: {
             tryButtonHandler () {
