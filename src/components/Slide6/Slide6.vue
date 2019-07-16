@@ -103,6 +103,7 @@
         },
         mounted: function() {
             // https://www.codepunker.com/blog/sync-audio-with-text-using-javascript
+            // use https://ttsmp3.com/ to generate mp3
 
             let audioPlayer = document.getElementById('audiofile');
             let subtitles = document.getElementById('subtitles');
