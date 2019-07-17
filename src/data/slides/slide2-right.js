@@ -56,14 +56,14 @@ const data =
                     line1: 'Almost! Nǐ means you.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${question2}” is 你想跳舞吗？`,
-                    voice: 'slide1/horse.mp3'
+                    voice: 'common/what-is-wrong.mp3'
                 },
             },
             {
                 text: question3,
                 wrong: {
                     line1: 'correct',
-                    voice: 'correct.mp3'
+                    voice: 'common/correct.mp3'
                 },
             },
             {
@@ -72,7 +72,7 @@ const data =
                     line1: 'Almost! Nǐ means you.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${question4}” is 你喜欢挑战吗？`,
-                    voice: 'slide1/horse2.mp3'
+                    voice: 'common/what-is-wrong.mp3'
                 }
             }
         ],

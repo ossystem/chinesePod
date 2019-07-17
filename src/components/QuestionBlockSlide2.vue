@@ -73,6 +73,7 @@ export default {
     }
 
     this.initAndStartQuestion();
+    this.applyMuteAudio();
   },
   methods: {
     getCharById(id) {

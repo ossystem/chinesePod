@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <section>
     <audio
       v-for="index in sounds.length"
       :id="'soundPlayer'+index"
       :key="'soundPlayer'+index+$store.state.currentSlide"
     >{{index}}</audio>
-  </div>
+  </section>
 </template>
+
 <script>
 export default {
   data: () => ({
@@ -20,7 +21,6 @@ export default {
     }
   },
   mounted: function() {
-    //console.log("Preloader");
     this.sounds.forEach((element, i) => {
       const index = ++i;
       const audio = document.getElementById("soundPlayer" + index);
@@ -30,20 +30,22 @@ export default {
 
         // we have loaded all sounds
         if (this.soundsLoaded.length === this.sounds.length) {
-          //console.log("all sounds:", this.soundsLoaded);
-          this.$emit('soundsReady',this.soundsLoaded);
+          // sort sounds by index because they me be loaded
+          // in different order (usually by size...)         
+          this.soundsLoaded.sort((a1, a2) => {
+            return a1.index - a2.index;
+          });
+
+          this.$emit("soundsReady", this.soundsLoaded);
         }
-        //audio.play();
       });
 
       const currentSlide = this.$store.state.currentSlide;
-      const wrong = this.isWrong ? 'wrong/' : '';
+      const wrong = this.isWrong ? "wrong/" : "";
       audio.src = require(`../assets/audio/slide${currentSlide}/${wrong}answers/a${index}.mp3`);
     });
   }
 };
 </script>
-<style>
-</style>
 
 

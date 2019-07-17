@@ -48,6 +48,11 @@
         color: #9fc6f4;
     }
 
+     @media (max-width: 1370px) {
+         .modal-popup {
+             font-weight: normal;
+             font-size: 36px;
+             width: 650px;
+     }
+     }
 </style>
-
-

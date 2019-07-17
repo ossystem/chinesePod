@@ -23,7 +23,7 @@
            disableSound: false
         }),
         methods: {
-            soundClicked() {
+            soundClicked() {               
                 this.$store.commit('enableSound',this.disableSound);
             }
         },

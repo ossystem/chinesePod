@@ -3,8 +3,20 @@
     <!--        <div class="arrow left"></div>-->
 
     <div class="question-wrapper">
-      <div :style="{opacity: showTitle}" class="text" :class="{'text-green':changeTitleColor}" v-html="data.title"></div>
       <div
+        :style="{opacity: showTitle}"
+        class="text"
+        :class="{'text-green':changeTitleColor}"
+        v-html="data.title"
+      ></div>
+      <div
+      v-if="haveSyncText"
+        id="subtitles"
+        class="symbols"
+        :class="{hide:skipCharacters,show:!skipCharacters && !skipAnimation, small: isSmall, smaller: isSmaller}"
+      ></div>
+      <div
+      v-else
         v-html="chars"
         class="symbols"
         :class="{hide:skipCharacters,show:!skipCharacters && !skipAnimation, small: isSmall, smaller: isSmaller}"
@@ -20,22 +32,21 @@
     <!--        <div class="arrow right"></div>-->
 
     <audio id="audioIntro"></audio>
-
   </section>
 </template>
 
 <script>
-  import QuestionBlockMixin from '../mixins/QuestionBlock'
+import QuestionBlockMixin from "../mixins/QuestionBlock";
 
 export default {
-  name: 'QuestionBlock',
+  name: "QuestionBlock",
   mixins: [QuestionBlockMixin],
   data: () => ({
     charsPart: "",
     title: "",
     titles: [],
     titleIndex: 0,
-    showTitle: 0,
+    showTitle: 0
   }),
   props: {
     skipCharacters: {
@@ -46,7 +57,7 @@ export default {
     data: Object,
     traditional: {
       type: Boolean,
-      default: false,
+      default: false
     }
   },
   watch: {
@@ -78,14 +89,32 @@ export default {
       setTimeout(this.changeTitle, this.data.animation[0].delay);
     }
 
-    this.initAndStartQuestion();
+    let subtitles = document.getElementById('subtitles');
+    if (this.haveSyncText) {
+      this.createSubtitle(subtitles);
+    }
 
+    this.initAndStartQuestion(subtitles);
+    this.applyMuteAudio();
 
     setTimeout(() => {
       this.showTitle = 1;
     }, this.data.delay);
   },
   methods: {
+    createSubtitle(subtitles) {
+      let element;
+      for (let i = 0; i < this.data.syncData.length; i++) {
+        element = document.createElement("span");
+        element.setAttribute("id", "c_" + i);
+        const text = this.data.syncData[i].text;
+        element.innerText = text + " ";
+        if (text === '。') {
+          element.innerHTML += "<br>";
+        }
+        subtitles.appendChild(element);
+      }
+    },
     changeTitle() {
       this.title = this.titles[this.titleIndex].chars;
       this.titleIndex = (this.titleIndex + 1) % this.titles.length;
@@ -98,6 +127,9 @@ export default {
     }
   },
   computed: {
+    haveSyncText: function() {
+      return this.data.syncData;
+    },
     changeTitleColor: function() {
       return this.$store.state.currentSlide >= 6;
     },

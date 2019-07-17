@@ -4,7 +4,7 @@
 
     <ModalWrapper v-show="endTest">
       <div>Test ends for you now!</div>
-      <div><a href="https://chinesepod.com">Take some mandarin and</a></div>
+      <div><a href="https://chinesepod.com">Click to take some mandarin and</a></div>
       <div>come back soon!</div>
     </ModalWrapper>
 

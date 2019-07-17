@@ -12,9 +12,10 @@ export const store = new Vuex.Store({
         numOfIncorrect: 0,
         numOfUnattempted: 0,
         totalScore: 0,
-        currentSlide: 1,
+        currentSlide: 6,
         timeIsOut: false,
         answerIsCorrect: false,
+        prevAnswerIsCorrect: false,
         stopTimeoutTimer: false,
         endTest: false,
         final: false,
@@ -42,6 +43,7 @@ export const store = new Vuex.Store({
         },
         incNumOfWrongAnswers (state) {
             state.numOfWrongAnswers++;
+            state.numOfIncorrect++;
         },
         timeIsOut (state) {
             state.timeIsOut = true;
@@ -88,6 +90,13 @@ export const store = new Vuex.Store({
                 return;
             }
 
+            // timeout on the slide 2 - end test
+            if (context.state.timeIsOut && !context.state.prevAnswerIsCorrect && context.state.currentSlide === 2) {
+                context.commit('endTest');
+                return;
+            }
+
+            context.state.prevAnswerIsCorrect = context.state.answerIsCorrect;
             //console.log('should go to next slide...');
             // increase score, if answer was correct
             if (context.state.answerIsCorrect) {
@@ -101,6 +110,7 @@ export const store = new Vuex.Store({
                 }
             }
 
+            
             // go to next slide
             context.commit('nextSlide');
         }

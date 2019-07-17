@@ -46,7 +46,7 @@
                 return this.$store.state.currentSlide;
             },
             endTest: function () {
-                return this.$store.state.numOfPreviousErrors && this.currentSlide === 2;
+                return !this.$store.state.prevAnswerIsCorrect && this.currentSlide === 2;
             }
         },
         mounted: function() {
