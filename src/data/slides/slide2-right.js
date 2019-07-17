@@ -4,11 +4,13 @@ import {WHAT_DOES_THIS_MEAN} from './constants';
 const question1 = 'Is this tea hot?';
 const question2 = 'Do you want to dance?';
 const question3 = 'Do you have tea?';
-const question4 = 'You like a challenge?';
+const question4 = 'Do you like a challenge?';
 
 const data =
     {
+        isWrong: false,
         question: {
+            delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '你有_茶吗?',
             charsTD: '你有茶吗?*#',

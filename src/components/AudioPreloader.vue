@@ -13,12 +13,16 @@ export default {
     soundsLoaded: []
   }),
   props: {
-    sounds: Array
+    sounds: Array,
+    isWrong: {
+      type: Boolean,
+      default: false
+    }
   },
   mounted: function() {
-    console.log("Preloader");
+    //console.log("Preloader");
     this.sounds.forEach((element, i) => {
-      const index = i + 1;
+      const index = ++i;
       const audio = document.getElementById("soundPlayer" + index);
 
       audio.addEventListener("canplay", () => {
@@ -26,12 +30,15 @@ export default {
 
         // we have loaded all sounds
         if (this.soundsLoaded.length === this.sounds.length) {
-          console.log("all sounds:", this.soundsLoaded);
+          //console.log("all sounds:", this.soundsLoaded);
+          this.$emit('soundsReady',this.soundsLoaded);
         }
-        audio.play();
+        //audio.play();
       });
 
-      audio.src = require(`../assets/audio/slide${index}/answers/a${index}.mp3`);
+      const currentSlide = this.$store.state.currentSlide;
+      const wrong = this.isWrong ? 'wrong/' : '';
+      audio.src = require(`../assets/audio/slide${currentSlide}/${wrong}answers/a${index}.mp3`);
     });
   }
 };

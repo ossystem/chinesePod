@@ -24,6 +24,7 @@ const answer4 = {
 const data =
     {
         question: {
+            delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '你走的慢不要紧，只要你不停下来',
             charsTD: '你走的慢不要紧，只要你不停下来*#',
@@ -38,7 +39,7 @@ const data =
                     line1: 'Oops!',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer1.text}” is ${answer1.trans}`,
-                    voice: 'slide1/bath.mp3'
+                    voice: 'common/bath.mp3'
                 }                 
                                     
             },
@@ -46,7 +47,7 @@ const data =
                 text: answer2.text,
                 wrong: {
                     line1: 'correct',
-                    voice: 'correct.mp3'
+                    voice: 'common/correct.mp3'
                 },                   
             },
             {
@@ -55,7 +56,7 @@ const data =
                     line1: 'Well, you got the FIRST character right – ”Wo” means “I”.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer3.text}” is ${answer3.trans}`,
-                    voice: 'slide1/horse.mp3'
+                    voice: 'common/horse.mp3'
                 },
             },
             {
@@ -64,7 +65,7 @@ const data =
                     line1: 'Well, you got the FIRST character right – ”Wo” means “I”.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer4.text}” is ${answer4.trans}`,
-                    voice: 'slide1/horse2.mp3'
+                    voice: 'common/horse2.mp3'
                 }
             }
 

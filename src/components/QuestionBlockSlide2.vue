@@ -18,15 +18,17 @@
         :class="{hide:!skipCharacters,show:skipCharacters,delay:!skipCharacters,small: isSmall, smaller: isSmaller}"
       >{{pinyin}}</div>
     </div>
+    <audio id="audioIntro"></audio>
     <!--        <div class="arrow right"></div>-->
   </section>
 </template>
 
 <script>
-import { setTimeout } from "timers";
+ import QuestionBlockMixin from '../mixins/QuestionBlock';
 
 export default {
   name: "QuestionBlock",
+  mixins: [QuestionBlockMixin],
   data: () => ({
     charsPart: "",
     title: "",
@@ -34,9 +36,10 @@ export default {
     titleIndex: 0
   }),
   props: {
+    isWrong: Boolean,
     skipCharacters: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     data: Object,
     traditional: {
@@ -59,6 +62,7 @@ export default {
     }
   },
   mounted: function() {
+    console.log('Slide#2, isWrong:',this.isWrong);
     this.charsPart = this.data.chars;
     this.title = this.data.chars;
 
@@ -67,6 +71,8 @@ export default {
       this.titles = this.data.animation;
       setTimeout(this.changeTitle, this.data.animation[0].delay);
     }
+
+    this.initAndStartQuestion();
   },
   methods: {
     getCharById(id) {

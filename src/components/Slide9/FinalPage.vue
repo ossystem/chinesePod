@@ -44,7 +44,8 @@
             showSettings: false,
             skipCharacters: false,
             traditionalCharset: false,
-            questions: slide
+            questions: slide,
+            usersAnswer: ''
         }),
         methods: {
             skipCharsHandler () {

@@ -15,10 +15,10 @@
             <div
                     :id="`a${index}`"
                     class="answer"
-                    :class="{answered: answered, correct: correct}"
+                    :class="{answered: answered, correct: correct, start: start && !correct}"
                     @click="clickAnswerHandler(3)"
             >
-                <div class="variant">{{variant}}</div>
+                <div class="variant"><span :class="{pronounce: start}">{{variant}}</span></div>
                 <div class="text">{{answer.text}}</div>
             </div>
 
@@ -28,18 +28,18 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers';
     export default {
         name: 'SingleAnswerBlock',
         data: () => ({
             answered: false,
             showWrongAnswer: false,
-            correct: false
+            correct: false,
         }),
         props: {
             variant: String,
             answer: Object,
-            index: Number
+            index: Number,
+            start: Boolean,
         },
         computed: {
             currentSlide: function () {
@@ -65,8 +65,8 @@ import { setTimeout } from 'timers';
             tryButtonHandler () {
                 this.showWrongAnswer = false;
 
-                const audio = document.getElementById('soundPlayer');
-                audio.pause();
+                //const audio = document.getElementById('soundPlayer');
+                //audio.pause();
 
                 this.$store.commit('hideModalFader');
                 this.$store.commit('incNumOfWrongAnswers');
@@ -97,7 +97,7 @@ import { setTimeout } from 'timers';
                     //this.$store.commit('showModalFader');
 
                     this.answered = true;
-                    setTimeout(()=>{this.tryButtonHandler()},2000);
+                    setTimeout(()=>{this.tryButtonHandler()},2600);
 
                 } else {
                     this.correct = true;
@@ -158,6 +158,7 @@ import { setTimeout } from 'timers';
         animation: blinkCorrectA1 0.3s 4;
         animation-delay: 0.5s;
     }
+
     .answer#a2.correct {
         animation: blinkCorrectA2 0.3s 4;
         animation-delay: 0.5s;
@@ -170,6 +171,20 @@ import { setTimeout } from 'timers';
         animation: blinkCorrectA4 0.3s 4;
         animation-delay: 0.5s;
     }
+
+    .answer#a1.start{
+        animation: blinkPronounceA1S 0.3s 3;
+    }
+    .answer#a2.start{
+        animation: blinkPronounceA2S 0.3s 3;
+    }
+    .answer#a3.start{
+        animation: blinkPronounceA3S 0.3s 3;
+    }
+    .answer#a4.start {
+        animation: blinkPronounceA4S 0.3s 3;
+    }
+
 
     .answer-block {
         position: relative;
@@ -250,6 +265,38 @@ import { setTimeout } from 'timers';
         /*padding-left: 20px;*/
         top: 0;
         right: 20px;
+    }
+
+    .variant .pronounce {
+        display: inline-block;
+        animation: shakeVariant 0.4s ease-in-out;
+        /*color: red*/
+    }
+
+    @keyframes shakeVariant {
+        0% {
+            /*opacity: 0;*/
+            /*-webkit-transform: translate3d(-100%, 0, 0);*/
+            transform: scale(1.1) rotate(12deg);
+        }
+
+        25% {
+            transform: scale(1.2) rotate(-12deg);
+        }
+
+        50% {
+            transform: scale(1.3) rotate(12deg);
+        }
+
+        75% {
+            transform: scale(1.5) rotate(-12deg);
+        }
+
+        100% {
+            /*opacity: 1;*/
+            /*-webkit-transform: translate3d(0, 0, 0);*/
+            transform: scale(1);
+        }
     }
 
     .answer#a1 {
@@ -355,6 +402,44 @@ import { setTimeout } from 'timers';
 
         to {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
+        }
+    }
+
+    @keyframes blinkPronounceA1S {
+        from {
+            box-shadow: none;
+        }
+
+        to {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 20px #CB4444;
+        }
+    }
+
+    @keyframes blinkPronounceA2S {
+        from {
+            box-shadow: none;
+        }
+
+        to {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 20px #1B84BF;
+        }
+    }
+    @keyframes blinkPronounceA3S {
+        from {
+            box-shadow: none;
+        }
+
+        to {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 20px #E48F2A;
+        }
+    }
+    @keyframes blinkPronounceA4S {
+        from {
+            box-shadow: none;
+        }
+
+        to {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 20px #1ebf1b;
         }
     }
 

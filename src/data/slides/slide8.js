@@ -23,7 +23,7 @@ const answer4 = {
 const data =
     {
         question: {
-            delay: 0,
+            delay: 300,
             title: WHAT_DOES_THIS_MEAN_8,
             chars: '这些高新技术的应用都是跟我们的生活息息相关的。<br>等到科学家们找到细胞衰老的原因,\n' +
                 '说不定我们就能活到两百岁了。<br>而且以后或许可以克隆人体器官,治疗癌症就是小菜一碟\n' +

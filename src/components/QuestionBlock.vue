@@ -1,6 +1,7 @@
 <template>
   <section class="question">
     <!--        <div class="arrow left"></div>-->
+
     <div class="question-wrapper">
       <div :style="{opacity: showTitle}" class="text" :class="{'text-green':changeTitleColor}" v-html="data.title"></div>
       <div
@@ -17,23 +18,30 @@
       <!--            <div class="pinyin" :class="{hide:!skipCharacters,show:skipCharacters}">AAA</div>-->
     </div>
     <!--        <div class="arrow right"></div>-->
+
+    <audio id="audioIntro"></audio>
+
   </section>
 </template>
 
 <script>
+  import QuestionBlockMixin from '../mixins/QuestionBlock'
+
 export default {
-  name: "QuestionBlock",
+  name: 'QuestionBlock',
+  mixins: [QuestionBlockMixin],
   data: () => ({
     charsPart: "",
     title: "",
     titles: [],
     titleIndex: 0,
-    showTitle: 0
+    showTitle: 0,
   }),
   props: {
     skipCharacters: {
       type: Boolean,
       default: false,
+      removeEndedListener: false
     },
     data: Object,
     traditional: {
@@ -69,6 +77,9 @@ export default {
       this.titles = this.data.animation;
       setTimeout(this.changeTitle, this.data.animation[0].delay);
     }
+
+    this.initAndStartQuestion();
+
 
     setTimeout(() => {
       this.showTitle = 1;

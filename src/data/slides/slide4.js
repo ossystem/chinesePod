@@ -24,6 +24,7 @@ const answer4 = {
 const data =
     {
         question: {
+            delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '即使你努力学习，通过入学考试也具有挑战性',
             charsTD: '即使你努力学习，通过入学考试也具有挑战性*#',
@@ -36,7 +37,7 @@ const data =
                 text: answer1.text,
                 wrong: {
                     line1: 'correct',
-                    voice: 'correct.mp3'
+                    voice: 'common/correct.mp3'
                 },                                 
             },
             {
@@ -45,7 +46,7 @@ const data =
                     line1: 'Oops!',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer2.text}” is ${answer2.trans}`,
-                    voice: 'slide1/bath.mp3'
+                    voice: 'common/bath.mp3'
                 }                 
             },
             {
@@ -54,7 +55,7 @@ const data =
                     line1: 'Well, you got the FIRST character right – ”Wo” means “I”.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer3.text}” is ${answer3.trans}`,
-                    voice: 'slide1/horse.mp3'
+                    voice: 'common/horse.mp3'
                 },
             },
             {
@@ -63,7 +64,7 @@ const data =
                     line1: 'Well, you got the FIRST character right – ”Wo” means “I”.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer4.text}” is ${answer4.trans}`,
-                    voice: 'slide1/horse2.mp3'
+                    voice: 'common/horse2.mp3'
                 }
             }
 

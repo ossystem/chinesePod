@@ -3,7 +3,9 @@ import {WHAT_DOES_THIS_MEAN} from './constants';
 
 const data =
     {
+        isWrong: true,
         question: {
+            delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '谢谢',
             charsTD: '谢谢*#',
@@ -18,14 +20,14 @@ const data =
                     line1: 'You are a complete newbie!',
                     line2: 'See you later!',
                     line3: 'By the way, the Chinese phrase for “Hello” is 你好',
-                    voice: 'slide1/horse.mp3'
+                    voice: 'common/what-is-wrong.mp3'
                 }
             },
             {
                 text: 'Thank you',
                 wrong: {
                     line1: 'correct',
-                    voice: 'correct.mp3'
+                    voice: 'common/correct.mp3'
                 },
             },
             {
@@ -34,7 +36,7 @@ const data =
                     line1: 'You are a complete newbie!',
                     line2: 'See you later!',
                     line3: 'By the way, the Chinese phrase for “I am hungry” is 小心',
-                    voice: 'slide1/horse.mp3'
+                    voice: 'common/horse.mp3'
                 },
             },
             {
@@ -43,7 +45,7 @@ const data =
                     line1: 'You are a complete newbie!',
                     line2: 'See you later!',
                     line3: 'By the way, the Chinese phrase for “Bless you!” is 祝福你!',
-                    voice: 'slide1/horse2.mp3'
+                    voice: 'common/what-is-wrong.mp3'
                 }
             }
 
