@@ -1,7 +1,7 @@
 <template>
-  <section class="question">
-    <!--        <div class="arrow left"></div>-->
-    <div v-if="showSettings" class="left"><span class="traditional" @click="traditionalHandler">Click <span class="my-underline">here</span> if you are interested in learning <span class="my-bold">traditional</span> characters instead of <span class="my-bold">simplified</span> ones.</span> <span class="my-link">(What is the difference?)</span></div>
+  <section class="question">    
+    <div v-if="showSettings" class="left"><span class="traditional" @click="traditionalHandler">Click <span class="my-underline">here</span> if you are interested in learning <span class="my-bold">traditional</span> characters instead of <span class="my-bold">simplified</span> ones.</span> <span class="my-link" @click="whatIsTheDifferenceHandler">(What is the difference?)</span></div>
+    
     <div class="question-wrapper">
       <div
         :style="{opacity: showTitle}"
@@ -10,7 +10,7 @@
         v-html="data.title"
       ></div>
       <div
-      v-if="haveSyncText"
+      v-if="haveSyncText && !skipCharacters"
         id="subtitles"
         class="symbols"
         :class="{hide:skipCharacters,show:!skipCharacters && !skipAnimation, small: isSmall, smaller: isSmaller}"
@@ -21,21 +21,31 @@
         class="symbols"
         :class="{hide:skipCharacters,show:!skipCharacters && !skipAnimation, small: isSmall, smaller: isSmaller}"
       ></div>
+      <div
+      v-if="haveSyncText && skipCharacters"
+        id="subtitles"
+        class="pinyin"
+        :class="{hide:!skipCharacters,show:skipCharacters,delay:showPinyin,small: isSmall, smaller: isSmaller}"
+      ></div>      
+      <div v-else>
       <div v-if="skipAnimation" class="pinyin-no-animation" :class="{show: skipCharacters,small: isSmall, smaller: isSmaller}">{{pinyin}}</div>
       <div
         v-else
         class="pinyin"
         :class="{hide:!skipCharacters,show:skipCharacters,delay:showPinyin,small: isSmall, smaller: isSmaller}"
       >{{pinyin}}</div>
+      </div>
       <!--            <div class="pinyin" :class="{hide:!skipCharacters,show:skipCharacters}">AAA</div>-->
     </div>
-    <div v-if="showSettings" class="right">
+    <transition name="fade">
+    <div v-show="showSettings" class="right">
       <label class="checkbox">
         <input type="checkbox" v-model="skipChars" class="visually-hidden">
         <span class="checkbox__text">I do not want to learn</span>
         <span class="checkbox__text__line">Characters at this point</span>
       </label>
     </div>
+    </transition>
 
     <audio id="audioIntro"></audio>
   </section>
@@ -47,6 +57,7 @@ import QuestionBlockMixin from "../mixins/QuestionBlock";
 export default {
   name: "QuestionBlock",
   mixins: [QuestionBlockMixin],
+
   data: () => ({
     charsPart: "",
     title: "",
@@ -56,6 +67,7 @@ export default {
     subtitles: null,
     skipChars: false,
     traditionalCharset: false,
+    timeOf5Seconds: false,
   }),
   props: {
     skipCharacters: {
@@ -111,7 +123,15 @@ export default {
       this.createSubtitle(this.subtitles);
     }
 
-    this.initAndStartQuestion(this.subtitles);
+    setTimeout(()=>{
+      this.initAndStartQuestion(this.subtitles);
+       if (this.$store.state.currentSlide<2) {
+        setTimeout(()=>{
+          this.timeOf5Seconds = true;
+        },9000);
+       }
+    }, this.data.delay);
+    
     this.applyMuteAudio();
 
     //this.selectSomeWords(subtitles, 0,11);
@@ -120,8 +140,13 @@ export default {
     setTimeout(() => {
       this.showTitle = 1;
     }, this.data.delay);
+
+    
   },
   methods: {
+    whatIsTheDifferenceHandler() {
+      this.$store.commit('whatIsTheDiffrence',true);
+    },
     traditionalHandler() {
       this.$emit("traditionalCharset");
       this.traditionalCharset = !this.traditionalCharset;
@@ -131,11 +156,13 @@ export default {
       // https://www.codepunker.com/blog/sync-audio-with-text-using-javascript
       // use https://ttsmp3.com/ to generate mp3
 
+      const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
+      console.log('DATA:',syncData);
       let element;
-      for (let i = 0; i < this.data.syncData.length; i++) {
+      for (let i = 0; i < syncData.length; i++) {
         element = document.createElement("span");
         element.setAttribute("id", "c_" + i);
-        const text = this.data.syncData[i].text;
+        const text = syncData[i].text;
         element.innerText = text + " ";
         if (text === '。') {
           element.innerHTML += "<br>";
@@ -156,7 +183,7 @@ export default {
   },
   computed: {
     showSettings: function() {
-      return this.$store.state.currentSlide === 1;
+      return this.$store.state.currentSlide === 1 && this.timeOf5Seconds;
     },
     highlightSentence: function() {
       return this.$store.state.highlightSentence;
@@ -186,9 +213,5 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
 <style scoped src="./styles/questions.css">
-
 </style>

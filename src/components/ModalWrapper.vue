@@ -1,13 +1,20 @@
 <template>
     <div class="modal-fader-end">
-        <div class="modal-popup">
+        <div class="modal-popup" :class="{transparent:tranparent}">
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
-    export default {};
+    export default {
+        props: {
+            tranparent: {
+                type: Boolean,
+                default: false,
+            }
+        }
+    };
 </script>
 
 <style>
@@ -35,12 +42,15 @@
         /*margin: auto;*/
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
-
-
-        background: #fff;
+        transform: translate(-50%, -50%);   
+        background: white;     
+        /* opacity: 0.5; */
         border-radius: 30px;
         /*z-index: 5;*/
+    }
+
+    .modal-popup.transparent {
+        background: rgba(255,255,255,0.8);
     }
 
     .modal-popup a:visited,

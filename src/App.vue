@@ -2,6 +2,15 @@
   <div class="main">
     <div v-show="showFader" class="modal-fader"></div>
 
+    <transition name="fade2">
+      <whatIsTheDiffrence v-if="whatIsTheDiffrence"/>
+    </transition>
+
+    <audio id="audioPlayerIntro"></audio>
+    <transition name="fade">
+      <start-page v-if="startPage"/>
+    </transition>
+
     <ModalWrapper v-show="endTest">
       <div>Test ends for you now!</div>
       <div><a href="https://chinesepod.com">Click to take some mandarin and</a></div>
@@ -34,7 +43,9 @@ import Slide7 from "./components/Slide7/Slide7.vue";
 import Slide8 from "./components/Slide8/Slide8.vue";
 
 import ModalWrapper from "./components/ModalWrapper.vue";
-import WhereDidYouHearIt from "./components/WhereDidYouHearIt"
+import WhereDidYouHearIt from "./components/WhereDidYouHearIt";
+import StartPage from "./components/StartPage";
+import whatIsTheDiffrence from "./components/WhatIsTheDifference";
 
 export default {
   name: "app",
@@ -48,12 +59,14 @@ export default {
     Slide7,
     Slide8,
     ModalWrapper,
-    WhereDidYouHearIt
+    WhereDidYouHearIt,
+    StartPage,
+    whatIsTheDiffrence
   },
   data: () => ({
     showSettings: false,
     skipCharacters: false,
-    traditionalCharset: false
+    traditionalCharset: false,        
   }),
   methods: {
     skipCharsHandler() {
@@ -64,6 +77,12 @@ export default {
     }
   },
   computed: {
+    whatIsTheDiffrence: function() {
+      return this.$store.state.whatIsTheDiffrence;
+    },
+    startPage: function() {
+      return this.currentSlide === 0;
+    },
     currentSlide: function() {
       return this.$store.state.currentSlide;
     },
@@ -156,3 +175,24 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
 }
 </style>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 4s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade2-enter-active,
+.fade2-leave-active {
+  transition: opacity 1s;
+}
+.fade2-enter,
+.fade2-leave-to {
+  opacity: 0;
+}
+</style>
+

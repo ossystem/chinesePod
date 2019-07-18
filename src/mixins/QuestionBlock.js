@@ -49,8 +49,9 @@ const QuestionBlockMix = {
                         }
 
                         if (this.data.syncData) {
+                            const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
                             audio.addEventListener('timeupdate', () => {
-                                this.data.syncData.forEach((element, index) => {
+                                syncData.forEach((element, index) => {
                                     if (
                                         audio.currentTime >= element.start &&
                                         audio.currentTime <= element.end

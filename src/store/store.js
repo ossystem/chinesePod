@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
         numOfIncorrect: 0,
         numOfUnattempted: 0,
         totalScore: 0,
-        currentSlide: 1,
+        currentSlide: 0,
         timeIsOut: false,
         answerIsCorrect: false,
         prevAnswerIsCorrect: false,
@@ -23,11 +23,15 @@ export const store = new Vuex.Store({
         userTraditional: false,
         enableSound: true,
         highlightSentence: null,
+        whatIsTheDiffrence: false,
     },
 
     getters: {},
 
     mutations: {
+        whatIsTheDiffrence(state,enable) {
+            state.whatIsTheDiffrence = enable;
+        },
         enableSound(state,enable) {
           state.enableSound = enable;
         },
@@ -88,6 +92,8 @@ export const store = new Vuex.Store({
             // go to next step
             if (state.currentSlide < 8) {
                 state.currentSlide++;
+            } else {
+                state.final = true;
             }
         }
     },

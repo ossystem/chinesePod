@@ -1,6 +1,10 @@
 <template>
     <ModalWrapper class="final">
-        <div class="modal-wrapper">
+        <div v-if="hasSentEmail">
+            <div class="title-email-sent">Email has been sent!</div>
+            <div class="note-email-sent">* - sending will work in final release</div>
+        </div>
+        <div v-else class="modal-wrapper">
         <div class="title">You have completed the test!</div>
         <div class="labels">
             <div class="correct">Correct</div>
@@ -24,7 +28,7 @@
             send you our course.
         </div>
         <div><label><input v-model="usersAnswer" type="email" placeholder="example@gmail.com"></label></div>
-        <div class="button-try">Send</div>
+        <div class="button-try" @click="onSendEmailHandler">Send</div>
         <div class="bottom-spacer"></div>
         </div>
     </ModalWrapper>
@@ -47,9 +51,13 @@
             skipCharacters: false,
             traditionalCharset: false,
             questions: slide,
-            usersAnswer: ''
+            usersAnswer: '',
+            hasSentEmail: false,
         }),
         methods: {
+            onSendEmailHandler() {
+                this.hasSentEmail = true;
+            },
             skipCharsHandler () {
                 this.skipCharacters = !this.skipCharacters;
             },
@@ -138,11 +146,18 @@
         line-height: 22px;
         font-weight: normal;
     }
+    .note-email-sent {
+        font-size: 14px;
+    }
+    .title-email-sent,
     .title {
         font-weight: bold;
         font-size: 44px;
         line-height: 48px;
         margin-top: 50px;
+    }
+    .title-email-sent {
+        margin-top: 0;
     }
     .labels {
         font-size: 16px;

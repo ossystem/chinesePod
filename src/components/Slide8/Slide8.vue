@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import FinalPage from '../Slide9/FinalPage.vue';
+    import FinalPage from '../FinalPage/FinalPage.vue';
     import SlideWrapper from '../SlideWrapper';
 
     import slide from '../../data/slides/slide8';

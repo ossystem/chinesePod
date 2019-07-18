@@ -3,7 +3,7 @@ import {WHAT_DOES_THIS_MEAN} from './constants';
 const data =
     {
         question: {
-            delay: 300,
+            delay: 3000,
             title: WHAT_DOES_THIS_MEAN,
             chars: '我不知道',
             charsTD: '我不知道*#',
