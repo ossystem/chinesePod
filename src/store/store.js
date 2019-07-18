@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
         numOfIncorrect: 0,
         numOfUnattempted: 0,
         totalScore: 0,
-        currentSlide: 6,
+        currentSlide: 1,
         timeIsOut: false,
         answerIsCorrect: false,
         prevAnswerIsCorrect: false,
@@ -20,7 +20,9 @@ export const store = new Vuex.Store({
         endTest: false,
         final: false,
         skipChars: false,
+        userTraditional: false,
         enableSound: true,
+        highlightSentence: null,
     },
 
     getters: {},
@@ -34,6 +36,9 @@ export const store = new Vuex.Store({
         },
         skipChars(state,enabled) {
             state.skipChars = enabled;
+        },
+        userTraditional(state,enabled) {
+          state.userTraditional = enabled;
         },
         showModalFader (state) {
             state.showFader = true;
@@ -61,6 +66,12 @@ export const store = new Vuex.Store({
         },
         endTest(state) {
           state.endTest = true;
+        },
+        interruptAnswers() {
+
+        },
+        highlightSentence(state, payload) {
+          state.highlightSentence = payload;
         },
         clearDataBeforeSlideStarts(state) {
             // go to next step

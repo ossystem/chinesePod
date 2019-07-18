@@ -90,11 +90,22 @@
                     });
 
                     audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
+                    // if user answered before all answers were red
+                    this.$store.commit('interruptAnswers');
                 }
 
                 if (this.answer.wrong.line1 !== 'correct') {
+
                     this.showWrongAnswer = true;
-                    //this.$store.commit('showModalFader');
+
+                    switch (this.currentSlide) {
+                        case 7:
+                                this.$store.commit('highlightSentence',{start:0,end:11});
+                            break;
+                        case 8:
+                                this.$store.commit('highlightSentence',{start:12,end:27});
+                            break;
+                    }
 
                     this.answered = true;
                     setTimeout(()=>{this.tryButtonHandler()},2600);

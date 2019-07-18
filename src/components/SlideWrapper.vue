@@ -1,13 +1,26 @@
 <template>
     <div>
-        <MenuBlock />
-        <TimerBlock />
+        <MenuBlock/>
+        <TimerBlock/>
 
-        <QuestionBlock2 v-if="slide === 2" @questionEnded="questionEnded" :skipCharacters="skipCharacters" :data="data.question" :traditional="traditionalCharset" :is-wrong="data.isWrong"/>
-        <QuestionBlock v-else @questionEnded="questionEnded" :skipCharacters="skipCharacters" :data="data.question" :traditional="traditionalCharset"/>
+        <QuestionBlock2 v-if="slide === 2"
+                        @questionEnded="questionEnded"
+                        :data="data.question"
+                        :skipCharacters="skipCharacters"
+                        :traditional="traditionalCharset"
+                        :is-wrong="data.isWrong"/>
 
-        <AnswerBlock v-show="showAnswers" :show="showAnswers" :data="data.answers" :slide="slide" :is-wrong="data.isWrong"/>
-        <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler" @traditionalCharset="traditionalCharsetHandler"/>
+        <QuestionBlock v-else
+                       @questionEnded="questionEnded"
+                       @skipChars="skipCharsHandler"
+                       @traditionalCharset="traditionalCharsetHandler"
+                       :data="data.question"
+                       :skipCharacters="skipCharacters"
+                       :traditional="traditionalCharset"/>
+
+        <AnswerBlock v-show="showAnswers" :show="showAnswers" :data="data.answers" :slide="slide"
+                     :is-wrong="data.isWrong"/>
+        <!--        <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler" @traditionalCharset="traditionalCharsetHandler"/>-->
     </div>
 </template>
 
@@ -27,35 +40,43 @@
             QuestionBlock2,
             TimerBlock,
             MenuBlock,
-            SettingsBlock,
+            SettingsBlock
         },
         data: () => ({
             showSettings: false,
             skipCharacters: false,
             traditionalCharset: false,
-            showAnswers: false,
+            showAnswers: false
         }),
         props: {
             data: Object,
             slide: Number
         },
         methods: {
-            questionEnded() {
+            questionEnded () {
                 this.showAnswers = true;
             },
-            skipCharsHandler() {
+            skipCharsHandler () {
                 this.skipCharacters = !this.skipCharacters;
             },
-            traditionalCharsetHandler() {
+            traditionalCharsetHandler () {
                 this.traditionalCharset = !this.traditionalCharset;
             }
         },
-        mounted: function() {
+        created: function () {
+            console.log('CREATED:', this.$store.state.skipChars);
+            this.skipCharacters = this.$store.state.skipChars;
+            this.traditionalCharset = this.$store.state.userTraditional;
+        },
+        mounted: function () {
+
             this.$store.commit('clearDataBeforeSlideStarts');
 
-            // setTimeout(() => {
-            //     this.showSettings = true;
-            // },5000);
+            if (this.slide === 1) {
+                setTimeout(() => {
+                    this.showSettings = true;
+                }, 5000);
+            }
         }
     };
 </script>

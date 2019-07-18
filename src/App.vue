@@ -94,6 +94,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   /*overflow-y: hidden;*/
+  min-width: 1000px;
 }
 
 .main {

@@ -1,7 +1,7 @@
 <template>
   <section class="question">
     <!--        <div class="arrow left"></div>-->
-
+    <div v-if="showSettings" class="left"><span class="traditional" @click="traditionalHandler">Click <span class="my-underline">here</span> if you are interested in learning <span class="my-bold">traditional</span> characters instead of <span class="my-bold">simplified</span> ones.</span> <span class="my-link">(What is the difference?)</span></div>
     <div class="question-wrapper">
       <div
         :style="{opacity: showTitle}"
@@ -21,15 +21,21 @@
         class="symbols"
         :class="{hide:skipCharacters,show:!skipCharacters && !skipAnimation, small: isSmall, smaller: isSmaller}"
       ></div>
-      <div v-if="skipAnimation" class="pinyin-no-animation">{{pinyin}}</div>
+      <div v-if="skipAnimation" class="pinyin-no-animation" :class="{show: skipCharacters,small: isSmall, smaller: isSmaller}">{{pinyin}}</div>
       <div
         v-else
         class="pinyin"
-        :class="{hide:!skipCharacters,show:skipCharacters,delay:!skipCharacters,small: isSmall, smaller: isSmaller}"
+        :class="{hide:!skipCharacters,show:skipCharacters,delay:showPinyin,small: isSmall, smaller: isSmaller}"
       >{{pinyin}}</div>
       <!--            <div class="pinyin" :class="{hide:!skipCharacters,show:skipCharacters}">AAA</div>-->
     </div>
-    <!--        <div class="arrow right"></div>-->
+    <div v-if="showSettings" class="right">
+      <label class="checkbox">
+        <input type="checkbox" v-model="skipChars" class="visually-hidden">
+        <span class="checkbox__text">I do not want to learn</span>
+        <span class="checkbox__text__line">Characters at this point</span>
+      </label>
+    </div>
 
     <audio id="audioIntro"></audio>
   </section>
@@ -46,13 +52,15 @@ export default {
     title: "",
     titles: [],
     titleIndex: 0,
-    showTitle: 0
+    showTitle: 0,
+    subtitles: null,
+    skipChars: false,
+    traditionalCharset: false,
   }),
   props: {
     skipCharacters: {
       type: Boolean,
       default: false,
-      removeEndedListener: false
     },
     data: Object,
     traditional: {
@@ -61,6 +69,10 @@ export default {
     }
   },
   watch: {
+    skipChars: function() {
+      this.$emit("skipChars");
+      this.$store.commit('skipChars', this.skipChars);
+    },
     traditional: function() {
       const word = this.traditional ? this.data.charsTD : this.data.chars;
 
@@ -72,9 +84,14 @@ export default {
         }, time);
         time += 50;
       });
+    },
+    highlightSentence: function () {
+      console.log('highlight', this.highlightSentence);
+      this.selectSomeWords(this.subtitles, this.highlightSentence.start,this.highlightSentence.end);
     }
   },
   mounted: function() {
+    console.log("QUESTION SKIP CHARS:",this.skipCharacters);
     this.charsPart = this.data.chars;
     this.title = this.data.chars;
 
@@ -89,20 +106,31 @@ export default {
       setTimeout(this.changeTitle, this.data.animation[0].delay);
     }
 
-    let subtitles = document.getElementById('subtitles');
+    this.subtitles = document.getElementById('subtitles');
     if (this.haveSyncText) {
-      this.createSubtitle(subtitles);
+      this.createSubtitle(this.subtitles);
     }
 
-    this.initAndStartQuestion(subtitles);
+    this.initAndStartQuestion(this.subtitles);
     this.applyMuteAudio();
+
+    //this.selectSomeWords(subtitles, 0,11);
+    //this.selectSomeWords(subtitles, 12,27);
 
     setTimeout(() => {
       this.showTitle = 1;
     }, this.data.delay);
   },
   methods: {
+    traditionalHandler() {
+      this.$emit("traditionalCharset");
+      this.traditionalCharset = !this.traditionalCharset;
+      this.$store.commit('userTraditional', this.traditionalCharset);
+    },
     createSubtitle(subtitles) {
+      // https://www.codepunker.com/blog/sync-audio-with-text-using-javascript
+      // use https://ttsmp3.com/ to generate mp3
+
       let element;
       for (let i = 0; i < this.data.syncData.length; i++) {
         element = document.createElement("span");
@@ -127,6 +155,12 @@ export default {
     }
   },
   computed: {
+    showSettings: function() {
+      return this.$store.state.currentSlide === 1;
+    },
+    highlightSentence: function() {
+      return this.$store.state.highlightSentence;
+    },
     haveSyncText: function() {
       return this.data.syncData;
     },
@@ -152,5 +186,9 @@ export default {
 };
 </script>
 
+<style>
+
+</style>
 <style scoped src="./styles/questions.css">
+
 </style>

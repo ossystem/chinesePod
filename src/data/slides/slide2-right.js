@@ -15,28 +15,30 @@ const data =
             chars: '你有_茶吗?',
             charsTD: '你有茶吗?*#',
             pinyin: 'Nǐ yǒu chá ma?',
+            pinyin2: 'Nǐ yǒu méiyǒu chá?',
             pinyinTD: 'Nǐ yǒu chá ma?*#',
+            pinyinTD2: 'Nǐ yǒu méiyǒu chá?*#',
             animation: [
                 {
                     chars: '你有茶_?',           
-                    delay: 7000,
+                    delay: 12000,
                 },
                 {
                     chars: '你有_茶?',                  
-                    delay: 1000,
+                    delay: 500,
                 },
                 {
                     chars: '你有没有茶?',
-                    delay: 1000,
+                    delay: 500,
                 },
                 {
                     chars: '',
-                    delay: 1000
-                },                
+                    delay: 500
+                },
                 {
                     chars: '',
                     delay: 5000
-                }                
+                }
             ]                            
         },
         // Variants of answers
@@ -47,7 +49,7 @@ const data =
                     line1: 'Almost! Chá means tea.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${question1}” is 这茶很热吗？`,
-                    voice: 'slide1/horse.mp3'
+                    voice: 'common/horse.mp3'
                 }
             },
             {

@@ -10,7 +10,7 @@
 
 <script>
     const timerTick = 25;
-    const timerDuration = 20 * 10; // 25 * 10 seconds
+    const timerDuration = 160 * 10; // 25 * 10 seconds
 
     export default {
         name: 'TimerBlock',
@@ -88,10 +88,10 @@
     .timer-bar-right {
     }
 
-    @media (max-width: 1370px) {
-        /*.timer-wrap {*/
-        /*    margin-bottom: 30px;*/
-        /*}*/
-    }
+    /*@media (max-width: 1370px) {*/
+    /*    .timer-wrap {*/
+    /*        margin-bottom: 30px;*/
+    /*    }*/
+    /*}*/
 
 </style>

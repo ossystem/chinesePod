@@ -1,5 +1,6 @@
 <template>
     <ModalWrapper class="final">
+        <div class="modal-wrapper">
         <div class="title">You have completed the test!</div>
         <div class="labels">
             <div class="correct">Correct</div>
@@ -25,6 +26,7 @@
         <div><label><input v-model="usersAnswer" type="email" placeholder="example@gmail.com"></label></div>
         <div class="button-try">Send</div>
         <div class="bottom-spacer"></div>
+        </div>
     </ModalWrapper>
 </template>
 
@@ -105,12 +107,15 @@
 </script>
 
 <style scoped>
-    .final {
+    .modal-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         color: #9fc6f4;
     }
 
-    .final input {
+    .modal-wrapper input {
         width: 90%;
         height: 60px;
         font-size: 24px;
@@ -125,7 +130,7 @@
         margin-bottom: 20px;
         color: #384C63;
     }
-    .final input::placeholder {
+    .modal-wrapper input::placeholder {
         color: #384C63;
     }
     .trial-course {
@@ -242,5 +247,11 @@
 
     .bottom-spacer {
         height: 42px;
+    }
+
+    @media (max-width: 1370px) {
+        .modal-wrapper {
+            transform: scale(0.8);
+        }
     }
 </style>

@@ -55,7 +55,7 @@ const data =
                     line1: 'Well, you got the FIRST character right – ”Wo” means “I”.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer3.text}” is ${answer3.trans}`,
-                    voice: 'common/horse.mp3'
+                    voice: 'common/what-is-wrong.mp3'
                 },
             },
             {
@@ -64,7 +64,7 @@ const data =
                     line1: 'Well, you got the FIRST character right – ”Wo” means “I”.',
                     line2: 'Want to try one more?',
                     line3: `By the way, the Chinese phrase for “${answer4.text}” is ${answer4.trans}`,
-                    voice: 'common/horse2.mp3'
+                    voice: 'common/what-is-wrong.mp3'
                 }
             }
 

@@ -80,6 +80,13 @@
     .disabled {
         background: gray;
     }
+
+    @media (max-width: 1370px) {
+        .modal-text {
+            font-weight: normal;
+            font-size: 20px;
+        }
+    }
 </style>
 
 

@@ -1,6 +1,7 @@
 <template>
     <div>
         <div><img class='slide-img'  id='contentImage' src="" alt=""></div>
+        <audio id="audioPlayer"></audio>
     </div>
 </template>
 
@@ -8,7 +9,7 @@
     export default {
         name: 'Confucius',
         data: () => ({
-            timeArray: [0, 3, 6, 9, 12, 15, 18],
+            timeArray: [0, 3, 5, 7, 9, 11, 16],
             slide: 0,
             slides: [
                 'confucius.jpeg',
@@ -63,6 +64,20 @@
         },
         mounted: function () {
             this.loadAllImages();
+
+            const audio = document.getElementById('audioPlayer');
+            audio.addEventListener("canplay", () => {audio.play();});
+            audio.src = require('../assets/audio/common/confucius.mp3');
+
+            this.$store.subscribe((mutation, state) => {
+                 if (mutation.type === 'enableSound') {
+
+                        audio.muted = !this.$store.state.enableSound;
+                }
+                console.log('mutation', mutation, this.slide);
+            });
+
+
         }
     };
 </script>
