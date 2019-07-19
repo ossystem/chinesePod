@@ -20,7 +20,7 @@ export default {
     ModalWrapper
   },
   data: () => ({
-    audio: null
+    audio: null,
   }),
   methods: {
     startTestHandler() {
@@ -49,17 +49,9 @@ export default {
   text-align: center;
   background: url("../../assets/images/start/wall.jpg") no-repeat;
   background-size: cover;
-  /* opacity: 0.5; */
+  transition: all 0.5s ease;
 }
-.fader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
 
-  /* background: url("../../assets/images/start/wall.jpg") no-repeat; */
-  /* background-size: cover; */
-  /* opacity: 0.5; */
-}
 .spacer {
   height: 50px;
 }
