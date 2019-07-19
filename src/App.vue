@@ -7,6 +7,7 @@
     </transition>
 
     <audio id="audioPlayerIntro"></audio>
+
     <transition name="fade">
       <start-page v-if="startPage"/>
     </transition>
