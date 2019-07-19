@@ -64,7 +64,7 @@
             }
         },
         created: function () {
-            console.log('CREATED:', this.$store.state.skipChars);
+            //console.log('CREATED:', this.$store.state.skipChars);
             this.skipCharacters = this.$store.state.skipChars;
             this.traditionalCharset = this.$store.state.userTraditional;
         },

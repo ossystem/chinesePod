@@ -64,8 +64,8 @@
             }
         },
         mounted: function () {
-            console.log("QUESTION2 SKIP CHARS:",this.skipCharacters);
-            console.log('Slide#2, isWrong:', this.isWrong);
+            //console.log("QUESTION2 SKIP CHARS:",this.skipCharacters);
+            //console.log('Slide#2, isWrong:', this.isWrong);
             this.charsPart = this.data.chars;
             this.title = this.data.chars;
 

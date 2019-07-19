@@ -69,12 +69,12 @@
             audio.addEventListener("canplay", () => {audio.play();});
             audio.src = require('../assets/audio/common/confucius.mp3');
 
-            this.$store.subscribe((mutation, state) => {
+            this.$store.subscribe((mutation) => {
                  if (mutation.type === 'enableSound') {
 
                         audio.muted = !this.$store.state.enableSound;
                 }
-                console.log('mutation', mutation, this.slide);
+                //console.log('mutation', mutation, this.slide);
             });
 
 

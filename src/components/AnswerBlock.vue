@@ -105,7 +105,7 @@
                         element.audio.muted = !this.$store.state.enableSound;
                     });
                 }
-                console.log('mutation', mutation, this.slide);
+                //console.log('mutation', mutation, this.slide);
             });
         },
         watch: {

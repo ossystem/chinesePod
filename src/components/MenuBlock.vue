@@ -8,10 +8,14 @@
                 <span class="rest">/8</span>
             </div>
         </div>
-        <label class="checkbox"><input type="checkbox" v-model="disableSound" @click="soundClicked" class="visually-hidden">
-            <span class="checkbox__text"></span>
-        </label>
-
+        <div class="right-controls-wrap">
+            <label class="checkbox"><input type="checkbox" v-model="disableSound" @click="soundClicked" class="visually-hidden">
+                <span class="checkbox__text"></span>
+            </label>
+            <div class="button-save">
+                Save & Exit
+            </div>
+        </div>
     </div>
     </section>
 </template>
@@ -49,11 +53,32 @@
         display: flex;
         align-items: center;
         height: 80px;
-        max-width: 900px;
+        max-width: 1300px;
         justify-content: space-between;
         margin: auto;
         padding-left: 50px;
         padding-right: 50px;
+    }
+
+    .right-controls-wrap {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-block .button-save{
+        width: 160px;
+        height: 40px;
+
+        margin-left: 50px;
+        font-weight: bold;
+        line-height: 40px;
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+
+        background: #516C8B;
+        border-radius: 20px;
+        cursor: pointer;
     }
 
     .menu {

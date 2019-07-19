@@ -98,12 +98,12 @@ export default {
       });
     },
     highlightSentence: function () {
-      console.log('highlight', this.highlightSentence);
+      //console.log('highlight', this.highlightSentence);
       this.selectSomeWords(this.subtitles, this.highlightSentence.start,this.highlightSentence.end);
     }
   },
   mounted: function() {
-    console.log("QUESTION SKIP CHARS:",this.skipCharacters);
+    //console.log("QUESTION SKIP CHARS:",this.skipCharacters);
     this.charsPart = this.data.chars;
     this.title = this.data.chars;
 
@@ -157,7 +157,7 @@ export default {
       // use https://ttsmp3.com/ to generate mp3
 
       const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
-      console.log('DATA:',syncData);
+      //console.log('DATA:',syncData);
       let element;
       for (let i = 0; i < syncData.length; i++) {
         element = document.createElement("span");
