@@ -94,7 +94,7 @@
             }
         },
         mounted: function () {
-            this.$store.subscribe((mutation, state) => {
+            this.$store.subscribe((mutation) => {
                 if (mutation.type === 'stopTimeoutTimer' || mutation.type === 'interruptAnswers') {
                     this.sounds.forEach(element => {
                         element.audio.pause();

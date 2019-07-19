@@ -27,7 +27,6 @@
     import QuestionBlock2 from './QuestionBlockSlide2.vue';
     import AnswerBlock from './AnswerBlock.vue';
     import MenuBlock from './MenuBlock.vue';
-    import SettingsBlock from './SettingsBlock.vue';
     import TimerBlock from './TimerBlock.vue';
 
     export default {
@@ -38,7 +37,6 @@
             QuestionBlock2,
             TimerBlock,
             MenuBlock,
-            SettingsBlock
         },
         data: () => ({
             showSettings: false,

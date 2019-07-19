@@ -119,6 +119,15 @@
   color: #384C63;
 }
 
+/* Main symbols (chinese chars)*/
+.question .symbols.small {
+  font-size: 56px;
+}
+/* Main symbols (chinese chars)*/
+.question .symbols.smaller {
+  font-size: 25px;
+}
+
 .question .text {
   font-size: 24px;
   color: #384C63;
