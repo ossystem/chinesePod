@@ -37,7 +37,7 @@
                 />
             </div>
         </div>
-        <div class="bottom-spacer"></div>
+<!--        <div class="bottom-spacer"></div>-->
     </section>
 </template>
 

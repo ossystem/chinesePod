@@ -18,9 +18,7 @@
                        :skipCharacters="skipCharacters"
                        :traditional="traditionalCharset"/>
 
-        <AnswerBlock v-show="showAnswers" :show="showAnswers" :data="data.answers" :slide="slide"
-                     :is-wrong="data.isWrong"/>
-        <!--        <SettingsBlock :show="showSettings" @skipChars="skipCharsHandler" @traditionalCharset="traditionalCharsetHandler"/>-->
+        <AnswerBlock v-show="showAnswers" :show="showAnswers" :data="data.answers" :slide="slide" :is-wrong="data.isWrong"/>
     </div>
 </template>
 
