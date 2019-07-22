@@ -23,53 +23,60 @@ export default {
   data: () => ({
     audio: null,
     log: '',
+    lockStartButton: false,
   }),
   methods: {
     startTestHandler() {
-      console.log('Audio:',this.audio);
+      if (!this.lockStartButton) {
+        //this.audio.load();
+        //this.log = this.audio;
 
-      if (this.audio) {
-        this.audio.play();
-        console.log('OK');
-      } else {
-        console.log('Have no audio');
+        if (this.audio) {
+          this.audio.play();
+          this.log += ' OK';
+        } else {
+          this.log += 'Have no audio';
+        }
+
+        //alert(this.log);
+
+        this.$store.commit("nextSlide");
+        setTimeout(() => {
+
+        }, 3000);
+
+        this.lockStartButton = true;
       }
-
-      this.$store.commit("nextSlide");
-      setTimeout(() => {
-        
-      }, 3000);
     }
   },
   mounted: function() {
     //const audio = document.getElementById("audioPlayerIntro");
     //this.audio = audio;
-    let audio = new Audio(require(`../../assets/audio/common/gong.mp3`));
+    this.audio = new Audio(require(`../../assets/audio/common/gong.mp3`));
+    this.$store.commit('audio',new Audio());
 
-    audio.addEventListener('canplaythrough', (event) => {
-      this.audio = audio;
-      this.log += 'TROUGH\n';
-    });
+    // this.audio.addEventListener('canplaythrough', (event) => {
+    //   //this.audio = audio;
+    //   this.log += 'TROUGH\n';
+    // });
 
-    audio.addEventListener('canplay', (event) => {
-      this.audio = audio;
-      this.log += 'CANPLAY\n';
-    });
-
-    audio.oncanplaythrough = () => {
-      this.audio = audio;
+    this.audio.oncanplaythrough = () => {
+      //this.audio = audio;
       this.log += 'Done loading\n';
     };
 
-    audio.oncanplay = (event) => {
-      this.audio = audio;
-      this.log += 'can play\n';
+    this.audio.onerror = function(error) {
+      alert(error);
     };
+
+    this.audio.load();
+
+    this.log += "2";
 
     //audio.type = 'audio/mpeg';
     //audio.src = require(`../../assets/audio/common/gong.mp3`);
 
-    console.log('Mounted 4:',audio);
+    console.log('Mounted 4:',this.audio);
   }
 };
 </script>
@@ -88,4 +95,5 @@ export default {
 .spacer {
   height: 50px;
 }
+
 </style>

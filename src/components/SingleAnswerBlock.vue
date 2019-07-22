@@ -77,33 +77,17 @@
                     this.$store.dispatch('checkForNextSlide');
                 }
             },
-            clickAnswerHandler () {
-                if (this.answered || this.$store.state.showFader) {
-                    return;
-                }
-
-                if (this.answer.wrong.voice && this.$store.state.enableSound) {
-                    const audio = document.getElementById('soundPlayer');
-
-                    audio.addEventListener('canplay', () => {
-                        audio.play();
-                    });
-
-                    audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
-                    // if user answered before all answers were red
-                    this.$store.commit('interruptAnswers');
-                }
-
+            afterAnswerMusicIPlayed() {
                 if (this.answer.wrong.line1 !== 'correct') {
 
                     this.showWrongAnswer = true;
 
                     switch (this.currentSlide) {
                         case 7:
-                                this.$store.commit('highlightSentence',{start:0,end:11});
+                            this.$store.commit('highlightSentence',{start:0,end:11});
                             break;
                         case 8:
-                                this.$store.commit('highlightSentence',{start:12,end:27});
+                            this.$store.commit('highlightSentence',{start:12,end:27});
                             break;
                     }
 
@@ -134,6 +118,38 @@
                         }
                     }
                 }
+
+                //audio.addEventListener('ended', this.afterAnswerMusicIPlayed);
+            },
+            clickAnswerHandler () {
+                if (this.answered || this.$store.state.showFader) {
+                    return;
+                }
+
+                if (this.answer.wrong.voice && this.$store.state.enableSound) {
+                    const audio = document.getElementById('soundPlayer');
+
+                    audio.addEventListener('canplaythrough', () => {
+                        audio.play();
+                    });
+
+                    audio.addEventListener('ended', this.afterAnswerMusicIPlayed);
+
+                    if (this.answer.wrong.line1 === 'correct') {
+                        this.correct = true;
+                    } else {
+                        this.answered = true;
+                    }
+
+                    //afterAnswerMusicIPlayed();
+
+                    audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
+                    audio.load();
+                    // if user answered before all answers were red
+                    this.$store.commit('interruptAnswers');
+                }
+
+
             }
         }
     };
@@ -481,6 +497,63 @@
 
         .answer-wrong .line1 {
             margin-bottom: 30px;
+        }
+    }
+
+    /*from 1100 to 800px*/
+    @media (max-width: 1100px) {
+        .answer {
+            display: flex;
+            width: calc(50px + 15.9vw);
+            min-height: calc(50px + 15.9vw);
+
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .answer .variant {
+            width: 50px;
+            height: 50px;
+
+            line-height: 50px;
+
+            font-size: 28px;
+
+            right: 10px;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .answer {
+            width: calc(170px + 5vw);
+            min-height: calc(170px + 5vw);
+        }
+        .answer .variant {
+            width: 40px;
+            height: 40px;
+
+            line-height: 40px;
+            font-size: 26px;
+
+            top: 0;
+            right: 10px;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+        .answer {
+            width: calc(100px + 19vw);
+            min-height: calc(100px + 19vw);
+        }
+        .answer .text {
+            font-size: calc(15px + 0.4vw);
+        }
+    }
+
+    @media (max-width: 390px) {
+        .answer {
+            width: calc(60px + 26.69vw);
+            min-height: calc(60px + 26.69vw);
         }
     }
 </style>

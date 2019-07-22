@@ -67,7 +67,7 @@ export default {
   data: () => ({
     showSettings: false,
     skipCharacters: false,
-    traditionalCharset: false,        
+    traditionalCharset: false,
   }),
   methods: {
     skipCharsHandler() {
@@ -114,7 +114,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   /*overflow-y: hidden;*/
-  min-width: 1000px;
+  min-width: 350px;
 }
 
 .main {
@@ -163,15 +163,16 @@ body {
 
   background: #1ebf1b;
   border-radius: 35px;
+  cursor: pointer;
 }
 
 .button-try:focus {
-  cursor: pointer;
+  /*cursor: pointer;*/
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 10px #1ebf1b;
 }
 
 .button-try:hover {
-  cursor: pointer;
+
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
 }
 </style>

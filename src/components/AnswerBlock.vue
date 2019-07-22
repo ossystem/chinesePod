@@ -3,6 +3,7 @@
         <div class="answers">
             <AudioPreloader @soundsReady="soundsReady" :sounds="data" :is-wrong="isWrong"/>
             <div class="answers-inner">
+                <div class="answer-row">
                 <SingleAnswerBlock
                         class="anim"
                         :class="{aa1: answerIndex !== 1, blink: answerIndex >= 1}"
@@ -19,6 +20,8 @@
                         :answer="data[1]"
                         :index="2"
                 />
+                </div>
+                <div class="answer-row">
                 <SingleAnswerBlock
                         class="anim"
                         :class="{aa3: answerIndex !== 3, blink: answerIndex >= 3}"
@@ -35,6 +38,7 @@
                         :answer="data[3]"
                         :index="4"
                 />
+                </div>
             </div>
         </div>
 <!--        <div class="bottom-spacer"></div>-->
@@ -140,7 +144,11 @@
 
         max-width: 1300px;
         flex: 1;
-        /*outline: 1px solid red;*/
+    }
+    .answer-row {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
     }
 
     .bottom-spacer {
@@ -243,6 +251,20 @@
     @media (max-width: 1370px) {
         .answers {
             margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .answers-inner {
+            display: flex;
+            justify-content: space-between;
+
+            margin-right: 40px;
+            margin-left: 40px;
+
+            max-width: 1300px;
+            flex-wrap: wrap;
+            flex: 1;
         }
     }
 </style>

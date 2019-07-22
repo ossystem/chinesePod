@@ -25,7 +25,7 @@ export default {
       const index = ++i;
       const audio = document.getElementById("soundPlayer" + index);
 
-      audio.addEventListener("canplay", () => {
+      audio.addEventListener('canplaythrough', () => {
         this.soundsLoaded.push({ index, audio });
 
         // we have loaded all sounds
@@ -43,6 +43,7 @@ export default {
       const currentSlide = this.$store.state.currentSlide;
       const wrong = this.isWrong ? "wrong/" : "";
       audio.src = require(`../assets/audio/slide${currentSlide}/${wrong}answers/a${index}.mp3`);
+      audio.load();
     });
   }
 };

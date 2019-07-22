@@ -1,6 +1,7 @@
 const QuestionBlockMix = {
     data: () => ({
         showPinyin: false,
+        audio: null,
     }),
     mounted: function() {
         this.showPinyin = this.$store.state.skipChars;
@@ -9,8 +10,10 @@ const QuestionBlockMix = {
         applyMuteAudio () {
             this.$store.subscribe((mutation, state) => {
                 if (mutation.type === 'enableSound') {
-                    const audio = document.getElementById('audioIntro');
-                    audio.muted = !this.$store.state.enableSound;
+                    //const audio = document.getElementById('audioIntro');
+                    if (this.audio.muted) {
+                        this.audio.muted = !this.$store.state.enableSound;
+                    }
                 }
             });
         },
@@ -22,15 +25,39 @@ const QuestionBlockMix = {
 
         },
         initAndStartQuestion (subtitles) {
-            const audio = document.getElementById('audioIntro');
-            audio.addEventListener('canplay', () => {
+            //const audio = document.getElementById('audioIntro');
+
+            let source = require(`../assets/audio/common/intro.mp3`);
+
+            if (this.data.intro) {
+                source = require(`../assets/audio/${this.data.intro}`);
+            } /*else {
+                this.audio.src = require(`../assets/audio/common/intro.mp3`);
+            }*/
+
+            this.audio = new Audio(source);
+            this.$store.state.audio.src = require(`../assets/audio/common/horse2.mp3`);
+            this.$store.state.audio.load();
+            this.$store.state.audio.play().catch( error => {
+                this.$store.commit('addLog','horse2'+error);
+            });
+
+            this.audio.oncanplaythrough = () => {
+
+                this.$store.commit('addLog','canplaythrough');
 
                 if (!this.$store.state.enableSound) {
-                    audio.muted = true;
+                    this.audio.muted = true;
                 }
 
-                audio.play();
-            });
+                this.audio.play().catch( error => {
+                    this.$store.commit('addLog',error);
+                });
+            };
+
+            this.audio.onerror = function(err) {
+                this.$store.commit('addLog',err);
+            };
 
             const listener = () => {
                 if (!this.removeEndedListener) {
@@ -38,7 +65,8 @@ const QuestionBlockMix = {
                         const wrong = this.isWrong ? 'wrong/' : '';
 
                         if (!this.data.skipTextSpeech) {
-                            audio.src = require(`../assets/audio/slide${this.$store.state.currentSlide}/${wrong}question.mp3`);
+                            this.audio.src = require(`../assets/audio/slide${this.$store.state.currentSlide}/${wrong}question.mp3`);
+                            this.audio.load();
                         } else {
                             // we have no text for speech - slides 7, 8
                             // so call answers block
@@ -50,7 +78,7 @@ const QuestionBlockMix = {
 
                         if (this.data.syncData) {
                             const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
-                            audio.addEventListener('timeupdate', () => {
+                            this.audio.addEventListener('timeupdate', () => {
                                 syncData.forEach((element, index) => {
                                     if (
                                         audio.currentTime >= element.start &&
@@ -74,21 +102,24 @@ const QuestionBlockMix = {
                 }
 
                 if (this.removeEndedListener) {
-                    audio.removeEventListener('ended', listener);
+                    this.audio.removeEventListener('ended', listener);
                 }
 
                 this.removeEndedListener = true;
             };
 
-            audio.addEventListener('ended', listener);
+            //this.audio.addEventListener('ended', listener);
+            this.audio.onended = listener;
 
             //const currentSlide = this.$store.state.currentSlide;
             //audio.src = require(`../assets/audio/slide${currentSlide}/answers/a${index}.mp3`);
-            if (this.data.intro) {
-                audio.src = require(`../assets/audio/${this.data.intro}`);
-            } else {
-                audio.src = require(`../assets/audio/common/intro.mp3`);
-            }
+
+
+
+
+            this.audio.load();
+            this.$store.commit('addLog',this.audio.src);
+            //alert(this.audio.src);
         }
     }
 };

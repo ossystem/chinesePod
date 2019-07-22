@@ -71,4 +71,33 @@
                max-height: 500px;
         }
     }
+
+    @media (max-width: 770px) {
+        .modal-popup {
+            font-size: 36px;
+            max-width: 84vw;
+        }
+    }
+
+    @media (max-width: 580px) {
+        .modal-popup {
+            font-size: 32px;
+            max-width: 84vw;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .modal-popup {
+            font-size: 24px;
+            max-width: 84vw;
+        }
+    }
+
+    @media (max-width: 310px) {
+        .modal-popup {
+            font-size: 20px;
+            max-width: 84vw;
+        }
+    }
+
 </style>

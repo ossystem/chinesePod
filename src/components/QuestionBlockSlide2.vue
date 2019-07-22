@@ -75,7 +75,7 @@
                 setTimeout(() => {
                     if (this.$store.state.currentSlide === 2) {
                         const audio = document.getElementById('audioIntro');
-                        audio.addEventListener('canplay', () => {
+                        audio.addEventListener('canplaythrough', () => {
 
                             if (!this.$store.state.enableSound) {
                                 audio.muted = true;
@@ -85,14 +85,17 @@
                         });
 
                         audio.src = require('../assets/audio/slide2/question-2.mp3');
+                        audio.play();
                     }
 
                     this.changeTitle();
                 }, this.data.animation[0].delay);
             }
 
+            alert('before');
             this.initAndStartQuestion();
             this.applyMuteAudio();
+            alert('after');
         },
         methods: {
             getCharById (id) {
@@ -407,6 +410,84 @@
             margin-bottom: 10px;
         }
     }
+    @media (max-width: 805px) {
+        .question {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .question .symbols.show {
+            font-size: calc(30px + 3vw);
+        }
+
+        .question .text {
+            font-size: calc(13px + 0.4vw);
+            min-height: calc(13px + 0.4vw);
+            line-height: calc(13px + 0.4vw);
+        }
+
+        /* Main symbols (chinese chars)*/
+        .question .symbols.small {
+            font-size: calc(20px + 2vw);
+        }
+        /* Main symbols (chinese chars)*/
+        .question .symbols.smaller {
+            font-size: calc(14px + 0.4vw);
+        }
+
+        .symbols.hide.smaller,
+        .symbols.hide.small,
+        .symbols.hide {
+            animation: fadeInBlur 1s both;
+            font-size: 0; /*was !imp*/
+            transition: all 1s;
+        }
+
+        .question .pinyin.show {
+            font-size: calc(30px + 3vw);
+        }
+
+        /* If pinyin is together with chars */
+        .pinyin.hide.small {
+            font-size: calc(14px + 0.4vw);
+        }
+        .pinyin.hide.smaller {
+            font-size: calc(14px + 0.4vw);
+        }
+
+        /* If pinyin is instead of chars */
+        .pinyin.show.small {
+            font-size: calc(20px + 0.4vw);
+        }
+
+        .pinyin.show.smaller {
+            font-size: calc(14px + 0.4vw);
+        }
+
+        /* pinyin on slide 7 and slide 8 */
+        .pinyin-no-animation.small {
+            font-size: calc(14px + 0.4vw);
+        }
+
+        .pinyin-no-animation.smaller {
+            font-size: calc(14px + 0.4vw);
+        }
+
+        .pinyin-no-animation.show.smaller {
+            font-size: calc(14px + 0.4vw);
+            color: #384C63;
+        }
+
+
+        .question .left,
+        .question .right {
+            font-size: 10px;
+        }
+
+        .question .left {
+            max-width: 200px;
+        }
+    }
     /*========================*/
     /*========================*/
     /*========================*/
@@ -502,6 +583,16 @@
 
         .move-right {
             transform: translate(80px);
+        }
+    }
+
+    @media (max-width: 805px) {
+        .move-char-left {
+            transform: translate(calc( -38px - 3vw));
+        }
+
+        .move-right {
+            transform: translate(calc(38px + 3vw));
         }
     }
 </style>

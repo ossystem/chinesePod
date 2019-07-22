@@ -2,6 +2,7 @@
     <div>
         <MenuBlock/>
         <TimerBlock/>
+        <div v-html="$store.state.log"> </div>
 
         <QuestionBlock2 v-if="slide === 2"
                         @questionEnded="questionEnded"
@@ -50,6 +51,7 @@
         },
         methods: {
             questionEnded () {
+                alert('questionEnded');
                 this.showAnswers = true;
             },
             skipCharsHandler () {

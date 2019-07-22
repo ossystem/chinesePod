@@ -66,8 +66,9 @@
             this.loadAllImages();
 
             const audio = document.getElementById('audioPlayer');
-            audio.addEventListener("canplay", () => {audio.play();});
+            audio.addEventListener("canplaythrough", () => {audio.play();});
             audio.src = require('../assets/audio/common/confucius.mp3');
+            autio.load();
 
             this.$store.subscribe((mutation) => {
                  if (mutation.type === 'enableSound') {
@@ -84,7 +85,9 @@
 
 <style scoped>
     .slide-img {
-        height: 300px;
+        /*height: 300px;*/
+        width: 90%;
+        /*max-height: 300px;*/
         border-radius: 30px;
     }
 

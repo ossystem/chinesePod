@@ -29,7 +29,7 @@ const data =
                 },
                 {
                     chars: '你有没有茶?',
-                    delay: 500,
+                    delay: 600,
                 },
                 {
                     chars: '',

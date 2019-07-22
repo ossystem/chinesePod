@@ -164,4 +164,15 @@
             font-size: 50px;
         }
     }
+
+    @media (max-width: 550px) {
+        .button-save {
+            display: none;
+        }
+
+        .menu-block {
+            height: 62px;
+        }
+    }
+
 </style>
