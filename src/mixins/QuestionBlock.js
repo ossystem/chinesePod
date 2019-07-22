@@ -8,7 +8,7 @@ const QuestionBlockMix = {
     },
     methods: {
         applyMuteAudio () {
-            this.$store.subscribe((mutation, state) => {
+            this.$store.subscribe((mutation) => {
                 if (mutation.type === 'enableSound') {
                     //const audio = document.getElementById('audioIntro');
                     if (this.audio.muted) {
@@ -38,9 +38,9 @@ const QuestionBlockMix = {
             this.audio = new Audio(source);
             this.$store.state.audio.src = require(`../assets/audio/common/horse2.mp3`);
             this.$store.state.audio.load();
-            this.$store.state.audio.play().catch( error => {
-                this.$store.commit('addLog','horse2'+error);
-            });
+            this.$store.state.audio.play();/*.catch( error => {
+                this.$store.commit('addLog',error);
+            });*/
 
             this.audio.oncanplaythrough = () => {
 
@@ -50,13 +50,17 @@ const QuestionBlockMix = {
                     this.audio.muted = true;
                 }
 
-                this.audio.play().catch( error => {
+                this.audio.play();/*.catch( error => {
                     this.$store.commit('addLog',error);
-                });
+                });*/
+            };
+
+            this.$store.state.audio.onerror = function(err) {
+                this.$store.commit('addLog','error');
             };
 
             this.audio.onerror = function(err) {
-                this.$store.commit('addLog',err);
+                this.$store.commit('addLog','error');
             };
 
             const listener = () => {
@@ -81,8 +85,8 @@ const QuestionBlockMix = {
                             this.audio.addEventListener('timeupdate', () => {
                                 syncData.forEach((element, index) => {
                                     if (
-                                        audio.currentTime >= element.start &&
-                                        audio.currentTime <= element.end
+                                        this.audio.currentTime >= element.start &&
+                                        this.audio.currentTime <= element.end
                                     ) {
                                         subtitles.children[index].style.background = 'yellow';
                                     } else {

@@ -4,7 +4,6 @@
       Hello! Please, press the
       <br />button to begin the test!
     </div>
-    <div class="small">{{log}}</div>
     <div class="spacer"></div>
     <div class="button-try" @click="startTestHandler" tabindex="1">Start</div>
   </ModalWrapper>
@@ -13,7 +12,6 @@
 
 <script>
 import ModalWrapper from "../ModalWrapper";
-import { setTimeout } from "timers";
 
 export default {
   name: "FinalPage",
@@ -21,25 +19,18 @@ export default {
     ModalWrapper
   },
   data: () => ({
-    audio: null,
-    log: '',
+    audio: null,   
     lockStartButton: false,
   }),
   methods: {
     startTestHandler() {
       if (!this.lockStartButton) {
-        //this.audio.load();
-        //this.log = this.audio;
 
         if (this.audio) {
-          this.audio.play();
-          this.log += ' OK';
-        } else {
-          this.log += 'Have no audio';
+          this.audio.play();        
+        } else {         
         }
-
-        //alert(this.log);
-
+        
         this.$store.commit("nextSlide");
         setTimeout(() => {
 
@@ -60,9 +51,7 @@ export default {
     //   this.log += 'TROUGH\n';
     // });
 
-    this.audio.oncanplaythrough = () => {
-      //this.audio = audio;
-      this.log += 'Done loading\n';
+    this.audio.oncanplaythrough = () => {         
     };
 
     this.audio.onerror = function(error) {
@@ -70,9 +59,7 @@ export default {
     };
 
     this.audio.load();
-
-    this.log += "2";
-
+   
     //audio.type = 'audio/mpeg';
     //audio.src = require(`../../assets/audio/common/gong.mp3`);
 

@@ -91,11 +91,9 @@
                     this.changeTitle();
                 }, this.data.animation[0].delay);
             }
-
-            alert('before');
+          
             this.initAndStartQuestion();
-            this.applyMuteAudio();
-            alert('after');
+            this.applyMuteAudio();           
         },
         methods: {
             getCharById (id) {
