@@ -30,7 +30,7 @@ export const store = new Vuex.Store({
     getters: {},
 
     mutations: {
-        addLog(state,str) {
+        addLog() {
           //state.log += 'log: '+str + '<br>';
         },
         whatIsTheDiffrence(state,enable) {

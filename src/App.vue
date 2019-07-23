@@ -3,7 +3,7 @@
     <div v-show="showFader" class="modal-fader"></div>
 
     <transition name="fade2">
-      <whatIsTheDiffrence v-if="whatIsTheDiffrence"/>
+      <what-is-the-difference v-if="whatIsTheDiffrence"/>
     </transition>
 
     <audio id="audioPlayerIntro"></audio>
@@ -18,11 +18,9 @@
       <start-page v-if="startPage"/>
     </transition>
 
-    <ModalWrapper v-show="endTest">
-      <div>Test ends for you now!</div>
-      <div><a href="https://chinesepod.com">Click to take some mandarin and</a></div>
-      <div>come back soon!</div>
-    </ModalWrapper>
+    <transition name="fade2">
+      <TestEndsForYou v-show="endTest"/>
+    </transition>
 
     <ModalWrapper v-if="rightAnswerSlide5">
       <WhereDidYouHearIt/>
@@ -52,7 +50,8 @@ import Slide8 from "./components/Slide8/Slide8.vue";
 import ModalWrapper from "./components/ModalWrapper.vue";
 import WhereDidYouHearIt from "./components/WhereDidYouHearIt";
 import StartPage from "./components/StartPage";
-import whatIsTheDiffrence from "./components/WhatIsTheDifference";
+import whatIsTheDifference from "./components/WhatIsTheDifference";
+import TestEndsForYou from "./components/TestEndsForYou";
 
 export default {
   name: "app",
@@ -68,7 +67,8 @@ export default {
     ModalWrapper,
     WhereDidYouHearIt,
     StartPage,
-    whatIsTheDiffrence
+    whatIsTheDifference,
+    TestEndsForYou
   },
   data: () => ({
     showSettings: false,
