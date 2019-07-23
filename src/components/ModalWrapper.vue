@@ -67,9 +67,9 @@
     }
 
     @media (max-width: 1150px) {
-        .modal-popup {
-               max-height: 500px;
-        }
+        /*.modal-popup {*/
+        /*       !*max-height: 500px;*!*/
+        /*}*/
     }
 
     @media (max-width: 770px) {

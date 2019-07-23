@@ -74,7 +74,7 @@
                 this.titles = this.data.animation;
                 setTimeout(() => {
                     if (this.$store.state.currentSlide === 2) {
-                        const audio = document.getElementById('audioIntro');
+                        const audio = document.getElementById('audioPlayerIntro');
                         audio.addEventListener('canplaythrough', () => {
 
                             if (!this.$store.state.enableSound) {
@@ -85,6 +85,7 @@
                         });
 
                         audio.src = require('../assets/audio/slide2/question-2.mp3');
+                        audio.load();
                         audio.play();
                     }
 

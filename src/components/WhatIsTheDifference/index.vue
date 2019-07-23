@@ -3,8 +3,7 @@
       <div>What is the differnce?</div> 
       <div class='small-text'>Here should be a meaningful explanation about the difference between simplified and traditional characters in China.</div>
     <div class="spacer"></div>
-    <div class="button-try" @click="closeHandler" tabindex="1">Ok</div>      
-      <audio id="audioPlayer"></audio>
+    <div class="button-try" @click="closeHandler" tabindex="1">Ok</div>
     </ModalWrapper>    
 </template>
 
@@ -21,13 +20,13 @@ export default {
         }
     },
     mounted: function() {
-    const audio = document.getElementById("audioPlayer");
+    const audio = document.getElementById("audioPlayerIntro");
     audio.addEventListener("canplaythrough", () => {
       audio.play();
     });
 
     audio.src = require(`../../assets/audio/common/what-is-the-difference.mp3`);
-    autio.load();
+    audio.load();
     }    
 }
 </script>

@@ -24,7 +24,7 @@
             <div class="score incorrect">Incorrect<div class="score-num">{{numOfIncorrect}}</div></div>
             <div class="score unattempted">Unattemtped<div class="score-num">{{$store.state.numOfUnattempted}}</div></div>
         </div>
-        <div class="trial-course"><b>We offer you 30 days of free trial Chinese lessons,</b><br>enter your email and we will
+        <div class="trial-course"><b>We offer you 30 days of free trial Chinese lessons,</b> enter your email and we will
             send you our course.
         </div>
         <div><label><input v-model="usersAnswer" type="email" placeholder="example@gmail.com"></label></div>
@@ -121,6 +121,10 @@
         align-items: center;
         text-align: center;
         color: #9fc6f4;
+        width: 100%;
+        min-width: 320px;
+        background: white;
+        border-radius: 30px;
     }
 
     .modal-wrapper input {
@@ -145,6 +149,7 @@
         font-size: 16px;
         line-height: 22px;
         font-weight: normal;
+        max-width: 400px;
     }
     .note-email-sent {
         font-size: 14px;
@@ -153,7 +158,7 @@
     .title {
         font-weight: bold;
         font-size: 44px;
-        line-height: 48px;
+        /*line-height: 48px;*/
         margin-top: 50px;
     }
     .title-email-sent {
@@ -164,7 +169,7 @@
         width: 80%;
         display: flex;
         justify-content: space-between;
-        margin-top: 50px;
+        margin-top: 40px;
         margin-bottom: 5px;
     }
 
@@ -225,7 +230,8 @@
     }
 
     .score-wrap .score {
-        width: 160px;
+        width: calc(60px + 10vw);
+        max-width: 160px;
         height: 100px;
 
         background: #F3F7FB;
@@ -265,8 +271,37 @@
     }
 
     @media (max-width: 1370px) {
-        .modal-wrapper {
-            transform: scale(0.8);
+
+    }
+    @media (max-width: 680px) {
+        .title {
+            font-size: calc(20px + 3vw);
+            margin-top: 30px;
+        }
+        .score {
+            font-size: 14px;
+        }
+        .labels {
+            margin-top: 20px;
+        }
+        .score-wrap {
+            margin-bottom: 30px;
+        }
+        .score-wrap .score {
+            width: calc(50px + 10vw);
+        }
+        .modal-wrapper input {
+            width: 80%;
+            height: 50px;
+            font-size: 20px;
+        }
+        .trial-course {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .title-email-sent {
+            font-size: 24px;
         }
     }
+
 </style>

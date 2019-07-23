@@ -49,6 +49,7 @@
     .where {
         text-align: center;
         color: #384C63;
+        width: 90%;
     }
 
     .modal-text {

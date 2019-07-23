@@ -35,35 +35,27 @@ const QuestionBlockMix = {
                 this.audio.src = require(`../assets/audio/common/intro.mp3`);
             }*/
 
-            this.audio = new Audio(source);
-            this.$store.state.audio.src = require(`../assets/audio/common/horse2.mp3`);
-            this.$store.state.audio.load();
-            this.$store.state.audio.play();/*.catch( error => {
-                this.$store.commit('addLog',error);
-            });*/
+            this.audio = document.getElementById("audioPlayerQuestion");
+            this.audio.src = source;
 
             this.audio.oncanplaythrough = () => {
 
-                this.$store.commit('addLog','canplaythrough');
+                this.$store.commit('addLog', 'canplaythrough '+this.audio.src);
 
                 if (!this.$store.state.enableSound) {
                     this.audio.muted = true;
                 }
 
-                this.audio.play();/*.catch( error => {
+                this.$store.commit('addLog','play audio: ' + this.audio.src);
+                this.audio.play().catch( error => {
                     this.$store.commit('addLog',error);
-                });*/
-            };
-
-            this.$store.state.audio.onerror = function(err) {
-                this.$store.commit('addLog','error');
-            };
-
-            this.audio.onerror = function(err) {
-                this.$store.commit('addLog','error');
+                    //alert('play');
+                    //this.audio.play();
+                });
             };
 
             const listener = () => {
+                this.$store.commit('addLog','audio ended');
                 if (!this.removeEndedListener) {
                     setTimeout(() => {
                         const wrong = this.isWrong ? 'wrong/' : '';
@@ -112,18 +104,10 @@ const QuestionBlockMix = {
                 this.removeEndedListener = true;
             };
 
-            //this.audio.addEventListener('ended', listener);
             this.audio.onended = listener;
 
-            //const currentSlide = this.$store.state.currentSlide;
-            //audio.src = require(`../assets/audio/slide${currentSlide}/answers/a${index}.mp3`);
-
-
-
-
             this.audio.load();
-            this.$store.commit('addLog',this.audio.src);
-            //alert(this.audio.src);
+            this.$store.commit('addLog','load: '+this.audio.src);
         }
     }
 };

@@ -2,8 +2,6 @@
     <div>
         <MenuBlock/>
         <TimerBlock/>
-        <div v-html="$store.state.log"> </div>
-        <audio :src="require('../assets/audio/common/horse2.mp3')" controls></audio>
         <QuestionBlock2 v-if="slide === 2"
                         @questionEnded="questionEnded"
                         :data="data.question"

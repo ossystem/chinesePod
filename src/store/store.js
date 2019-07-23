@@ -25,17 +25,13 @@ export const store = new Vuex.Store({
         highlightSentence: null,
         whatIsTheDiffrence: false,
         log: '',
-        audio: null,
     },
 
     getters: {},
 
     mutations: {
-        audio(state,audio) {
-          state.audio = audio;
-        },
         addLog(state,str) {
-          state.log += 'log: '+str + '<br>';
+          //state.log += 'log: '+str + '<br>';
         },
         whatIsTheDiffrence(state,enable) {
             state.whatIsTheDiffrence = enable;

@@ -83,7 +83,8 @@
                                 element.audio.muted = true;
                             }
 
-                            element.audio.play();
+                            element.audio.play().catch( error => {
+                                this.$store.commit('addLog',error); })
                         }
                     }, delay);
 
@@ -137,17 +138,16 @@
 
     .answers-inner {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
 
         margin-right: 40px;
         margin-left: 40px;
 
         max-width: 1300px;
-        flex: 1;
+        flex-grow: 1;
     }
     .answer-row {
         display: flex;
-        flex-grow: 1;
         justify-content: center;
     }
 
@@ -265,6 +265,9 @@
             max-width: 1300px;
             flex-wrap: wrap;
             flex: 1;
+        }
+        .answer-row {
+            flex-grow: 1;
         }
     }
 </style>

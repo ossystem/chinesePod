@@ -1,11 +1,5 @@
 <template>
-  <section>
-    <audio
-      v-for="index in sounds.length"
-      :id="'soundPlayer'+index"
-      :key="'soundPlayer'+index+$store.state.currentSlide"
-    >{{index}}</audio>
-  </section>
+  <div></div>
 </template>
 
 <script>

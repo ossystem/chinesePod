@@ -63,7 +63,7 @@
         },
         methods: {
             tryButtonHandler () {
-                this.showWrongAnswer = false;
+                //this.showWrongAnswer = false;
 
                 //const audio = document.getElementById('soundPlayer');
                 //audio.pause();
@@ -78,9 +78,10 @@
                 }
             },
             afterAnswerMusicIPlayed() {
+                // wrong answer
                 if (this.answer.wrong.line1 !== 'correct') {
 
-                    this.showWrongAnswer = true;
+                    //this.showWrongAnswer = true;
 
                     switch (this.currentSlide) {
                         case 7:
@@ -92,29 +93,28 @@
                     }
 
                     this.answered = true;
-                    setTimeout(()=>{this.tryButtonHandler()},2600);
+                    setTimeout(()=>{this.tryButtonHandler()},0);
 
                 } else {
+                    // correct answer
                     this.correct = true;
                     this.$store.commit('stopTimeoutTimer');
+                    this.$store.commit('answerIsCorrect');
 
-                    setTimeout(() => {
-                        this.$store.commit('answerIsCorrect');
-                    }, 2000);
 
                     // if last slide 8 - final
                     if (this.currentSlide === 8) {
                         setTimeout(() => {
                             this.$store.dispatch('checkForNextSlide');
                             this.$store.commit('setFinal');
-                        }, 2000);
+                        }, 0);
                     } else {
                         // do not go to next slide if slide is 5
                         // we have to ask about this phrase and show slides
                         if (this.currentSlide !== 5) {
                             setTimeout(() => {
                                 this.$store.dispatch('checkForNextSlide');
-                            }, 2000);
+                            }, 100);
                         }
                     }
                 }
@@ -300,6 +300,11 @@
         /*color: red*/
     }
 
+    .answered .variant {
+        color: #FFFFFF;
+        background: #CACACA;
+    }
+
     @keyframes shakeVariant {
         0% {
             /*opacity: 0;*/
@@ -331,9 +336,13 @@
         background: #CB4444;
     }
 
-    .answer#a1.answered {
-        background: rgba(203, 68, 68, 0.5);
-        color: lightgray;
+    .answer#a1.answered,
+    .answer#a2.answered,
+    .answer#a3.answered,
+    .answer#a4.answered {
+        /*background: rgba(203, 68, 68, 0.5);*/
+        background: #E2E2E2;
+        color: #A3A3A3;
     }
 
     .answer:not(.answered)#a1:hover {
@@ -346,10 +355,10 @@
         background: #1B84BF;
         animation-delay: 4s;
     }
-    .answer#a2.answered {
-        background: rgba(27, 132, 191, 0.5);
-        color: lightgray;
-    }
+    /*.answer#a2.answered {*/
+    /*    background: rgba(27, 132, 191, 0.5);*/
+    /*    color: lightgray;*/
+    /*}*/
 
     .answer:not(.answered)#a2:hover {
         background: #1B84BF;
@@ -362,10 +371,10 @@
         animation-delay: 2s;
     }
 
-    .answer#a3.answered {
-        background: rgba(228, 143, 42, 0.5);
-        color: lightgray;
-    }
+    /*.answer#a3.answered {*/
+    /*    background: rgba(228, 143, 42, 0.5);*/
+    /*    color: lightgray;*/
+    /*}*/
 
     .answer:not(.answered)#a3:hover {
         background: #E48F2A;
@@ -376,10 +385,10 @@
         background: #1ebf1b;
         animation-delay: 3s;
     }
-    .answer#a4.answered {
-        background: rgba(30, 191, 27, 0.5);
-        color: lightgray;
-    }
+    /*.answer#a4.answered {*/
+    /*    background: rgba(30, 191, 27, 0.5);*/
+    /*    color: lightgray;*/
+    /*}*/
     .answer:not(.answered)#a4:hover {
         background: #1ebf1b;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;

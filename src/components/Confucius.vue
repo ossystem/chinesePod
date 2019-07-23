@@ -68,7 +68,7 @@
             const audio = document.getElementById('audioPlayer');
             audio.addEventListener("canplaythrough", () => {audio.play();});
             audio.src = require('../assets/audio/common/confucius.mp3');
-            autio.load();
+            audio.load();
 
             this.$store.subscribe((mutation) => {
                  if (mutation.type === 'enableSound') {

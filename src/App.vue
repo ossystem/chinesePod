@@ -7,6 +7,12 @@
     </transition>
 
     <audio id="audioPlayerIntro"></audio>
+    <audio id="audioPlayerQuestion"></audio>
+
+    <audio id="soundPlayer1"></audio>
+    <audio id="soundPlayer2"></audio>
+    <audio id="soundPlayer3"></audio>
+    <audio id="soundPlayer4"></audio>
 
     <transition name="fade">
       <start-page v-if="startPage"/>
@@ -166,14 +172,14 @@ body {
   cursor: pointer;
 }
 
-.button-try:focus {
-  /*cursor: pointer;*/
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 10px #1ebf1b;
-}
+/*.button-try:focus {*/
+/*  !*cursor: pointer;*!*/
+/*  box-shadow: 0 20px 10px rgba(0, 0, 0, 0.15), 0 0 10px #1ebf1b;*/
+/*}*/
 
 .button-try:hover {
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
+  background: #24D321;
+  /*box-shadow: 0px 5px 10px rgba(19, 130, 17, 0.6);*/
 }
 </style>
 
