@@ -155,7 +155,7 @@ body {
 }
 
 .button-try {
-  width: 188px;
+  min-width: 148px;
   height: 60px;
   text-align: center;
   line-height: 60px;
@@ -170,6 +170,8 @@ body {
   background: #1ebf1b;
   border-radius: 35px;
   cursor: pointer;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /*.button-try:focus {*/

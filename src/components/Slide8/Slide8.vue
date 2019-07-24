@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <FinalPage v-show="$store.state.final"/>
+        <FinalPage v-if="$store.state.final"/>
         <SlideWrapper :class="{blurBg:$store.state.final}" :data="data" :slide="8"/>
     </div>
 </template>
