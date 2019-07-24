@@ -46,7 +46,7 @@
                 return this.$store.state.currentSlide;
             },
             endTest: function () {
-                return !this.$store.state.prevAnswerIsCorrect && this.currentSlide === 2;
+                return !this.$store.state.prevAnswerIsCorrect && this.currentSlide === 2 && !this.correct;
             },
             numOfAnswers: function () {
                 const correct = this.$store.state.answerIsCorrect ? 1 : 0;
