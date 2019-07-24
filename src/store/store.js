@@ -11,8 +11,8 @@ export const store = new Vuex.Store({
         numOfCorrect: 0,
         numOfIncorrect: 0,
         numOfUnattempted: 0,
-        totalScore: 68,
-        currentSlide: 8,
+        totalScore: 0,
+        currentSlide: 0,
         timeIsOut: false,
         answerIsCorrect: false,
         prevAnswerIsCorrect: false,
@@ -30,6 +30,11 @@ export const store = new Vuex.Store({
     getters: {},
 
     mutations: {
+        testData(state) {
+            state.final = true;
+            state.totalScore = 68;
+            state.currentSlide = 8;
+        },
         addLog() {
           //state.log += 'log: '+str + '<br>';
         },

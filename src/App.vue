@@ -104,6 +104,11 @@ export default {
     }
   },
   mounted: function() {
+    //console.log(window.location.href);
+    if (window.location.href.includes('test')) {
+      this.$store.commit('testData');
+    }
+
     setTimeout(() => {
       this.showSettings = true;
     }, 5000);
