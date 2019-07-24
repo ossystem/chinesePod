@@ -1,12 +1,12 @@
 <template>
     <ModalWrapper class="final">
-        <div v-if="hasSentEmail">
-            <div class="title-email-sent">Email has been sent!</div>
-            <div class="note-email-sent">* - sending will work in final release</div>
+        <div v-if="hasSentEmail" class="result-content">
+            <div v-if="emailCookie" class="title-email-sent">Successfully updated!</div>
+            <div v-else class="title-email-sent">You have been signed up!</div>
         </div>
         <div v-else class="modal-wrapper">
             <div class="title top">Your level:</div>
-            <div class="title">{{userLevel}}</div>
+            <div class="title">{{userLevel.toUpperCase()}}</div>
             <div class="labels">
                 <div class="correct">Correct</div>
                 <div class="incorrect" v-show="percents !== '100%'">Incorrect</div>
@@ -35,7 +35,7 @@
                 will
                 send you our course.
             </div>
-            <div v-show="!emailCookie" class="margin-vertical"><label><input v-model="usersAnswer" type="email" placeholder="example@gmail.com"></label></div>
+            <div v-show="!emailCookie" class="margin-vertical"><label><input v-model="userEmail" type="email" placeholder="example@gmail.com"></label></div>
             <div v-show="!emailCookie" class="label-input margin-vertical"><label><input type="checkbox" v-model="subscribeNews">Receive more info from ChinesePod</label></div>
             <div class="button-try margin-vertical" @click="onSendEmailHandler">{{emailCookie ==='' ?'Proceed':'Update settings'}}</div>
             <div class="bottom-spacer"></div>
@@ -49,6 +49,8 @@
 
     import slide from '../../data/slides/slide8';
 
+    const baseURL = 'https://staging.chinesepod.com/';
+
     export default {
         name: 'FinalPage',
         components: {
@@ -59,24 +61,63 @@
             skipCharacters: false,
             traditionalCharset: false,
             questions: slide,
-            usersAnswer: '',
+            userEmail: '',
             hasSentEmail: false,
             subscribeNews: false,
             emailCookie: '',
-            level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperInt', 'advanced']
+            level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperInt', 'advanced'],
         }),
         methods: {
-            onSendEmailHandler () {
+            updateUserCharSet() {
                 const data ={
-                    "userId": 1,
-                    "emailAddress": "USER_EMAIL@DOES_NOT_EXIST.COM",
-                    "type": "level",
-                    "value": "newbie"
+                    "emailAddress": this.emailCookie,
+                    "type": "charSet",
+                    "value": "traditional",
                 };
 
-                this.axios.put('https://chinesepod.com/api/v1/account/update-options',data).then((response) => {
+
+                this.axios.put(`${baseURL}api/v1/account/update-options`,data).then((response) => {
                     console.log(response.data)
                 }).catch(err=>console.log("Error:",err));
+            },
+            updateUserLevel() {
+                const data ={
+                    "emailAddress": this.emailCookie,
+                    "type": "level",
+                    "value": this.userLevel,
+                };
+
+                this.axios.put(`${baseURL}api/v1/account/update-options`,data).then((response) => {
+                    console.log(response.data)
+                }).catch(err=>console.log("Error:",err));
+            },
+            singUpUser() {
+                const data ={
+                    "emailAddress": this.userEmail,
+                    "optIn": this.subscribeNews,
+                    "level": this.userLevel,
+                };
+
+                if (this.$store.state.userTraditional) {
+                    data.charSet = "traditional";
+                }
+
+                this.axios.post(`${baseURL}api/v1/entrance/signup`,data).then((response) => {
+                    console.log(response.data)
+                }).catch(err=>console.log("Error:",err));
+            },
+            onSendEmailHandler () {
+                // user is logged in
+                if (this.emailCookie !== '') {
+                    this.singUpUser();
+                } else {
+
+                    this.updateUserLevel();
+
+                    if (this.$store.state.userTraditional) {
+                        this.updateUserCharSet();
+                    }
+                }
 
                 this.hasSentEmail = true;
             },
@@ -119,7 +160,7 @@
                     levelIndex = 5;
                 }
 
-                return this.level[levelIndex].toUpperCase();
+                return this.level[levelIndex];
             },
             numOfIncorrect: function () {
                 return 8 - this.$store.state.numOfCorrect - this.$store.state.numOfUnattempted;
@@ -129,7 +170,7 @@
             }
         },
         mounted: function () {
-            this.emailCookie = this.usersAnswer = 'aaa';//this.getCookieEmail();
+            this.emailCookie = this.userEmail = this.getCookieEmail();
             this.$store.commit('clearDataBeforeSlideStarts');
         }
     };
@@ -178,6 +219,10 @@
     .note-email-sent {
         font-size: 14px;
     }
+    .result-content {
+        text-align: center;
+    }
+
     .title-email-sent,
     .title {
         font-weight: bold;
@@ -328,7 +373,7 @@
             width: calc(50px + 10vw);
         }
 
-        .modal-wrapper input {
+        .modal-wrapper input[type="email"] {
             width: 80%;
             height: 50px;
             font-size: 20px;
