@@ -65,7 +65,7 @@
             hasSentEmail: false,
             subscribeNews: false,
             emailCookie: '',
-            level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperInt', 'advanced'],
+            level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperint', 'advanced'],
         }),
         methods: {
             updateUserCharSet() {
@@ -103,12 +103,12 @@
                 }
 
                 this.axios.post(`${baseURL}api/v1/entrance/signup`,data).then((response) => {
-                    console.log(response.data)
+                    console.log("SUCCESS:",response.data)
                 }).catch(err=>console.log("Error:",err));
             },
             onSendEmailHandler () {
                 // user is logged in
-                if (this.emailCookie !== '') {
+                if (this.emailCookie === '') {
                     this.singUpUser();
                 } else {
 

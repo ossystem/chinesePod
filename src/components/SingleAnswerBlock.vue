@@ -7,7 +7,7 @@
                         <div class="line1" v-html="answer.wrong.line1"></div>
                         <div class="line2">{{answer.wrong.line2}}</div>
                         <div class="line3">{{answer.wrong.line3}}</div>
-                        <div class="button-try" @click="tryButtonHandler">{{endTest ? 'Ok': 'Try'}}</div>
+                        <div class="button-try" @click="tryButtonHandler">{{endTest() ? 'Ok': 'Try'}}</div>
                     </div>
                     <div class="answer-cross"></div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="text">{{answer.text}}</div>
             </div>
 
-            <audio id="soundPlayer"></audio>
+            <audio :id="'answerSoundPlayer'+index"></audio>
         </div>
     </div>
 </template>
@@ -33,7 +33,7 @@
         data: () => ({
             answered: false,
             showWrongAnswer: false,
-            correct: false
+            correct: false,
         }),
         props: {
             variant: String,
@@ -45,9 +45,6 @@
             currentSlide: function () {
                 return this.$store.state.currentSlide;
             },
-            endTest: function () {
-                return !this.$store.state.prevAnswerIsCorrect && this.currentSlide === 2 && !this.correct;
-            },
             numOfAnswers: function () {
                 const correct = this.$store.state.answerIsCorrect ? 1 : 0;
                 return this.$store.state.numOfWrongAnswers + correct;
@@ -55,20 +52,11 @@
         },
         mounted: function () {
             window.addEventListener('keypress', this.keyDown);
-            // setTimeout(()=>{
-            //         const audio = document.getElementById('soundPlayer');
-
-            //         audio.addEventListener('canplay', () => {
-
-            //             audio.play();
-            //         });
-
-            //         audio.src = require(`../assets/audio/slide1/answers/a${this.index}.mp3`);                
-            // },this.index*1500)
         },
         methods: {
-            keyDown(e) {
+            keyDown (e) {
                 if (this.index - e.key === 0) {
+                    console.log('key');
                     this.clickAnswerHandler();
                 }
             },
@@ -81,8 +69,14 @@
                     this.$store.dispatch('checkForNextSlide');
                 }*/
             },
+            endTest () {
+                console.log(this.currentSlide, this.numOfAnswers, this.$store.state.answerIsCorrect, this.$store.state.prevAnswerIsCorrect);
+                return this.currentSlide === 2
+                    && this.numOfAnswers === 2
+                    && !this.$store.state.answerIsCorrect
+                    && !this.$store.state.prevAnswerIsCorrect;
+            },
             proceedWrongAnswer () {
-                //this.showWrongAnswer = true;
                 this.$store.commit('incNumOfWrongAnswers');
 
                 switch (this.currentSlide) {
@@ -95,63 +89,120 @@
                 }
 
                 this.answered = true;
-                //setTimeout(() => {this.tryButtonHandler();}, 0);
             },
             proceedCorrectAnswer () {
                 // correct answer
                 this.correct = true;
                 this.$store.commit('stopTimeoutTimer');
                 this.$store.commit('answerIsCorrect');
-
             },
-            afterAnswerMusicIPlayed () {
-                if (this.endTest) {
+            checkForNextSlide () {
+                setTimeout(() => {
+                    this.$store.dispatch('checkForNextSlide');
+                }, 100);
+            },
+            afterAnswerMusicIPlayed(slideNum) {
+                this.$store.commit('wrongAnswerTimeOutId',0);
+                // we may put in timeout on slide 7, and
+                // get called this function on slide 8
+                // so check this:
+                console.log('Slides:',this.currentSlide,slideNum);
+                if (this.currentSlide !== slideNum) {
+                    console.log('Quit afterAnswerMusicIPlayed because to late');
+                    return;
+                }
+
+                const audio = document.getElementById('answerSoundPlayer' + this.index);
+                console.log('afterAnswerMusicIPlayed', 'src', audio.src);
+
+                if (this.endTest()) {
                     this.$store.commit('endTest');
                 } else {
+                    const answerIsCorrect = this.$store.state.answerIsCorrect;
+
                     // if last slide 8 - final
                     if (this.currentSlide === 8) {
                         setTimeout(() => {
                             this.$store.dispatch('checkForNextSlide');
                             this.$store.commit('setFinal');
                         }, 0);
-                    } else {
+                    } else if (this.currentSlide === 5) {
                         // do not go to next slide if slide is 5
                         // we have to ask about this phrase and show slides
-                        if (this.currentSlide !== 5) {
-                            setTimeout(() => {
-                                this.$store.dispatch('checkForNextSlide');
-                            }, 100);
+
+                        // if we get right answer on slide 5 - show where did you here it
+                        // else - just go to slide 6
+
+                        if (answerIsCorrect) {
+                            // show Confucius slide
+                            this.$store.commit('showConfucius', true);
+                        } else {
+                            this.checkForNextSlide();
+                        }
+                    }
+                    // else if (this.currentSlide === 2) {
+                    //     console.log('Slide 2');
+                    //     this.checkForNextSlide();
+                    // }
+                    else {
+                        // if we have 2 answers or correct answer - go next
+                        if (this.numOfAnswers === 2 || answerIsCorrect) {
+                            this.checkForNextSlide();
                         }
                     }
                 }
             },
             clickAnswerHandler () {
-                const answerWasClicked = this.correct || this.answered;
+                const haveCorrectAnswer = this.$store.state.answerIsCorrect;
+                const answerWasClicked = this.correct || this.answered || haveCorrectAnswer;
 
                 if (answerWasClicked || this.$store.state.showFader || this.numOfAnswers === 2) {
                     return;
                 }
 
+                console.log('i am here');
+
+                if (this.$store.state.wrongAnswerTimeOutId) {
+                    console.log('clear timeout',this.$store.state.wrongAnswerTimeOutId);
+                    clearTimeout(this.$store.state.wrongAnswerTimeOutId);
+                }
+
+                const currentSlide = this.currentSlide;
+
                 if (this.answer.wrong.voice && this.$store.state.enableSound) {
-                    const audio = document.getElementById('soundPlayer');
+                    const audio = document.getElementById('answerSoundPlayer' + this.index);
 
                     audio.addEventListener('canplaythrough', () => {
+                        console.log('canplaythrough', (audio.duration * 1000).toFixed(0));
+                        const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)}, (audio.duration * 1000).toFixed(0) * 1);
+                        this.$store.commit('wrongAnswerTimeOutId',timeoutId);
                         audio.play();
                     });
 
-                    if (this.answer.wrong.line1 === 'correct') {
-                        this.proceedCorrectAnswer();
-                    } else {
-                        this.proceedWrongAnswer();
-                    }
-
-                    audio.addEventListener('ended', this.afterAnswerMusicIPlayed);
-
                     audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
                     audio.load();
-                    
+
                     // if user answered before all answers were red
                     this.$store.commit('interruptAnswers');
+
+                    // stop all other wrong answers (if user quickly press two asnwers)
+                    for (let i = 1; i < 5; i++) {
+                        if (i === this.index)
+                            continue;
+                        const audio = document.getElementById('answerSoundPlayer' + i);
+                        audio.pause();
+                    }
+                } else {
+                    // if audio is disabled - wait 2 seconds and proceed
+                    console.log('audio disabled');
+                    const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)},2000);
+                    this.$store.commit('wrongAnswerTimeOutId',timeoutId);
+                }
+
+                if (this.answer.wrong.line1 === 'correct') {
+                    this.proceedCorrectAnswer();
+                } else {
+                    this.proceedWrongAnswer();
                 }
 
             }

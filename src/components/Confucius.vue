@@ -51,6 +51,7 @@
                 this.slide++;
 
                 if (this.slide === 7 ) {
+                    this.$store.commit('showConfucius',false);
                     this.$store.dispatch('checkForNextSlide');
                 }
             }

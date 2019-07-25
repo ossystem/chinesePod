@@ -19,7 +19,7 @@ export default {
       const index = ++i;
       const audio = document.getElementById("soundPlayer" + index);
 
-      audio.addEventListener('canplaythrough', () => {
+      audio.addEventListener('canplay', () => {
         this.soundsLoaded.push({ index, audio });
 
         // we have loaded all sounds

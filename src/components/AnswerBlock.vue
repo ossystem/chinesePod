@@ -11,6 +11,7 @@
                         variant="1"
                         :answer="data[0]"
                         :index="1"
+                        :key="1"
                 />
                 <SingleAnswerBlock
                         class="anim"
@@ -19,6 +20,7 @@
                         variant="2"
                         :answer="data[1]"
                         :index="2"
+                        :key="2"
                 />
                 </div>
                 <div class="answer-row">
@@ -29,6 +31,7 @@
                         variant="3"
                         :answer="data[2]"
                         :index="3"
+                        :key="3"
                 />
                 <SingleAnswerBlock
                         class="anim"
@@ -37,6 +40,7 @@
                         variant="4"
                         :answer="data[3]"
                         :index="4"
+                        :key="4"
                 />
                 </div>
             </div>

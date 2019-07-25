@@ -32,6 +32,7 @@
                     this.confucius = true;
                 } else {
                     // go to next slide
+                    this.$store.commit('showConfucius',false);
                     this.$store.dispatch('checkForNextSlide');
                 }
             }
@@ -56,7 +57,9 @@
         font-size: 28px;
         font-weight: normal;
     }
-
+    .button-try {
+        max-width: 148px;
+    }
     .where input {
         width: 70%;
         height: 60px;

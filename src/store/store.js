@@ -18,18 +18,26 @@ export const store = new Vuex.Store({
         prevAnswerIsCorrect: false,
         stopTimeoutTimer: false,
         endTest: false,
-        final: true,
+        final: false,
         skipChars: false,
         userTraditional: false,
         enableSound: true,
         highlightSentence: null,
         whatIsTheDiffrence: false,
+        showConfucius: false,
         log: '',
+        wrongAnswerTimeOutId: 0
     },
 
     getters: {},
 
     mutations: {
+        wrongAnswerTimeOutId(state,value) {
+          state.wrongAnswerTimeOutId = value;
+        },
+        showConfucius(state,enable) {
+          state.showConfucius = enable;
+        },
         testData(state) {
             state.final = true;
             state.totalScore = 68;

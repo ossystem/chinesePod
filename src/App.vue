@@ -22,7 +22,7 @@
       <TestEndsForYou v-show="endTest"/>
     </transition>
 
-    <ModalWrapper v-if="rightAnswerSlide5">
+    <ModalWrapper v-if="showConfucius">
       <WhereDidYouHearIt/>
     </ModalWrapper>
 
@@ -93,8 +93,8 @@ export default {
     currentSlide: function() {
       return this.$store.state.currentSlide;
     },
-    rightAnswerSlide5: function() {
-      return this.$store.state.currentSlide === 5 && this.$store.state.answerIsCorrect;
+    showConfucius: function() {
+      return this.$store.state.showConfucius;
     },
     showFader: function() {
       return this.$store.state.showFader;
