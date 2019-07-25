@@ -172,6 +172,10 @@
                 if (this.answer.wrong.voice && this.$store.state.enableSound) {
                     const audio = document.getElementById('answerSoundPlayer' + this.index);
 
+                    audio.addEventListener('canplay', () => {
+                        console.log('canplay',audio.duration);
+                    });
+
                     audio.addEventListener('canplaythrough', () => {
                         console.log('canplaythrough', (audio.duration * 1000).toFixed(0));
                         const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)}, (audio.duration * 1000).toFixed(0) * 1);
