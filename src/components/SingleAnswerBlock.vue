@@ -174,6 +174,8 @@
 
                     audio.addEventListener('canplay', () => {
                         console.log('canplay',audio.duration);
+                        audio.play();
+                        audio.pause();
                     });
 
                     //audio.addEventListener('canplaythrough',
