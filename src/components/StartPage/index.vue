@@ -50,11 +50,11 @@
 
             //this.audio = new Audio(require(`../../assets/audio/common/gong.mp3`));
             this.audio.addEventListener('canplay', () => {
-                console.log('canplay gong',audio.duration);
+                //console.log('canplay gong',audio.duration);
             });
 
             this.audio.oncanplaythrough = () => {
-                console.log('gong');
+                //console.log('gong');
             };
 
             this.audio.load();

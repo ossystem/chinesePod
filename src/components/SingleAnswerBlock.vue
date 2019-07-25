@@ -56,7 +56,6 @@
         methods: {
             keyDown (e) {
                 if (this.index - e.key === 0) {
-                    console.log('key');
                     this.clickAnswerHandler();
                 }
             },
@@ -70,7 +69,7 @@
                 }*/
             },
             endTest () {
-                console.log(this.currentSlide, this.numOfAnswers, this.$store.state.answerIsCorrect, this.$store.state.prevAnswerIsCorrect);
+                //console.log(this.currentSlide, this.numOfAnswers, this.$store.state.answerIsCorrect, this.$store.state.prevAnswerIsCorrect);
                 return this.currentSlide === 2
                     && this.numOfAnswers === 2
                     && !this.$store.state.answerIsCorrect
@@ -106,14 +105,14 @@
                 // we may put in timeout on slide 7, and
                 // get called this function on slide 8
                 // so check this:
-                console.log('Slides:',this.currentSlide,slideNum);
+                //console.log('Slides:',this.currentSlide,slideNum);
                 if (this.currentSlide !== slideNum) {
-                    console.log('Quit afterAnswerMusicIPlayed because to late');
+                    //console.log('Quit afterAnswerMusicIPlayed because to late');
                     return;
                 }
 
-                const audio = document.getElementById('answerSoundPlayer' + this.index);
-                console.log('afterAnswerMusicIPlayed', 'src', audio.src);
+                //const audio = document.getElementById('answerSoundPlayer' + this.index);
+                //console.log('afterAnswerMusicIPlayed', 'src', audio.src);
 
                 if (this.endTest()) {
                     this.$store.commit('endTest');
@@ -160,10 +159,10 @@
                     return;
                 }
 
-                console.log('i am here');
+                //console.log('i am here');
 
                 if (this.$store.state.wrongAnswerTimeOutId) {
-                    console.log('clear timeout',this.$store.state.wrongAnswerTimeOutId);
+                    //console.log('clear timeout',this.$store.state.wrongAnswerTimeOutId);
                     clearTimeout(this.$store.state.wrongAnswerTimeOutId);
                 }
 
@@ -173,20 +172,20 @@
                     const audio = document.getElementById('answerSoundPlayer' + this.index);
 
                     audio.addEventListener('canplay', () => {
-                        console.log('canplay',audio.duration);
+                        //console.log('canplay',audio.duration);
                         audio.play();
                         audio.pause();
                     });
 
                     //audio.addEventListener('canplaythrough',
                     audio.oncanplaythrough = () => {
-                        console.log('canplaythrough', (audio.duration * 1000).toFixed(0));
+                        //console.log('canplaythrough', (audio.duration * 1000).toFixed(0));
                         const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)}, (audio.duration * 1000).toFixed(0) * 1);
                         this.$store.commit('wrongAnswerTimeOutId',timeoutId);
                         audio.play();
                     };
 
-                    console.log('require:',require(`../assets/audio/${this.answer.wrong.voice}`));
+                    //console.log('require:',require(`../assets/audio/${this.answer.wrong.voice}`));
                     audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
                     audio.load();
 
@@ -202,7 +201,7 @@
                     }
                 } else {
                     // if audio is disabled - wait 2 seconds and proceed
-                    console.log('audio disabled');
+                    //console.log('audio disabled');
                     const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)},2000);
                     this.$store.commit('wrongAnswerTimeOutId',timeoutId);
                 }
