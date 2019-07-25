@@ -176,12 +176,13 @@
                         console.log('canplay',audio.duration);
                     });
 
-                    audio.addEventListener('canplaythrough', () => {
+                    //audio.addEventListener('canplaythrough',
+                    audio.oncanplaythrough = () => {
                         console.log('canplaythrough', (audio.duration * 1000).toFixed(0));
                         const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)}, (audio.duration * 1000).toFixed(0) * 1);
                         this.$store.commit('wrongAnswerTimeOutId',timeoutId);
                         audio.play();
-                    });
+                    };
 
                     console.log('require:',require(`../assets/audio/${this.answer.wrong.voice}`));
                     audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
