@@ -179,6 +179,7 @@
                         audio.play();
                     });
 
+                    console.log('require:',require(`../assets/audio/${this.answer.wrong.voice}`));
                     audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
                     audio.load();
 
