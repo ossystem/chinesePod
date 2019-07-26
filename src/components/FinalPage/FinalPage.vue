@@ -65,7 +65,7 @@
             hasSentEmail: false,
             subscribeNews: false,
             emailCookie: '',
-            level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperint', 'advanced'],
+            level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperInt', 'advanced'],
         }),
         methods: {
             updateUserCharSet() {
