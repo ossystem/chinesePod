@@ -125,7 +125,7 @@
             },
             getCookieEmail () {
                 // eslint-disable-next-line
-                return document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+                return decodeURIComponent(document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, '$1'));
             }
         },
         computed: {

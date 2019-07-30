@@ -34,8 +34,12 @@ const QuestionBlockMix = {
             this.audio = document.getElementById("audioPlayerQuestion");
             this.audio.src = source;
 
-            this.audio.oncanplaythrough = () => {
+            this.audio.oncanplay = () => {
+                this.audio.play();
+                this.audio.pause();
+            };
 
+            this.audio.oncanplaythrough = () => {
                 this.$store.commit('addLog', 'canplaythrough '+this.audio.src);
 
                 if (!this.$store.state.enableSound) {

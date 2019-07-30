@@ -152,10 +152,10 @@
                 if (this.answer.wrong.voice && this.$store.state.enableSound) {
                     const audio = document.getElementById('answerSoundPlayer' + this.index);
 
-                    audio.addEventListener('canplay', () => {
+                    audio.oncanplay = () => {
                         audio.play();
                         audio.pause();
-                    });
+                    };
 
                     audio.oncanplaythrough = () => {
                         const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)}, (audio.duration * 1000).toFixed(0) * 1);
