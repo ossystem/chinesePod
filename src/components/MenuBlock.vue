@@ -46,7 +46,6 @@
     .menu-wrap {
         position: relative;
         z-index: 10;
-        /*box-shadow: 0 50px 50px rgba(0, 0, 0, 0.15);*/
         background: #304155;
     }
     .menu-block {
@@ -112,9 +111,7 @@
 
     .menu:hover {
         cursor: pointer;
-        /*transform: scale(1.05);*/
         animation: rotateGear 2s infinite linear;
-
     }
 
     @keyframes rotateGear {
@@ -129,17 +126,11 @@
 
     .step {
         position: relative;
-        /*width: 120px;*/
-        /*height: 120px;*/
-        /*border-radius: 50%;*/
-        /*background: #304155;*/
         top: 9px;
 
         color: white;
-        /*text-align: center;*/
         font-size: 64px;
         line-height: 35px;
-
         font-weight: bold;
     }
     .rest {
@@ -156,11 +147,6 @@
         }
 
         .step {
-            /*width: 110px;*/
-            /*height: 110px;*/
-            /*border-radius: 50%;*/
-
-            /*line-height: 110px;*/
             font-size: 50px;
         }
     }

@@ -104,10 +104,12 @@ export default {
     }
   },
   mounted: function() {
-    //console.log(window.location.href);
-    if (window.location.href.includes('test')) {
+    // Need this line for tests only
+    // So comment it out:
+
+    /*if (window.location.href.includes('test')) {
       this.$store.commit('testData');
-    }
+    }*/
 
     setTimeout(() => {
       this.showSettings = true;
@@ -124,13 +126,11 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  /*overflow-y: hidden;*/
   min-width: 350px;
 }
 
 .main {
   background: #FFFFFF;
-  /*min-height: 100vh;*/
 }
 
 .modal-fader {
@@ -179,14 +179,8 @@ body {
   padding-right: 20px;
 }
 
-/*.button-try:focus {*/
-/*  !*cursor: pointer;*!*/
-/*  box-shadow: 0 20px 10px rgba(0, 0, 0, 0.15), 0 0 10px #1ebf1b;*/
-/*}*/
-
 .button-try:hover {
   background: #24D321;
-  /*box-shadow: 0px 5px 10px rgba(19, 130, 17, 0.6);*/
 }
 </style>
 

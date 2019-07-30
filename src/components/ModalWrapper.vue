@@ -39,14 +39,11 @@
         font-size: 44px;
         color: #384c63;
 
-        /*margin: auto;*/
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);   
-        background: white;     
-        /* opacity: 0.5; */
+        background: white;
         border-radius: 30px;
-        /*z-index: 5;*/
     }
 
     .modal-popup.transparent {
@@ -67,9 +64,6 @@
     }
 
     @media (max-width: 1150px) {
-        /*.modal-popup {*/
-        /*       !*max-height: 500px;*!*/
-        /*}*/
     }
 
     @media (max-width: 770px) {

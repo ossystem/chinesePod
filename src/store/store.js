@@ -44,7 +44,9 @@ export const store = new Vuex.Store({
             state.currentSlide = 8;
         },
         addLog() {
-          //state.log += 'log: '+str + '<br>';
+            // Do not make log string for now
+            // so comment it out:
+            //state.log += 'log: '+str + '<br>';
         },
         whatIsTheDiffrence(state,enable) {
             state.whatIsTheDiffrence = enable;
@@ -131,7 +133,6 @@ export const store = new Vuex.Store({
             }
 
             context.state.prevAnswerIsCorrect = context.state.answerIsCorrect;
-            //console.log('should go to next slide...');
             // increase score, if answer was correct
             if (context.state.answerIsCorrect) {
                 switch (context.state.numOfWrongAnswers) {

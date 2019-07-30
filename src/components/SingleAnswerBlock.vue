@@ -60,16 +60,9 @@
                 }
             },
             tryButtonHandler () {
-                /*this.$store.commit('hideModalFader');
-
-                if (this.endTest) {
-                    this.$store.commit('endTest');
-                } else {
-                    this.$store.dispatch('checkForNextSlide');
-                }*/
+                // Removed this functionality for first release...
             },
             endTest () {
-                //console.log(this.currentSlide, this.numOfAnswers, this.$store.state.answerIsCorrect, this.$store.state.prevAnswerIsCorrect);
                 return this.currentSlide === 2
                     && this.numOfAnswers === 2
                     && !this.$store.state.answerIsCorrect
@@ -105,14 +98,9 @@
                 // we may put in timeout on slide 7, and
                 // get called this function on slide 8
                 // so check this:
-                //console.log('Slides:',this.currentSlide,slideNum);
                 if (this.currentSlide !== slideNum) {
-                    //console.log('Quit afterAnswerMusicIPlayed because to late');
                     return;
                 }
-
-                //const audio = document.getElementById('answerSoundPlayer' + this.index);
-                //console.log('afterAnswerMusicIPlayed', 'src', audio.src);
 
                 if (this.endTest()) {
                     this.$store.commit('endTest');
@@ -139,10 +127,6 @@
                             this.checkForNextSlide();
                         }
                     }
-                    // else if (this.currentSlide === 2) {
-                    //     console.log('Slide 2');
-                    //     this.checkForNextSlide();
-                    // }
                     else {
                         // if we have 2 answers or correct answer - go next
                         if (this.numOfAnswers === 2 || answerIsCorrect) {
@@ -159,10 +143,7 @@
                     return;
                 }
 
-                //console.log('i am here');
-
                 if (this.$store.state.wrongAnswerTimeOutId) {
-                    //console.log('clear timeout',this.$store.state.wrongAnswerTimeOutId);
                     clearTimeout(this.$store.state.wrongAnswerTimeOutId);
                 }
 
@@ -172,20 +153,16 @@
                     const audio = document.getElementById('answerSoundPlayer' + this.index);
 
                     audio.addEventListener('canplay', () => {
-                        //console.log('canplay',audio.duration);
                         audio.play();
                         audio.pause();
                     });
 
-                    //audio.addEventListener('canplaythrough',
                     audio.oncanplaythrough = () => {
-                        //console.log('canplaythrough', (audio.duration * 1000).toFixed(0));
                         const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)}, (audio.duration * 1000).toFixed(0) * 1);
                         this.$store.commit('wrongAnswerTimeOutId',timeoutId);
                         audio.play();
                     };
 
-                    //console.log('require:',require(`../assets/audio/${this.answer.wrong.voice}`));
                     audio.src = require(`../assets/audio/${this.answer.wrong.voice}`);
                     audio.load();
 
@@ -201,7 +178,6 @@
                     }
                 } else {
                     // if audio is disabled - wait 2 seconds and proceed
-                    //console.log('audio disabled');
                     const timeoutId = setTimeout(()=>{this.afterAnswerMusicIPlayed(currentSlide)},2000);
                     this.$store.commit('wrongAnswerTimeOutId',timeoutId);
                 }
@@ -222,12 +198,7 @@
         display: flex;
         width: calc(170px + 5vw);
         min-height: calc(170px + 5vw);
-        /*width: 14.5vw;*/
-        /*min-height: 14.5vw;*/
         overflow-wrap: break-word;
-        /*width: 90vw;*/
-        /*height: 60px;*/
-        /*line-height: 60px;*/
         border-radius: 30px;
         margin-bottom: 20px;
 
@@ -287,7 +258,6 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         border-radius: 30px;
         bottom: 12px;
-        /*z-index: 11;*/
     }
     .answer-wrong {
         display: flex;
@@ -325,7 +295,6 @@
         width: 36px;
         height: 35px;
         background: url("../assets/images/icons/cross.png");
-        /*margin-bottom: 0px;*/
     }
 
     .answer .text {
@@ -337,21 +306,15 @@
     }
 
     .answer .variant {
-        /*position: relative;*/
         position: absolute;
         width: 60px;
         height: 60px;
         text-align: center;
         line-height: 60px;
         background: rgba(0, 0, 0, 0.15);
-        /*display: inline-block;*/
-        /*border: 1px solid rgba(255, 255, 255, 0.2);*/
         border-top-right-radius: 30px;
         border-bottom-left-radius: 30px;
         font-size: 36px;
-        /*margin-left: 30px;*/
-        /*padding-right: 20px;*/
-        /*padding-left: 20px;*/
         top: 0;
         right: 20px;
     }
@@ -359,7 +322,6 @@
     .variant .pronounce {
         display: inline-block;
         animation: shakeVariant 0.4s ease-in-out;
-        /*color: red*/
     }
 
     .answered .variant {
@@ -369,8 +331,6 @@
 
     @keyframes shakeVariant {
         0% {
-            /*opacity: 0;*/
-            /*-webkit-transform: translate3d(-100%, 0, 0);*/
             transform: scale(1.1) rotate(12deg);
         }
 
@@ -387,14 +347,11 @@
         }
 
         100% {
-            /*opacity: 1;*/
-            /*-webkit-transform: translate3d(0, 0, 0);*/
             transform: scale(1);
         }
     }
 
     .answer#a1 {
-        /*background: linear-gradient(90deg, #cb446c 50%, #eba24c 100%);*/
         background: #cb4444;
     }
 
@@ -402,7 +359,6 @@
     .answer#a2.answered,
     .answer#a3.answered,
     .answer#a4.answered {
-        /*background: rgba(203, 68, 68, 0.5);*/
         background: #e2e2e2;
         color: #a3a3a3;
     }
@@ -413,14 +369,9 @@
     }
 
     .answer#a2 {
-        /*background: linear-gradient(90deg, #1bb5bf 50%, #1b8dbe 100%);*/
         background: #1b84bf;
         animation-delay: 4s;
     }
-    /*.answer#a2.answered {*/
-    /*    background: rgba(27, 132, 191, 0.5);*/
-    /*    color: lightgray;*/
-    /*}*/
 
     .answer:not(.answered)#a2:hover {
         background: #1b84bf;
@@ -428,29 +379,19 @@
     }
 
     .answer#a3 {
-        /*background: linear-gradient(90deg, #eba24c 50%, #1ebf1b 100%);*/
         background: #e48f2a;
         animation-delay: 2s;
     }
-
-    /*.answer#a3.answered {*/
-    /*    background: rgba(228, 143, 42, 0.5);*/
-    /*    color: lightgray;*/
-    /*}*/
 
     .answer:not(.answered)#a3:hover {
         background: #e48f2a;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #e48f2a;
     }
     .answer#a4 {
-        /*background: linear-gradient(90deg, #1ebf1b 50%, #1bb5bf 100%);*/
         background: #1ebf1b;
         animation-delay: 3s;
     }
-    /*.answer#a4.answered {*/
-    /*    background: rgba(30, 191, 27, 0.5);*/
-    /*    color: lightgray;*/
-    /*}*/
+
     .answer:not(.answered)#a4:hover {
         background: #1ebf1b;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 15px #1ebf1b;
@@ -544,7 +485,6 @@
     @media (max-width: 1370px) {
         .answer {
             height: 46px;
-            /*line-height: 46px;*/
             margin-bottom: 18px;
         }
 

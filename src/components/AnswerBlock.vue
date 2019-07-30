@@ -76,7 +76,6 @@
         }),
         methods: {
             playAllSounds (sounds) {
-                //console.log('I am ready:',sounds);
                 let delay = 0;
                 sounds.forEach(element => {
                     setTimeout(() => {
@@ -93,7 +92,6 @@
                     }, delay);
 
                     delay += element.audio.duration * 1000 + 500;
-                    //console.log(element.index,element.audio.duration*1000);
                 });
             },
             soundsReady (sounds) {
@@ -114,7 +112,6 @@
                         element.audio.muted = !this.$store.state.enableSound;
                     });
                 }
-                //console.log('mutation', mutation, this.slide);
             });
         },
         watch: {
@@ -137,7 +134,6 @@
         justify-content: center;
         color: #fff;
         z-index: 2;
-        /*outline: 1px solid green;*/
     }
 
     .answers-inner {
@@ -163,31 +159,22 @@
         animation: fadeInLeft 1s ease-in-out backwards 1;
     }
 
-    /*.answers-inner .blink {*/
-    /*    animation: blinkAnswer 0.2s ease-in-out;*/
-    /*}*/
-
     .anim.aa1 {
         animation-delay: 0s;
         z-index: 7;
     }
     .anim.aa2 {
-        /*animation-delay: 1s;*/
         z-index: 6;
     }
     .anim.aa3 {
-        /*animation-delay: 2s;*/
         z-index: 5;
     }
     .anim.aa4 {
-        /*animation-delay: 3s;*/
         z-index: 4;
     }
 
     @keyframes blinkAnswer {
         0% {
-            /*opacity: 0;*/
-            /*-webkit-transform: translate3d(-100%, 0, 0);*/
             transform: scale(1.01) rotate(2deg);
         }
 
@@ -204,8 +191,6 @@
         }
 
         100% {
-            /*opacity: 1;*/
-            /*-webkit-transform: translate3d(0, 0, 0);*/
             transform: scale(1);
         }
     }

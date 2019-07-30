@@ -1,11 +1,7 @@
 .checkbox__text {
   position: relative;
-  /*padding: 0 0 0 60px;*/
-  /*top: 0px;*/
   padding-left: 25px;
   cursor: pointer;
-  /*max-width: 100px;*/
-  /*outline: 1px solid red;*/
 }
 
 .checkbox__text__line {
@@ -35,7 +31,6 @@
   content: url("../../assets/images/icons/check.svg");
 }
 .checkbox input:focus + .checkbox__text:before {
-  /*box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 3px rgba(255,255,0,.7);*/
 }
 
 /*=============================*/
@@ -61,7 +56,6 @@
 }
 
 .question .traditional:hover {
-  /*font-weight: bold;*/
 }
 
 .question-mob {
@@ -109,7 +103,6 @@
   max-width: 180px;
   right: 10px;
   margin-right: 20px;
-  /*outline: 1px solid green;*/
 }
 
 .question-mob .left .my-underline,
@@ -135,8 +128,6 @@
 }
 
 .question .left {
-  /*max-width: 200px;*/
-  /*color: orangered;*/
 }
 
 /*Hide question .left/right and question-mob .left/right*/
@@ -177,7 +168,6 @@
   font-size: 24px;
   color: #384C63;
   transition: all 1s;
-  /*line-height: 34px;*/
   min-height: 34px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -185,7 +175,6 @@
 
 .question .text.text-green {
   color: black;
-  /*font-weight: bold;*/
 }
 
 .symbols.show {
@@ -208,10 +197,6 @@
   font-size: 30px;
 }
 
-/*.symbols.show {*/
-/*  font-size: 50px; !*was !imp*!*/
-/*}*/
-
 .symbols.show.smaller {
   font-size: 30px; /*was !imp*/
 }
@@ -219,7 +204,6 @@
 .pinyin.show {
   font-size: 90px;
   color: #384C63 !important;
-  /*animation: fadeInBlur 1s both;*/
   transition: all 1s;
 }
 
@@ -235,13 +219,11 @@
 .pinyin.hide.smaller,
 .pinyin.hide {
   font-size: 24px;
-  /*animation: fadeInBlur 1s both;*/
   transition: all 1s;
 }
 
 .question .pinyin-no-animation {
   font-size: 24px;
-  /*color: #406da3;*/
   color: #518dd4;
   max-width: 900px;
 }
@@ -253,8 +235,6 @@
 
 
 .question .pinyin {
-  /*font-size: 28px;*/
-  /*color: #406da3;*/
   color: #518dd4;
   max-width: 900px;
   opacity: 0;
@@ -262,7 +242,6 @@
 
 .question .pinyin.delay {
   animation: fadeInBlur 1s forwards ease-in;
-  /*animation-delay: 5s;*/
 }
 
 .question .tooltip {
@@ -388,7 +367,6 @@
   }
   /* Main symbols (chinese chars)*/
   .question .symbols.smaller {
-    /*font-size: 22px;*/
   }
 
   .symbols.hide.smaller,
@@ -500,7 +478,6 @@
     font-size: calc(14px + 0.4vw);
     color: #384C63;
   }
-
 
   .question .left,
   .question .right {

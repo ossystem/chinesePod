@@ -120,16 +120,12 @@
                 });
             },
             highlightSentence: function () {
-                //console.log('highlight', this.highlightSentence);
                 this.selectSomeWords(this.subtitles, this.highlightSentence.start, this.highlightSentence.end);
             }
         },
         mounted: function () {
-            //console.log("QUESTION SKIP CHARS:",this.skipCharacters);
             this.charsPart = this.data.chars;
             this.title = this.data.chars;
-
-            //console.log(this.data);
 
             if (this.skipAnimation > 6) {
                 this.showTitle = 1;
@@ -178,7 +174,6 @@
                 // use https://ttsmp3.com/ to generate mp3
 
                 const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
-                //console.log('DATA:',syncData);
                 let element;
                 for (let i = 0; i < syncData.length; i++) {
                     element = document.createElement('span');
@@ -194,8 +189,6 @@
             changeTitle () {
                 this.title = this.titles[this.titleIndex].chars;
                 this.titleIndex = (this.titleIndex + 1) % this.titles.length;
-
-                //console.log("change title to:", this.title);
 
                 if (this.titleIndex) {
                     setTimeout(this.changeTitle, this.titles[this.titleIndex].delay);

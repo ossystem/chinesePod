@@ -40,8 +40,6 @@
                         this.lastTimeOutInterval = setTimeout(this.decreaseTimer, timerTick);
                     }
                 } else {
-                    // console.log('Remain:',this.remainingTimeMSec);
-
                     if (this.$store.state.currentSlide === 8) {
                         setTimeout(() => {
                             this.$store.commit('setFinal');
@@ -55,7 +53,6 @@
             }
         },
         mounted: function () {
-            //console.log('mounted', this.remainingTimeMSec);
             setTimeout(() => {
                 this.decreaseTimer();
             }, timerTick);
@@ -87,11 +84,5 @@
     }
     .timer-bar-right {
     }
-
-    /*@media (max-width: 1370px) {*/
-    /*    .timer-wrap {*/
-    /*        margin-bottom: 30px;*/
-    /*    }*/
-    /*}*/
 
 </style>

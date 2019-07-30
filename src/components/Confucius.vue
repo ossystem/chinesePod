@@ -73,10 +73,8 @@
 
             this.$store.subscribe((mutation) => {
                  if (mutation.type === 'enableSound') {
-
                         audio.muted = !this.$store.state.enableSound;
                 }
-                //console.log('mutation', mutation, this.slide);
             });
 
 
@@ -86,9 +84,7 @@
 
 <style scoped>
     .slide-img {
-        /*height: 300px;*/
         width: 90%;
-        /*max-height: 300px;*/
         border-radius: 30px;
     }
 

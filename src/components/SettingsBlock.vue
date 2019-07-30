@@ -49,7 +49,6 @@ export default {
 <style scoped>
 .checkbox__text {
   position: relative;
-  /*padding: 0 0 0 60px;*/
   top: 5px;
   padding-left: 35px;
   cursor: pointer;
@@ -75,7 +74,6 @@ export default {
   content: url("../assets/images/icons/check.svg");
 }
 .checkbox input:focus + .checkbox__text:before {
-  /*box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 3px rgba(255,255,0,.7);*/
 }
 
 .settings {
@@ -85,14 +83,12 @@ export default {
 }
 .settings .labels label {
   font-size: 14px;
-  /*line-height: 30px;*/
   display: block;
   margin-bottom: 12px;
   color: #384C63;
 }
 
 .settings .labels input {
-  /*width: 50px;*/
 }
 .settings .spacer {
   width: 50px;
@@ -115,8 +111,6 @@ export default {
 .tip .question {
   font-size: 48px;
   border-right: 1px solid #355d8c;
-  /*border: 1px solid #355D8C;*/
-  /*padding-right: 15px;*/
   padding-left: 10px;
   text-align: center;
   width: 50px;
@@ -125,8 +119,6 @@ export default {
 .tip .text {
   max-width: 150px;
   font-size: 12px;
-  /*text-decoration: underline;*/
-  /*margin-left: 15px;*/
 }
 .tip .spacer {
   width: 10px;

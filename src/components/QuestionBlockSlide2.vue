@@ -64,12 +64,9 @@
             }
         },
         mounted: function () {
-            //console.log("QUESTION2 SKIP CHARS:",this.skipCharacters);
-            //console.log('Slide#2, isWrong:', this.isWrong);
             this.charsPart = this.data.chars;
             this.title = this.data.chars;
 
-            //console.log(this.data);
             if (this.data.animation) {
                 this.titles = this.data.animation;
                 setTimeout(() => {
@@ -101,13 +98,11 @@
                 return document.getElementById(id);
             },
             changeTitle () {
-                //this.title = this.titles[this.titleIndex].chars;
                 this.titleIndex = (this.titleIndex + 1) % this.titles.length;
 
                 if (this.titleIndex > 3) {
                     this.changePinyin = true;
                 }
-                //console.log("tab index:", this.titleIndex);
                 if (this.titleIndex === 1) {
                     // hide last char
                     const char4 = this.getCharById('char4');
@@ -119,10 +114,6 @@
                     char2.classList.add('zoom-out');
                 }
                 if (this.titleIndex === 2) {
-                    //  const char = document.getElementById('char3');
-                    //  char.innerHTML = '茶';
-                    //  char.classList.remove('char3');
-
                     const char3 = this.getCharById('char3');
                     char3.classList.add('move-right');
                 }
@@ -130,40 +121,18 @@
                     const char4 = this.getCharById('char4');
                     char4.innerHTML = '茶';
                     char4.classList.remove('invisible');
-
-                    // Move char0 & char1 left
-                    //  const char0 = this.getCharById('char0');
-                    //  const char1 = this.getCharById('char1');
-                    //  char0.classList.add('move-char-left');
-                    //  char1.classList.add('move-char-left');
-
-                    //const char3 = this. getCharById('char3');
-                    //  char3.classList.remove('move-right');
-                    //  //char3.classList.add('invisible');
-                    //  //char3.classList.add('zoom-out');
-                    //char3.innerHTML = '有';
                 }
                 if (this.titleIndex === 4) {
                     const char3 = this.getCharById('char3');
                     char3.classList.remove('move-right');
-                    //  //char3.classList.add('invisible');
-                    //  //char3.classList.add('zoom-out');
                     char3.innerHTML = '有';
                 }
                 if (this.titleIndex === 4) {
                     const char2 = this.getCharById('char2');
 
-                    //char2.classList.add('char4');
                     char2.innerHTML = '没';
                     char2.classList.remove('zoom-out');
-
-                    //const char3 = this. getCharById('char3');
-                    //char3.classList.remove('invisible');
-                    //char3.innerHTML = '';
-                    //char3.classList.remove('zoom-out');
                 }
-
-                //console.log("change title to:", this.title);
 
                 if (this.titleIndex) {
                     setTimeout(this.changeTitle, this.titles[this.titleIndex].delay);
@@ -220,7 +189,6 @@
 
     .question .text.text-green {
         color: black;
-        /*font-weight: bold;*/
     }
 
     .symbols.hide.smaller,
@@ -250,7 +218,6 @@
     .pinyin.show {
         font-size: 90px;
         color: #384C63 !important;
-        /*animation: fadeInBlur 1s both;*/
         transition: all 1s;
     }
 
@@ -266,20 +233,16 @@
     .pinyin.hide.smaller,
     .pinyin.hide {
         font-size: 24px;
-        /*animation: fadeInBlur 1s both;*/
         transition: all 1s;
     }
 
     .question .pinyin-no-animation {
         font-size: 24px;
-        /*color: #406da3;*/
         color: #518dd4;
         max-width: 900px;
     }
 
     .question .pinyin {
-        /*font-size: 28px;*/
-        /*color: #406da3;*/
         color: #518dd4;
         max-width: 900px;
         opacity: 0;
@@ -287,7 +250,6 @@
 
     .question .pinyin.delay {
         animation: fadeInBlur 1s forwards ease-in;
-        /*animation-delay: 5s;*/
     }
 
     .question .tooltip {
@@ -488,10 +450,6 @@
         }
     }
     /*========================*/
-    /*========================*/
-    /*========================*/
-    /*========================*/
-
 
     @keyframes fadeInBlur {
         from {
@@ -507,7 +465,6 @@
     .list-complete-item {
         transition: all 1s;
         display: inline-block;
-        /* margin-right: 10px; */
     }
 
     .move-char-left {
@@ -516,7 +473,6 @@
     }
     .move-right {
         position: relative;
-        /* transition: all 1s; */
         transform: translate(100px);
     }
     .invisible {

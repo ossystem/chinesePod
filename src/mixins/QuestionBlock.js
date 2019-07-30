@@ -25,15 +25,11 @@ const QuestionBlockMix = {
 
         },
         initAndStartQuestion (subtitles) {
-            //const audio = document.getElementById('audioIntro');
-
             let source = require(`../assets/audio/common/intro.mp3`);
 
             if (this.data.intro) {
                 source = require(`../assets/audio/${this.data.intro}`);
-            } /*else {
-                this.audio.src = require(`../assets/audio/common/intro.mp3`);
-            }*/
+            }
 
             this.audio = document.getElementById("audioPlayerQuestion");
             this.audio.src = source;
@@ -49,8 +45,6 @@ const QuestionBlockMix = {
                 this.$store.commit('addLog','play audio: ' + this.audio.src);
                 this.audio.play().catch( error => {
                     this.$store.commit('addLog',error);
-                    //alert('play');
-                    //this.audio.play();
                 });
             };
 

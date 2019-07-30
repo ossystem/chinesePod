@@ -75,10 +75,8 @@
                     "value": "traditional",
                 };
 
-
-                this.axios.put(`${baseURL}api/v1/account/update-options`,data).then((response) => {
-                    console.log(response.data)
-                }).catch(err=>console.log("Error:",err));
+                this.axios.put(`${baseURL}api/v1/account/update-options`,data).then(() => {
+                }).catch();
             },
             updateUserLevel() {
                 const data ={
@@ -87,9 +85,8 @@
                     "value": this.userLevel,
                 };
 
-                this.axios.put(`${baseURL}api/v1/account/update-options`,data).then((response) => {
-                    console.log(response.data)
-                }).catch(err=>console.log("Error:",err));
+                this.axios.put(`${baseURL}api/v1/account/update-options`,data).then(() => {
+                }).catch();
             },
             singUpUser() {
                 const data ={
@@ -102,9 +99,8 @@
                     data.charSet = "traditional";
                 }
 
-                this.axios.post(`${baseURL}api/v1/entrance/signup`,data).then((response) => {
-                    console.log("SUCCESS:",response.data)
-                }).catch(err=>console.log("Error:",err));
+                this.axios.post(`${baseURL}api/v1/entrance/signup`,data).then(() => {
+                }).catch();
             },
             onSendEmailHandler () {
                 // user is logged in
@@ -128,6 +124,7 @@
                 this.traditionalCharset = !this.traditionalCharset;
             },
             getCookieEmail () {
+                // eslint-disable-next-line
                 return document.cookie.replace(/(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/, '$1');
             }
         },
@@ -141,8 +138,6 @@
                 // 48-64% intermediate
                 // 64-80% upperInt
                 // 80-96% advanced
-
-                console.log(percent);
 
                 let levelIndex = 0;
 
@@ -259,12 +254,10 @@
         display: flex;
         width: 80%;
         max-width: 490px;
-        /*margin: auto;*/
         margin-bottom: 27px;
     }
 
     .progress-bar .correct {
-        /*width: 50%;*/
         height: 10px;
         background: #1ebf1b;
         border-top-left-radius: 35px;
