@@ -72,14 +72,13 @@
                 setTimeout(() => {
                     if (this.$store.state.currentSlide === 2) {
                         const audio = document.getElementById('audioPlayerIntro');
-                        audio.addEventListener('canplaythrough', () => {
-
+                        audio.oncanplay = () => {
                             if (!this.$store.state.enableSound) {
                                 audio.muted = true;
                             }
 
                             setTimeout(() => {audio.play();}, 2000);
-                        });
+                        };
 
                         audio.src = require('../assets/audio/slide2/question-2.mp3');
                         audio.load();

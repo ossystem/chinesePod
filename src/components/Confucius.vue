@@ -67,7 +67,7 @@
             this.loadAllImages();
 
             const audio = document.getElementById('audioPlayer');
-            audio.addEventListener("canplaythrough", () => {audio.play();});
+            audio.oncanplay = () => {audio.play();};
             audio.src = require('../assets/audio/common/confucius.mp3');
             audio.load();
 

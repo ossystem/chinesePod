@@ -21,9 +21,9 @@ export default {
     },
     mounted: function() {
     const audio = document.getElementById("audioPlayerIntro");
-    audio.addEventListener("canplaythrough", () => {
+    audio.oncanplay = () => {
       audio.play();
-    });
+    };
 
     audio.src = require(`../../assets/audio/common/what-is-the-difference.mp3`);
     audio.load();
