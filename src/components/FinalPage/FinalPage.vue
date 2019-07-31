@@ -35,8 +35,12 @@
                 will
                 send you our course.
             </div>
-            <div v-show="!emailCookie" class="margin-vertical"><label><input v-model="userEmail" type="email" placeholder="example@gmail.com"></label></div>
-            <div v-show="!emailCookie" class="label-input margin-vertical"><label><input type="checkbox" v-model="subscribeNews">Receive more info from ChinesePod</label></div>
+            <div v-show="!emailCookie" class="margin-vertical"><label><input v-model="userEmail" @keyup="validateEmail" type="email" placeholder="example@gmail.com"></label>
+                <div class="error" v-show="error.email !== ''">{{error.email}}</div>
+            </div>
+            <div v-show="!emailCookie" class="label-input margin-vertical"><label><input type="checkbox" v-model="subscribeNews">Receive more info from ChinesePod</label>
+            </div>
+
             <div class="button-try margin-vertical" @click="onSendEmailHandler">{{emailCookie ==='' ?'Proceed':'Update settings'}}</div>
             <div class="bottom-spacer"></div>
         </div>
@@ -46,8 +50,9 @@
 
 <script>
     import ModalWrapper from '../ModalWrapper';
-
     import slide from '../../data/slides/slide8';
+
+    import { IMaskDirective } from 'vue-imask';
 
     const baseURL = 'https://staging.chinesepod.com/';
 
@@ -66,7 +71,12 @@
             subscribeNews: false,
             emailCookie: '',
             level: ['newbie', 'elementary', 'preInt', 'intermediate', 'upperInt', 'advanced'],
+            error: {email:''},
+            triedToSubmit: false,
         }),
+        directives: {
+            imask: IMaskDirective
+        },
         methods: {
             updateUserCharSet() {
                 const data ={
@@ -102,7 +112,46 @@
                 this.axios.post(`${baseURL}api/v1/entrance/signup`,data).then(() => {
                 }).catch();
             },
+            htmlSpecialChars (str) {
+                str = str.slice(0, 40);
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    '\'': '&#39;',
+                    '*': '&mul',
+                    ')': '&brr',
+                    '(': '&brl'
+                };
+                return str.replace(/[&<>"'*()]/g, m => { return map[m]; });
+            },
+            validateEmail () {
+                // do not validate while user did not submited data
+                if (!this.triedToSubmit) {
+                    return;
+                }
+
+                const email = this.htmlSpecialChars(this.userEmail).toLowerCase();
+
+                if (~email.search('^\\S+@\\S+\\.\\S+$') && email.length > 5) {
+                    this.error.email = '';
+
+                    if (~email.search('[^a-z0-9\\-\\@\\.]')) {
+                        this.error.email = 'Enter correct email';
+                    }
+                } else {
+                    this.error.email = 'Enter correct email';
+                }
+
+                return this.error.email === '';
+            },
             onSendEmailHandler () {
+                this.triedToSubmit = true;
+
+                if(!this.validateEmail()) {
+                    return;
+                }
                 // user is logged in
                 if (this.emailCookie === '') {
                     this.singUpUser();
@@ -237,6 +286,12 @@
         justify-content: space-between;
         margin-top: 40px;
         margin-bottom: 5px;
+    }
+
+    .error {
+        margin-top: 5px;
+        color: red;
+        font-size: 12px;
     }
 
     .labels .correct {
