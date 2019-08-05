@@ -1,4 +1,4 @@
-import {WHAT_DOES_THIS_MEAN_6, syncData, syncDataPinyin} from './constants';
+import {WHAT_DOES_THIS_MEAN_6, WHAT_DOES_THIS_MEAN_6_TD, syncData, syncDataTD, syncDataPinyin} from './constants';
 
 const answer1 = {
     text: 'To be closely linked',
@@ -25,9 +25,11 @@ const data =
         question: {
             delay: 300,
             intro: 'slide6/intro.mp3',
-            syncData: syncData,            
+            syncData: syncData,
+            syncDataTD: syncDataTD,
             syncDataPinyin: syncDataPinyin,                        
             title: WHAT_DOES_THIS_MEAN_6,
+            titleTD: WHAT_DOES_THIS_MEAN_6_TD,
             chars: '这些高新技术的应用都是跟我们的生活息息相关的。<br>等到科学家们找到细胞衰老的原因,\n' +
                 '说不定我们就能活到两百岁了。<br>而且以后或许可以克隆人体器官,治疗癌症就是小菜一碟\n' +
                 '了。',

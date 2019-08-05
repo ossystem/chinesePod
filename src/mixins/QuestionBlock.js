@@ -71,7 +71,10 @@ const QuestionBlockMix = {
                         }
 
                         if (this.data.syncData) {
-                            const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
+                            const syncData_TD_OR_SIMPLE = this.data.syncDataTD ? this.data.syncDataTD : this.data.syncData;
+                            const syncDataToUse = this.traditional ? syncData_TD_OR_SIMPLE : this.data.syncData;
+
+                            const syncData = this.skipCharacters ? this.data.syncDataPinyin : syncDataToUse;
                             this.audio.addEventListener('timeupdate', () => {
                                 syncData.forEach((element, index) => {
                                     if (

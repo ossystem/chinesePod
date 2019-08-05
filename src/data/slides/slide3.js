@@ -27,9 +27,9 @@ const data =
             delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '警方逮捕了嫌犯',
-            charsTD: '警方逮捕了嫌犯*#',
+            charsTD: '警方逮捕了嫌犯',
             pinyin: 'Jǐngfāng dàibǔle xiánfàn',
-            pinyinTD: 'Jǐngfāng dàibǔle xiánfàn*#',
+            pinyinTD: 'Jǐngfāng dàibǔle xiánfàn',
         },
         // Variants of answers
         answers: [

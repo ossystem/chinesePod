@@ -1,5 +1,5 @@
 
-import {WHAT_DOES_THIS_MEAN_8, syncData, syncDataPinyin} from './constants'
+import { WHAT_DOES_THIS_MEAN_8, syncData, syncDataPinyin, syncDataTD } from './constants';
 const answer1 = {
     text: 'Scientists might develop a revolutionary drug.',
     trans: '',
@@ -25,7 +25,8 @@ const data =
         question: {
             delay: 300,
             intro: 'slide8/intro.mp3',
-            syncData: syncData,            
+            syncData: syncData,
+            syncDataTD: syncDataTD,
             syncDataPinyin: syncDataPinyin,              
             skipTextSpeech: true,
             title: WHAT_DOES_THIS_MEAN_8,

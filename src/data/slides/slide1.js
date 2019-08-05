@@ -6,9 +6,9 @@ const data =
             delay: 3000,
             title: WHAT_DOES_THIS_MEAN,
             chars: '我不知道',
-            charsTD: '我不知道*#',
+            charsTD: '我不知道',
             pinyin: 'Wǒ bù zhīdào',
-            pinyinTD: 'Wǒ bù zhīdào*#',
+            pinyinTD: 'Wǒ bù zhīdào',
         },
         // Variants of answers
         answers: [

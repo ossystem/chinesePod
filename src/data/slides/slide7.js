@@ -1,4 +1,4 @@
-import {WHAT_DOES_THIS_MEAN_7, syncData, syncDataPinyin} from './constants';
+import { WHAT_DOES_THIS_MEAN_7, syncData, syncDataPinyin, syncDataTD } from './constants';
 
 const answer1 = {
     text: 'We might be able to cure Alzheimer\'s disease.',
@@ -25,7 +25,8 @@ const data =
         question: {
             delay: 300,
             intro: 'slide7/intro.mp3',
-            syncData: syncData,            
+            syncData: syncData,
+            syncDataTD: syncDataTD,
             syncDataPinyin: syncDataPinyin,               
             skipTextSpeech: true,    
             title: WHAT_DOES_THIS_MEAN_7,

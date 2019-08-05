@@ -25,7 +25,7 @@
                         :style="{opacity: showTitle}"
                         class="text"
                         :class="{'text-green':changeTitleColor}"
-                        v-html="data.title"
+                        v-html="data.titleTD ? data.titleTD : data.title"
                 ></div>
                 <div
                         v-if="haveSyncText && !skipCharacters"
@@ -173,13 +173,16 @@
                 // https://www.codepunker.com/blog/sync-audio-with-text-using-javascript
                 // use https://ttsmp3.com/ to generate mp3
 
-                const syncData = this.skipCharacters ? this.data.syncDataPinyin : this.data.syncData;
+                const syncData_TD_OR_SIMPLE = this.data.syncDataTD ? this.data.syncDataTD : this.data.syncData;
+                const syncDataToUse = this.traditional ? syncData_TD_OR_SIMPLE : this.data.syncData;
+                const syncData = this.skipCharacters ? this.data.syncDataPinyin : syncDataToUse;
+
                 let element;
                 for (let i = 0; i < syncData.length; i++) {
                     element = document.createElement('span');
                     element.setAttribute('id', 'c_' + i);
                     const text = syncData[i].text;
-                    element.innerText = text + ' ';
+                    element.innerText = text;
                     if (text === '。') {
                         element.innerHTML += '';
                     }

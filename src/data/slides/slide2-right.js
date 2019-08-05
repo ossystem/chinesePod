@@ -13,11 +13,11 @@ const data =
             delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '你有_茶吗?',
-            charsTD: '你有茶吗?*#',
+            charsTD: '你有_茶嗎',
             pinyin: 'Nǐ yǒu chá ma?',
-            pinyin2: 'Nǐ yǒu méiyǒu chá?',
-            pinyinTD: 'Nǐ yǒu chá ma?*#',
-            pinyinTD2: 'Nǐ yǒu méiyǒu chá?*#',
+            pinyin2: 'Nǐ yǒuméiyǒu chá?',
+            pinyinTD: 'Nǐ yǒu chá ma?',
+            pinyinTD2: 'Nǐ yǒuméiyǒu chá?',
             animation: [
                 {
                     chars: '你有茶_?',           

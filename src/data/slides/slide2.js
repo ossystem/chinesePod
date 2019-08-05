@@ -8,9 +8,9 @@ const data =
             delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '谢谢',
-            charsTD: '谢谢*#',
+            charsTD: '謝謝',
             pinyin: 'Xièxiè',
-            pinyinTD: 'Xièxiè*#',
+            pinyinTD: 'Xièxiè',
         },
         // Variants of answers
         answers: [

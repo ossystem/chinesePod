@@ -27,9 +27,9 @@ const data =
             delay: 300,
             title: WHAT_DOES_THIS_MEAN,
             chars: '即使你努力学习，通过入学考试也具有挑战性',
-            charsTD: '即使你努力学习，通过入学考试也具有挑战性*#',
-            pinyin: 'Jíshǐ nǐ nǔlì xuéxí, tōngguò rùxué kǎoshì yě jùyǒu tiǎozhàn xìng dàibǔle xiánfàn',
-            pinyinTD: 'Jíshǐ nǐ nǔlì xuéxí, tōngguò rùxué kǎoshì yě jùyǒu tiǎozhàn xìng dàibǔle xiánfàn*#',
+            charsTD: '即使你努力學習，通過入學考試也具有挑戰性',
+            pinyin: 'Jíshǐ nǐ nǔlì xuéxí, tōngguò rùxué kǎoshì yě jùyǒu tiǎozhànxìng',
+            pinyinTD: 'Jíshǐ nǐ nǔlì xuéxí, tōngguò rùxué kǎoshì yě jùyǒu tiǎozhànxìng',
         },
         // Variants of answers
         answers: [

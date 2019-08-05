@@ -2,7 +2,7 @@
     <section class="question">
         <!--        <div class="arrow left"></div>-->
         <div class="question-wrapper">
-            <div class="text" v-html="data.title"></div>
+            <div class="text" v-html="data.titleTD ? data.titleTD : data.title"></div>
 
             <div class="symbols" :class="{hide:skipCharacters,show:!skipCharacters}">
         <span
@@ -65,7 +65,10 @@
         },
         mounted: function () {
             this.charsPart = this.data.chars;
-            this.title = this.data.chars;
+            const charsTD_OR_SM = this.data.charsTD ? this.data.charsTD : this.data.chars;
+            this.title = this.traditional ? charsTD_OR_SM : this.data.chars;
+
+            //this.title = charsToUse;
 
             if (this.data.animation) {
                 this.titles = this.data.animation;

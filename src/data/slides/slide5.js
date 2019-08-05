@@ -26,10 +26,10 @@ const data =
         question: {
             delay: 300,
             title: WHAT_DOES_THIS_MEAN,
-            chars: '你走的慢不要紧，只要你不停下来',
-            charsTD: '你走的慢不要紧，只要你不停下来*#',
-            pinyin: 'Nǐ zǒu de màn bùyàojǐn, zhǐyào nǐ bù tíng xiàlái',
-            pinyinTD: 'Nǐ zǒu de màn bùyàojǐn, zhǐyào nǐ bù tíng xiàlái*#',
+            chars:   '你走的慢不要紧，只要你不停下来',
+            charsTD: '你走的慢不要緊，只要你不停下來',
+            pinyin:   'Nǐ zǒu de màn bùyàojǐn, zhǐyào nǐ bù tíngxiàlái',
+            pinyinTD: 'Nǐ zǒu de màn bùyàojǐn, zhǐyào nǐ bù tíngxiàlái',
         },
         // Variants of answers
         answers: [
